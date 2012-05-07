@@ -57,8 +57,10 @@ XMLHttpRequest.prototype.send_s = function(args) {
  * decodeQueryString() returns Object
  * Input: Nothing
     * Converts the string to an Object that represents a query string.
-    * Example format:
+    * Examples of valid formats:
       * ?id=42&email=foo@bar.com&type=helloworld
+	  * &id=42&foo&name=John+Doe
+	  * foo&bar
     * */
 String.prototype.decodeQueryString = function() {
 	var buffer;
