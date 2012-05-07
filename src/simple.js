@@ -400,6 +400,8 @@ var Simple = {
 		WhenReady: function(callback) {
 			if (Simple.DOM.isReady === false) {
 				Simple.DOM.callbacks.push(callback);
+			} else {
+				callback();
 			}
 		}
 	},
