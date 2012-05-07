@@ -405,8 +405,6 @@ var Simple = {
 		/*
 		 * exists() returns Boolean
 		 * Input: String
-		 * Returns true if the passed index has been defined in the query string.
-		 * False otherwise.
 		 * */
 		exists: function(index) {
 			return (typeof index === 'string' && index in this.data);
@@ -415,9 +413,6 @@ var Simple = {
 		/*
 		 * find() returns Mixed
 		 * Input: String
-		 * The equivalent of $_GET['foo'] in PHP.
-		 * Returns the value of the query string variable by the passed name.
-		 * Returns undefined if not found.
 		 * */
 		find: function(index) {
 			if (this.exists(index)) {
