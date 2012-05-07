@@ -89,7 +89,7 @@ var Simple = {
 					Simple.AJAXHandler.CallIfExists(ajaxRequest.onProcess);
 				break;
 				case 4:
-					if (ajaxRequest.timeout) {
+					if (typeof ajaxRequest.timeout !== 'undefined') {
 						clearTimeout(ajaxRequest.timeout);
 					}
 					
@@ -278,7 +278,7 @@ var Simple = {
 	    *
 	    * */
 	Each: function (haystack, callback) {
-		if (haystack !== undefined && haystack !== null) {
+		if (typeof haystack !== 'undefined' && haystack !== null) {
 			var iterator = {
 				i: null,
 				parent: haystack,
@@ -344,10 +344,10 @@ var Simple = {
 		isReady: false, // This boolean is used to ensure that DOM.OnReady is only called once.
 		
 		OnDOMContentLoaded: function() {
-			if (document.addEventListener) {
+			if (typeof document.addEventListener !== 'undefined') {
 				document.removeEventListener('DOMContentLoaded', Simple.DOM.OnDOMContentLoaded, false);
 				Simple.DOM.OnReady();
-			} else if (document.attachEvent && document.readyState === 'complete' && document.body) {
+			} else if (typeof document.attachEvent !== 'undefined' && document.readyState === 'complete' && document.body !== null) {
 				document.detachEvent('onreadystatechange', Simple.DOM.OnDOMContentLoaded);
 				Simple.DOM.OnReady();
 			}
@@ -376,10 +376,10 @@ var Simple = {
 
 Simple.Cookie.DoUpdateData();
 
-if (document.addEventListener) {
+if (typeof document.addEventListener !== 'undefined') {
 	document.addEventListener('DOMContentLoaded', Simple.DOM.OnDOMContentLoaded, false);
 	window.addEventListener('load', Simple.DOM.OnReady, false);
-} else if (document.attachEvent) {
+} else if (typeof document.attachEvent !== 'undefined') {
 	document.attachEvent('onreadystatechange', Simple.DOM.OnDOMContentLoaded);
 	window.attachEvent('onload', Simple.DOM.OnReady, false);
 } else {
