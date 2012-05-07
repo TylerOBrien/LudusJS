@@ -160,10 +160,7 @@ var Simple = {
 		/*
 		 * GetCarset() returns String
 		 * Input: String
-			* Takes a passed object, assumed String.
-			* If NULL or UNDEFINED is passed then a default value is returned.
-			* Otherwise the passed value is returned back.
-			* */
+		 * */
 		GetCharset: function(charset) {
 			return (typeof charset === 'string') ? charset : 'utf-8';
 		},
@@ -171,8 +168,7 @@ var Simple = {
 		/*
 		 * GetContentType() returns String
 		 * Input: String
-			* See GetCharset().
-			* */
+		 */
 		GetContentType: function(contentType) {
 			return (typeof contentType === 'string') ? contentType : 'application/x-www-form-urlencoded';
 		},
@@ -180,8 +176,7 @@ var Simple = {
 		/*
 		 * GetMethod() returns String
 		 * Input: String
-			* See GetCharset().
-			* */
+		 */
 		GetMethod: function(method) {
 			return (typeof method === 'string') ? method : 'GET';
 		},
@@ -214,8 +209,7 @@ var Simple = {
 		/*
 		 * GetUrl() returns String
 		 * Input: String
-			* See GetCharset().
-			* */
+		 */
 		GetUrl: function(url) {
 			return (typeof url === 'string') ? url : '/';
 		},
