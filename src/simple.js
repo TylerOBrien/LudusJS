@@ -40,7 +40,7 @@ if (typeof XMLHttpRequest === 'undefined') {
  * send_s() returns Nothing
  * Input: Object
     * A "safe" version of XMLHttpRequest.send().
-	* Is compatible with both ActiveX-based AJAX and otherwise.
+    * Is compatible with both ActiveX-based AJAX and otherwise.
     * */
 XMLHttpRequest.prototype.send_s = function(args) {
 	if (typeof args === 'undefined' || args === null) {
