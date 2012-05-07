@@ -54,7 +54,7 @@ XMLHttpRequest.prototype.send_s = function(args) {
 String.prototype.toQueryString = function() {
 	var buffer;
 	var queryString = this.replace('+', ' ');
-	var regex = /[?&]?([^=&]+)(=([^&]*))?/g;
+	var regex = /[?&]?([^&=]+)=?([^&]+)?/g;
 	var result = {};
 	
 	while (buffer = regex.exec(queryString)) {
