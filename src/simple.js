@@ -58,7 +58,7 @@ String.prototype.toQueryString = function() {
 	var result = {};
 	
 	while (buffer = regex.exec(queryString)) {
-		result[decodeURIComponent(buffer[1])] = decodeURIComponent(buffer[3]);
+		result[decodeURIComponent(buffer[1])] = decodeURIComponent(buffer[2]);
 	}
 	
 	return result;
