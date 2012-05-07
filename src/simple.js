@@ -37,7 +37,7 @@ if (typeof XMLHttpRequest === 'undefined') {
 }
  
 /* 
- * send_s() returns nothing
+ * send_s() returns Nothing
  * Input: Object
     * A "safe" version of XMLHttpRequest.send().
 	* Is compatible with both ActiveX-based AJAX and otherwise.
@@ -55,7 +55,7 @@ XMLHttpRequest.prototype.send_s = function(args) {
 
 /* 
  * decodeQueryString() returns Object
- * Input: nothing
+ * Input: Nothing
     * Converts the string to an Object that represents a query string.
     * Example format:
       * ?id=42&email=foo@bar.com&type=helloworld
@@ -142,7 +142,7 @@ var Simple = {
 	 * */
 	AJAXHandler: {
 		/*
-		 * CallIfExists() returns nothing
+		 * CallIfExists() returns Nothing
 		 * Input: Function, Mixed, Mixed
 			* Takes a callback, and up to two optional parameters.
 			* Depending on the number of parameters given will make one of three different calls.
@@ -282,7 +282,7 @@ var Simple = {
 	},
 	
 	/*
-	 * Each() returns nothing
+	 * Each() returns Nothing
 	 * Input: Array|Object, Function
 	    *
 	    * */
