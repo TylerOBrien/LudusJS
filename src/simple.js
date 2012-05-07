@@ -343,6 +343,12 @@ var Simple = {
 		callbacks: [], // The array of each callback function to be called when the DOM is ready.
 		isReady: false, // This boolean is used to ensure that DOM.OnReady is only called once.
 		
+		/*
+		 * OnDOMContentLoaded() returns Nothing
+		 * Input: Nothing
+		    * The function called by the event listeners.
+		    * Because of the legacy event listener this may be called twice.
+		    * */
 		OnDOMContentLoaded: function() {
 			if (typeof document.addEventListener !== 'undefined') {
 				document.removeEventListener('DOMContentLoaded', Simple.DOM.OnDOMContentLoaded, false);
@@ -353,6 +359,13 @@ var Simple = {
 			}
 		},
 		
+		/*
+		 * OnReady() returns Nothing
+		 * Input: Nothing
+		    * The function called when the DOM has finished loading/is ready.
+		    * Uses a boolean to prevent multiple calls because it may be called twice by 
+		    * the event listener and legacy event listener.
+		    * */
 		OnReady: function() {
 			if (Simple.DOM.isReady === false) {
 				if (Simple.DOM.callbacks.length > 0) {
@@ -364,6 +377,12 @@ var Simple = {
 			}
 		},
 		
+		/*
+		 * WhenReady() returns Nothing
+		 * Input: Function
+		    * Adds the passed callback to the array of callbacks that are called when
+		    * the DOM is ready.
+		    * */
 		WhenReady: function(callback) {
 			if (Simple.DOM.isReady === false) {
 				Simple.DOM.callbacks.push(callback);
