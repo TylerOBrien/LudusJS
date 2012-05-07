@@ -260,8 +260,9 @@ var Simple = {
 			var regex = /([^=]+)=(.*)/;
 			
 			Simple.Each(arr, function(){
-				cookie = regex.exec(this);
-				Simple.Cookie.data[escape(cookie[1])] = escape(cookie[2]);
+				if (cookie = regex.exec(this)) {
+					Simple.Cookie.data[escape(cookie[1])] = escape(cookie[2]);
+				}
 			});
 		},
 		
