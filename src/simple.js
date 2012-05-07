@@ -22,7 +22,7 @@
 if (typeof XMLHttpRequest === 'undefined') {
 	var XMLHttpRequest = function() {
 		return new ActiveXObject('Microsoft.XMLHTTP');
-	}
+	};
 	XMLHttpRequest.prototype.isActiveX = true;
 } else {
 	XMLHttpRequest.prototype.isActiveX = false;
