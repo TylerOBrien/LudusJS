@@ -126,7 +126,7 @@ var Simple = {
 		 * Add a new timeout if one is given.
 		 * The time is assumed to be milliseconds.
 		 * */
-		if ('timeout' in args && args['timeout'] === true) {
+		if (typeof args['timeout'] === 'number') {
 			ajaxRequest.timeout = setTimeout(function() {
 				ajaxRequest.http.abort();
 				Simple.AJAXHandler.CallIfExists(ajaxRequest.onTimeout);
