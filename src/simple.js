@@ -54,13 +54,13 @@ XMLHttpRequest.prototype.send_s = function(args) {
 }
 
 /* 
- * toQueryString() returns Object
+ * decodeQueryString() returns Object
  * Input: nothing
     * Converts the string to an Object that represents a query string.
     * Example format:
       * ?id=42&email=foo@bar.com&type=helloworld
     * */
-String.prototype.toQueryString = function() {
+String.prototype.decodeQueryString = function() {
 	var buffer;
 	var queryString = this.replace('+', ' ');
 	var regex = /[?&]?([^&=]+)=?([^&]+)?/g;
@@ -399,7 +399,7 @@ var Simple = {
 		}
 	},
 	
-	GET: document.location.search.toQueryString()
+	GET: document.location.search.decodeQueryString()
 };
 
 Simple.Cookie.DoUpdateData();
