@@ -38,7 +38,7 @@ if (typeof XMLHttpRequest === 'undefined') {
  
 /* 
  * send_s() returns nothing
- * Input: String, String
+ * Input: Object
     * A "safe" version of XMLHttpRequest.send().
 	* Is compatible with both ActiveX-based AJAX and otherwise.
     * */
