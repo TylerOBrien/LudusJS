@@ -1,3 +1,3 @@
 SimpleJS
-==================================================
-Haven't written this yet.
+==========
+Haven't written this yet...
