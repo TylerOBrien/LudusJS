@@ -51,10 +51,21 @@ Without an iterator:
 	(function($){
 		"use strict";
 		
-		$.Each([1,2,3,4,5], function(){
+		var arr = [1,2,3,4,5];
+		
+		$.Each(arr, function(){
 			console.log(this);
 		});
 	}(Simple)();
+____
+	(function($){
+		"use strict";
+		
+		var arr = [{id:1}, {id:2}, {id:3}, {id:4}, {id:5}];
+		
+		$.Each(arr, function(){
+			console.log(this.id);
+		});
 
 With an iterator:
 
