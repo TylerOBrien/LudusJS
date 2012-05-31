@@ -4,9 +4,10 @@ SimpleJS
 This is a lightweight JavaScript library designed to simplify common tasks in vanilla JavaScript. Originally this was designed as an AJAX wrapper, but eventually grew into a much larger library. SimpleJS makes no attempt to replicate, or replace, other existing libraries such as jQuery or MooTools; it is merely something I designed to simplify JavaScript when specifically _not_ using those libraries.
 
 Examples
-----------
+==========
 
 __Simple.AJAX__
+----------
 
 	(function($){
 		"use strict";
@@ -34,6 +35,7 @@ ____
 	}(Simple));
 
 __Simple.Call__
+----------
 
 	(function($){
 		"use strict";
@@ -60,6 +62,7 @@ ____
 	}(Simple));
 
 __Simple.Cookie__
+----------
 
 	(function($){
 		"use strict";
@@ -87,6 +90,7 @@ ____
 	}(Simple));
 
 __Simple.DOMElement__
+----------
 
 	(function($){
 		"use strict";
@@ -109,6 +113,7 @@ ____
 	}(Simple));
 
 __Simple.DOMReady__
+----------
 
 	(function($){
 		"use strict";
@@ -119,6 +124,7 @@ __Simple.DOMReady__
 	}(Simple));
 
 __Simple.Each__
+----------
 
 	(function($){
 		"use strict";
@@ -155,6 +161,7 @@ ____
 	}(Simple));
 
 __Simple.Equals__
+----------
 
 	(function($){
 		"use strict";
@@ -190,6 +197,7 @@ ____
 	}(Simple));
 
 __Simple.Exists__
+----------
 
 	(function($){
 		"use strict";
@@ -204,6 +212,7 @@ __Simple.Exists__
 	}(Simple));
 
 __Simple.GET__
+----------
 
 	(function($){
 		"use strict";
