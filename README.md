@@ -20,8 +20,7 @@ __Simple.AJAX__
 			}
 		});
 	}(Simple));
-
-
+____
 	(function($){
 		"use strict";
 		
@@ -75,8 +74,7 @@ __Simple.Equals__
 		console.log($.Equals(five, seven)); // False
 		console.log($.Equals(five + two, seven)); // True
 	}(Simple));
-
-
+____
 	(function($){
 		"use strict";
 		
@@ -85,8 +83,7 @@ __Simple.Equals__
 		
 		console.log($.Equals(foo, bar)); // False
 	}(Simple));
-
-
+____
 	(function($){
 		"use strict";
 		
@@ -121,8 +118,7 @@ __Simple.GET__
 		console.log($.GET.exists("foo")); // Will output true if "foo" is defined
 		console.log($.GET.find("foo")); // Will output value of "foo" if is defined, otherwise will output 'undefined'
 	}(Simple));
-
-
+____
 	(function($){
 		"use strict";
 		
