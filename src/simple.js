@@ -301,9 +301,10 @@ var Simple = {
 				value: null
 			};
 			if (haystack.forEach !== undefined) {
+				iterator.i = 0;
 				var end = haystack.length;
-				for (var i = 0; i < end; i++) {
-					iterator.value = haystack[i];
+				for (; iterator.i < end; iterator.i++) {
+					iterator.value = haystack[iterator.i];
 					if (callback.call(iterator.value, iterator) === false) {
 						break;
 					}
@@ -328,7 +329,7 @@ var Simple = {
 		var result = true;
 		
 		Simple.Each(first, function(itr) {
-			if (itr.value !== second[itr.index]) {
+			if (itr.value !== second[itr.i]) {
 				return result = false;
 			}
 		});
