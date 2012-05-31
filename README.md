@@ -41,7 +41,7 @@ __Simple.Cookie__
 		var name = $.Cookie.Get("username");
 		var email = $.Cookie.Get("email");
 		
-		$.Cookie.Set("localAccessTime", new Date().getTime());
+		$.Cookie.Set("id", "usr_445_foo");
 	}(Simple));
 ____
 	(function($){
