@@ -44,13 +44,27 @@ __Simple.Cookie__
 		$.Cookie.Set("localAccessTime", new Date().getTime());
 	}(Simple));
 
+__Simple.DOMElement__
+
+	(function($){
+		var divs = $.DOMElement("div");
+		var elem = $.DOMElement("#foo");
+		var elemArr = $.DOMElement(".bar");
+	}(Simple));
+____
+	(function($){
+		$.Each($.DOMElement(".myClass"), function(){
+			console.log(this.innerHTML);
+		});
+	}(Simple));
+
 __Simple.DOMReady__
 
 	(function($){
 		"use strict";
 		
 		$.DOMReady(function(){
-			var fooValue = $.DOMElement("foo").getAttribute("value");
+			var fooValue = $.DOMElement("#foo").getAttribute("value");
 		});
 	}(Simple));
 
