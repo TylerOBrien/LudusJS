@@ -70,8 +70,8 @@ String.prototype.decodeQueryString = function(){
 	var queryString = this.replace('+', ' ');
 	var regex = /[?&]?([^&=]+)=?([^&]+)?/g;
 	var result = {};
-
 	var buffer = regex.exec(queryString);
+	
 	while (buffer !== null) {
 		result[decodeURIComponent(buffer[1])] = decodeURIComponent(buffer[2]);
 		buffer = regex.exec(queryString);
