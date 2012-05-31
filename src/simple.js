@@ -28,26 +28,29 @@
  * AJAX fallback for IE6.
  * Might not work for IE5 and earlier.
  * */
-if (typeof XMLHttpRequest === 'undefined') {
+if (typeof XMLHttpRequest === "undefined") {
 	var XMLHttpRequest = function() {
-		return new ActiveXObject('Microsoft.XMLHTTP');
+		return new ActiveXObject("Microsoft.XMLHTTP");
 	};
 	XMLHttpRequest.prototype.isActiveX = true;
 } else {
 	XMLHttpRequest.prototype.isActiveX = false;
 }
- 
+
 /* 
  * send_s() returns Nothing
  * Input: Object
     * A "safe" version of XMLHttpRequest.send().
     * Is compatible with both ActiveX-based AJAX and otherwise.
     * */
-XMLHttpRequest.prototype.send_s = function(args) {
-	if (typeof args === 'undefined' || args === null) {
-		if (this.isActiveX) this.send();
-		else this.send(null);
-	} else if ('method' in args && 'queryString' in args && args.method === 'POST') {
+XMLHttpRequest.prototype.send_s = function(args){
+	if (typeof args === "undefined" || args === null) {
+		if (this.isActiveX) {
+			this.send();
+		} else {
+			this.send(null);
+		}
+	} else if ("method" in args && "queryString" in args && args.method === "POST") {
 		this.send(args.queryString);
 	} else {
 		this.send_s();
@@ -63,11 +66,11 @@ XMLHttpRequest.prototype.send_s = function(args) {
        * &id=42&foo&name=John+Doe
        * foo&bar
     * */
-String.prototype.decodeQueryString = function() {
+String.prototype.decodeQueryString = function(){
 	var queryString = this.replace('+', ' ');
 	var regex = /[?&]?([^&=]+)=?([^&]+)?/g;
 	var result = {};
-	
+
 	var buffer = regex.exec(queryString);
 	while (buffer !== null) {
 		result[decodeURIComponent(buffer[1])] = decodeURIComponent(buffer[2]);
