@@ -110,3 +110,12 @@ __Simple.GET__
 		console.log($.GET.exists('foo')); // Will output true if "foo" is defined
 		console.log($.GET.find('foo')); // Will output value of "foo" if is defined, otherwise will output 'undefined'
 	}(Simple));
+
+
+	(function($){
+		"use strict";
+		
+		$.Each($.GET, function(itr){
+			console.log(itr.i + " => " + itr.value);
+		});
+	}(Simple));
