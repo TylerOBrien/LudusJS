@@ -43,7 +43,17 @@ __Simple.Cookie__
 		
 		$.Cookie.Set("localAccessTime", new Date().getTime());
 	}(Simple));
-	
+
+__Simple.DOMReady__
+
+	(function($){
+		"use strict";
+		
+		$.DOMReady(function(){
+			var fooValue = $.DOMElement("foo").getAttribute("value");
+		});
+	}(Simple));
+
 __Simple.Each__
 
 Without an iterator:
