@@ -128,7 +128,7 @@ __Simple.Each__
 		$.Each(arr, function(){
 			console.log(this);
 		});
-	}(Simple)();
+	}(Simple));
 ____
 	(function($){
 		"use strict";
