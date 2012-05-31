@@ -74,6 +74,7 @@ var Simple = {};
 		 *
 		 * */
 		Request: function(args){
+			this.async = __Simple.Exists(args["async"], true);
 			this.charset = __Simple.Exists(args["charset"], "utf-8");
 			this.contentType = __Simple.Exists(args["contentType"], "application/x-www-form-urlencoded");
 			this.http = new XMLHttpRequest();
@@ -185,7 +186,7 @@ var Simple = {};
 	__Simple.AJAX = function(args){
 		var ajaxRequest = new AJAXInternal.Request(args);
 		
-		ajaxRequest.http.open(ajaxRequest.method, ajaxRequest.urlToOpen, true);
+		ajaxRequest.http.open(ajaxRequest.method, ajaxRequest.urlToOpen, ajaxRequest.async);
 		ajaxRequest.http.setRequestHeader("Content-type", ajaxRequest.contentType+"; charset="+ajaxRequest.charset);
 		ajaxRequest.http.onreadystatechange = function(){
 			switch (ajaxRequest.http.readyState) {
