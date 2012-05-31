@@ -259,16 +259,16 @@ var Simple = {};
 	 * DOMElement() returns Mixed
 	 *	Input: String, String
 	 * */
-	__Simple.DOMElement = function(elementString, namespace){
-		if (typeof namespace === "undefined") {
-			switch (elementString[0]) {
-				case "#": return document.getElementById(elementString.substring(1));
-				case ".": return document.getElementsByClassName(elementString.substring(1));
-				case ":": return document.getElementsByName(elementString.substring(1));
-				default:  return document.getElementsByTagName(elementString);
-			}
-		} else {
-			return document.getElementsByTagNameNS(namespace, elementString);
+	__Simple.DOMElement = function(elementString, context){
+		if (typeof context === "undefined") {
+			context = document;
+		}
+		
+		switch (elementString[0]) {
+			case "#": return context.getElementById(elementString.substring(1));
+			case ".": return context.getElementsByClassName(elementString.substring(1));
+			case ":": return context.getElementsByName(elementString.substring(1));
+			default:  return context.getElementsByTagName(elementString);
 		}
 	};
 	
