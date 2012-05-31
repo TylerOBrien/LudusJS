@@ -1,7 +1,7 @@
 SimpleJS
 ==========
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et tellus non tortor cursus lacinia et et mauris. Fusce ante sem, pretium vel cursus in, congue a dui. Suspendisse elementum tristique mattis. Integer sollicitudin elit sodales orci placerat porta. Donec orci libero, rhoncus in luctus nec, euismod quis ipsum. Donec fringilla tristique tincidunt. Cras orci eros, euismod ac lacinia vehicula, ullamcorper ut metus. Mauris quis tellus leo, quis ultricies ante. Cras mattis feugiat nisl, sit amet pretium metus porttitor nec. Maecenas viverra tristique erat quis luctus. 
+This is a lightweight JavaScript library designed to simplify common tasks in vanilla JavaScript. Originally this was designed as an AJAX wrapper, but eventually grew into a much larger library. SimpleJS makes no attempt to replicate, or replace, other existing libraries such as jQuery or MooTools; it is merely something I designed to simplify JavaScript when specifically _not_ using those libraries.
 
 Examples
 ----------
