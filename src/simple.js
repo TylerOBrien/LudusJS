@@ -1,5 +1,5 @@
 /*
- * SimpleJS v0.0.1
+ * SimpleJS v0.0.2
  * https://github.com/TylerOBrien/SimpleJS
  *
  * Copyright (c) 2012 Tyler O'Brien
@@ -29,7 +29,7 @@
  * Might not work for IE5 and earlier.
  * */
 if (typeof XMLHttpRequest === "undefined") {
-	var XMLHttpRequest = function() {
+	var XMLHttpRequest = function(){
 		return new ActiveXObject("Microsoft.XMLHTTP");
 	};
 	XMLHttpRequest.prototype.isActiveX = true;
@@ -57,55 +57,146 @@ XMLHttpRequest.prototype.send_s = function(args){
 	}
 };
 
-/* 
- * decodeQueryString() returns Object
- * Input: Nothing
-    * Converts the string to an Object that represents a query string.
-    * Examples of valid formats:
-       * ?id=42&email=foo@bar.com&type=helloworld
-       * &id=42&foo&name=John+Doe
-       * foo&bar
-    * */
-String.prototype.decodeQueryString = function(){
-	var queryString = this.replace('+', ' ');
-	var regex = /[?&]?([^&=]+)=?([^&]+)?/g;
-	var result = {};
-	var buffer = regex.exec(queryString);
+/*
+ * SimpleJS
+ * */
+ 
+var Simple = {};
+(function(__Simple){
+	"use strict";
 	
-	while (buffer !== null) {
-		result[decodeURIComponent(buffer[1])] = decodeURIComponent(buffer[2]);
-		buffer = regex.exec(queryString);
-	}
+	/*
+	 * Internal AJAX operations performed here.
+	 * */
+	var AJAXInternal = {
+		/*
+		 * class Request
+		 *
+		 * */
+		Request: function(args){
+			this.charset = __Simple.Exists(args["charset"], "utf-8");
+			this.contentType = __Simple.Exists(args["contentType"], "application/x-www-form-urlencoded");
+			this.http = new XMLHttpRequest();
+			this.method = __Simple.Exists(args["method"], "GET");
+			this.onError = args["onError"];
+			this.onConnect = args["onConnect"];
+			this.onNotFound = args["onNotFound"];
+			this.onProcess = args["onProcess"];
+			this.onRequest = args["onRequest"];
+			this.onSuccess = args["onSuccess"];
+			this.queryString = "";
+			this.timeBegin = 0;
+			this.timeDifference = 0;
+			this.timeEnd = 0;
+			this.url = __Simple.Exists(args["url"], "/");
+			this.urlToOpen = (this.method === "POST") ? this.url : (this.url + "?" + this.queryString);
+		}
+	};
 	
-	return result;
-};
-
-var Simple = {
-	AJAX: function(args) {
-		var ajaxRequest = new Simple.AJAXRequest(args);
+	var ClassTypesInteral = {
+		/* Populated by function at bottom using Simple.Each */
+	};
+	
+	var CookieInternal = {
+		data: {},
+		
+		Update: function(){
+			var buffer = null;
+			
+			__Simple.Each(document.cookie.split(";"), function(){
+				if (buffer = RegexInteral.cookie(this)) {
+					CookieInternal.data[escape(buffer[1])] = escape(buffer[2]);
+				}
+			});
+		}
+	};
+	
+	/*
+	 * Internal DOM operations performed here.
+	 * */
+	var DOMInternal = {
+		busy: false,
+		callbacks: [], /* Array of Function */
+		ready: false,
+		
+		/*
+		 * OnDOMContentLoaded() returns Nothing
+		 * Input: Nothing
+		     * Called by one of two possible event listeners.
+			 * As function name suggests, is called when the DOM has finished loading.
+		 * */
+		OnDOMContentLoaded: function(){
+			if (typeof document.addEventListener !== "undefined") {
+				document.removeEventListener("DOMContentLoaded", DOMInternal.OnDOMContentLoaded, false);
+				DOMInternal.OnReady();
+			} else if (typeof document.attachEvent !== "undefined" && document.readyState === "complete" && document.body !== null) {
+				document.detachEvent("onreadystatechange", DOMInternal.OnDOMContentLoaded);
+				DOMInternal.OnReady();
+			}
+		},
+		
+		/*
+		 * OnReady() returns Nothing
+		 * Input: Nothing
+		     * Called when the DOM is ready.
+			 * Is usually called by DOMInternal.OnDOMContentLoaded.
+		 * */
+		OnReady: function(){
+			if (this.busy === false && this.ready === false) {
+				this.busy = true;
+				Simple.Each(this.callbacks, function(){
+					this.value();
+				});
+				this.ready = true;
+				this.busy = false;
+			}
+		}
+	};
+	
+	/*
+	 * Internal Regular Expressions.
+	 * */
+	var RegexInternal = {
+		cookie: /([^=]+)=(.*)/,
+		queryString: /[?&]?([^&=]+)=?([^&]+)?/g
+	};
+	
+	/*
+	 * class Iterator
+	 * Used for storing iteration informating by the Simple.Each function.
+	 * Is only used internally, so there's no point in making it public-facing.
+	 * */
+	var Iterator = function(container){
+		this.container = container;
+		this.i = null;
+		this.value = null;
+	};
+	
+	/*
+	 * AJAX() returns nothing
+	 * Input: Object
+	 * */
+	__Simple.AJAX = function(args){
+		var ajaxRequest = new AJAXInternal.Request(args);
 		
 		ajaxRequest.http.open(ajaxRequest.method, ajaxRequest.urlToOpen, true);
-		ajaxRequest.http.setRequestHeader('Content-type', ajaxRequest.contentType+'; charset='+ajaxRequest.charset);
-		
-		if (ajaxRequest.method === 'POST') {
-			ajaxRequest.http.setRequestHeader('Content-length', ajaxRequest.queryString.length);
-			ajaxRequest.http.setRequestHeader('Connection', 'close');
-		}
-		
+		ajaxRequest.http.setRequestHeader("Content-length", ajaxRequest.queryString.length);
+		ajaxRequest.http.setRequestHeader("Content-type", ajaxRequest.contentType+"; charset="+ajaxRequest.charset);
+		ajaxRequest.http.setRequestHeader("Connection", "close");
 		ajaxRequest.http.onreadystatechange = function(){
 			switch (ajaxRequest.http.readyState) {
-				case 1:
+				case 1: /* CONNECT */
 					ajaxRequest.timeBegin = new Date().getTime();
-					Simple.AJAXHandler.CallIfExists(ajaxRequest.onConnect);
+					__Simple.Call(ajaxRequest.onConnect);
 				break;
-				case 2:
-					Simple.AJAXHandler.CallIfExists(ajaxRequest.onRequest);
+				case 2: /* REQUEST RECEIVED */
+					__Simple.Call(ajaxRequest.onRequest);
 				break;
-				case 3:
-					Simple.AJAXHandler.CallIfExists(ajaxRequest.onProcess);
+				case 3: /* PROCESSING */
+					__Simple.Call(ajaxRequest.onProcess);
 				break;
-				case 4:
-					if (typeof ajaxRequest.timeout !== 'undefined') {
+				case 4: /* COMPLETE */
+					if (typeof ajaxRequest.timeout !== "undefined") {
 						clearTimeout(ajaxRequest.timeout);
 					}
 					
@@ -113,13 +204,10 @@ var Simple = {
 					ajaxRequest.timeDifference = (ajaxRequest.timeEnd - ajaxRequest.timeBegin);
 					
 					switch (ajaxRequest.http.status) {
-						case 200:
-							Simple.AJAXHandler.CallIfExists(ajaxRequest.onSuccess, ajaxRequest.http.responseText, ajaxRequest.timeDifference);
+						case 200: __Simple.Call(ajaxRequest.onSuccess, ajaxRequest.http.responseText, ajaxRequest.timeDifference);
 						break;
-						case 404:
-							Simple.AJAXHandler.CallIfExists(ajaxRequest.onNotFound, ajaxRequest.http.responseText, ajaxRequest.timeDifference);
-						default:
-							Simple.AJAXHandler.CallIfExists(ajaxRequest.onError, ajaxRequest.http.status, ajaxRequest.timeDifference);
+						case 404: __Simple.Call(ajaxRequest.onNotFound, ajaxRequest.http.responseText, ajaxRequest.timeDifference);
+						default:  __Simple.Call(ajaxRequest.onError, [ajaxRequest.http.responseText,ajaxRequest.http.status], ajaxRequest.timeDifference);
 						break;
 					}
 				break;
@@ -130,180 +218,111 @@ var Simple = {
 		 * Add a new timeout if one is given.
 		 * The time is assumed to be milliseconds.
 		 * */
-		if (typeof args['timeout'] === 'number') {
-			ajaxRequest.timeout = setTimeout(function() {
+		if (typeof args["timeout"] === "number") {
+			ajaxRequest.timeout = setTimeout(function(){
 				ajaxRequest.http.abort();
-				Simple.AJAXHandler.CallIfExists(ajaxRequest.onTimeout);
-			}, args['timeout']);
+				__Simple.Call(ajaxRequest.onTimeout);
+			}, args["timeout"]);
 		}
 		
 		ajaxRequest.http.send_s(ajaxRequest);
-	},
+	};
 	
 	/*
-	 * AJAXHandler
-	 * This object contains boilerplate functions that help organise the code of Simple AJAX.
-	 * These probably won't need to be used outside of the AjaxRequest constructor function.
-	 * Note:
-		* These functions are also where the default values are assigned.
+	 * Call() returns Mixed
+	 * Input: Mixed, Mixed, Mixed
 	 * */
-	AJAXHandler: {
-		/*
-		 * CallIfExists() returns Nothing
-		 * Input: Function, Mixed, Mixed
-			* Takes a callback, and up to two optional parameters.
-			* Depending on the number of parameters given will make one of three different calls.
-			* */
-		CallIfExists: function(callback, param1, param2) {
-			if (typeof callback === 'function') {
-				if (typeof param2 !== 'undefined') callback(param1, param2);
-				else if (typeof param1 !== 'undefined') callback(param1);
-				else callback();
-			}
-		},
-		
-		/*
-		 * GetCarset() returns String
-		 * Input: String
-		 * */
-		GetCharset: function(charset) {
-			return (typeof charset === 'string') ? charset : 'utf-8';
-		},
-		
-		/*
-		 * GetContentType() returns String
-		 * Input: String
-		 */
-		GetContentType: function(contentType) {
-			return (typeof contentType === 'string') ? contentType : 'application/x-www-form-urlencoded';
-		},
-		
-		/*
-		 * GetMethod() returns String
-		 * Input: String
-		 */
-		GetMethod: function(method) {
-			return (typeof method === 'string') ? method : 'GET';
-		},
-		
-		/*
-		 * GetQueryString() returns String
-		 * Input: Object
-		 * Takes an object of (key=>value) pairs and converts them to a query string.
-		 * For example:
-			* The object {a:1,b:2,c:3} would become "a=1&b=2&c=3".
-			* Note that the question mark is not appended to the beginning.
-		 * */
-		GetQueryString: function(data) {
-			var output = '';
-			
-			if (typeof data !== 'undefined') {
-				var output = '';
-				
-				for (var key in data) {
-					output = (output + key +'='+ data[key] + '&');
-				}
-				
-				// Trim off the extra ampersand.
-				output = output.substring(0, output.length-1);
-			}
-			
-			return output;
-		},
-		
-		/*
-		 * GetUrl() returns String
-		 * Input: String
-		 */
-		GetUrl: function(url) {
-			return (typeof url === 'string') ? url : '/';
-		},
-		
-		/*
-		 * GetUrlToOpen() returns String
-		 * Input: String, String, String
-			* Returns the value that will be passed to the XMLHttpRequest.open() function.
-			* If the method is a GET it will be the entire URL, as well as the query string.
-			* If the method is a POST then it will only be the query string.
-			* */
-		GetUrlToOpen: function(url, queryString, method) {
-			return (method === 'POST') ? url : (url + '?' + queryString);
+	__Simple.Call = function(callback, first, second){
+		if (__Simple.Type(callback) === "function") {
+			if (typeof second !== "undefined") return callback(first, second);
+			else if (typeof first !== "undefined") return callback(first);
+			else return callback();
 		}
-	},
+	};
 	
-	AJAXRequest: function(args) {
-		this.charset = Simple.AJAXHandler.GetCharset(args['charset']);
-		this.contentType = Simple.AJAXHandler.GetContentType(args['contentType']);
-		this.http = new XMLHttpRequest();
-		this.method = Simple.AJAXHandler.GetMethod(args['method']);
-		this.onConnect = args['onConnect'];
-		this.onError = args['onError'];
-		this.onNotFound = args['onNotFound'];
-		this.onProcess = args['onProcess'];
-		this.onRequest = args['onRequest'];
-		this.onSuccess = args['onSuccess'];
-		this.onTimeout = args['onTimeout'];
-		this.queryString = Simple.AJAXHandler.GetQueryString(args['data']);
-		this.timeBegin = 0;
-		this.timeDifference = 0;
-		this.timeEnd = 0;
-		this.timeout = null;
-		this.url = Simple.AJAXHandler.GetUrl(args['url']);
-		this.urlToOpen = Simple.AJAXHandler.GetUrlToOpen(this.url, this.queryString, this.method);
-	},
-	
-	Cookie: {
-		data: {},
-		
-		DoUpdateData: function() {
-			this.data = {};
-			
-			var arr = document.cookie.split('; ');
-			var buffer = null;
-			var cookie = null;
-			var regex = /([^=]+)=(.*)/;
-			
-			Simple.Each(arr, function(){
-				if (cookie = regex.exec(this)) {
-					Simple.Cookie.data[escape(cookie[1])] = escape(cookie[2]);
-				}
-			});
+	__Simple.Cookie = {
+		Get: function(name){
+			return CookieInternal.data[name];
 		},
 		
-		/*
-		 * Get() returns Mixed
-		 * Input: String
-		 * */
-		Get: function(name) {
-			if (this.data === null) {
-				this.DoUpdateData();
-			}
-			return Simple.Cookie.data[name];
-		},
+		Set: function(name, value, expires){
 		
-		/*
-		 * Set() returns Nothing
-		 * Input: String, String, String(Optional)
-		 * */
-		Set: function(name, value, expiration) {
-			document.cookie = (name+'='+value+';') + (expiration ? ' expires=0;' : '');
-			this.DoUpdateData();
-		}
-	},
+		},
+	};
 	
 	/*
-	 * Each() returns Nothing
-	 * Input: Array|Object, Function
-	    *
-	    * */
-	Each: function (haystack, callback) {
-		if (typeof haystack !== 'undefined' && haystack !== null) {
-			var iterator = {
-				i: null,
-				parent: haystack,
-				value: null
-			};
-			if (haystack.hasOwnProperty("forEach")) {
+	 * DOMElement() returns Mixed
+	 *	Input: String, String
+	 * */
+	__Simple.DOMElement = function(elementString, namespace){
+		if (typeof namespace === "undefined") {
+			switch (elementString[0]) {
+				case "#": return document.getElementById(elementString.substring(1));
+				case ".": return document.getElementsByClassName(elementString.substring(1));
+				case ":": return document.getElementsByName(elementString.substring(1));
+				default:  return document.getElementsByTagName(elementString);
+			}
+		} else {
+			return document.getElementsByTagNameNS(namespace, elementString);
+		}
+	};
+	
+	/*
+	 * DOMReady() returns nothing
+	 * Input: Function
+	     * Calls the passed function when the DOM is ready.
+	 * */
+	__Simple.DOMReady = function(callback){
+		if (__Simple.Type(callback) === "function") {
+			if (DOMInteral.ready === false && DOMInteral.busy === false) {
+				DOMInteral.callbacks.push(callback);
+			} else {
+				callback();
+			}
+		}
+	};
+	
+	/*
+	 * DecodeQueryString() returns Object
+	 * Input: String
+	     * Converts a passed query string in this format:
+		     * id=42&name=John+Doe&type=user
+	     * Into an object containing the defined variables.
+		 * All instances of "+" will be converted to spaces.
+		 *
+		 * Any variables not given a value, like so:
+		     * foo&bar&baz
+	     * Will be NULL valued in the object.
+	 * */
+	__Simple.DecodeQueryString = function(queryString){
+		queryString = queryString.replace("+", " ");
+		
+		var buffer = RegexInternal.queryString.exec(queryString);
+		var result = {};
+		
+		while (buffer !== null) {
+			result[decodeURIComponent(buffer[1])] = (typeof buffer[2] !== "undefined" ? decodeURIComponent(buffer[2]) : null);
+			buffer = RegexInternal.queryString.exec(queryString);
+		}
+		
+		return result;
+	};
+	
+	/*
+	 * Simple.Each() returns nothing
+	 * Input: Mixed, Function
+	 * */
+	__Simple.Each = function(haystack, callback){
+		if (typeof haystack !== "undefined") {
+			/* Possible haystack shortcuts */
+			if (haystack === __Simple.Cookie) haystack = CookieInternal.data;
+			else if (haystack === __Simple.GET) haystack = __GET;
+			
+			/* Iterator will hold a reference to haystack */
+			var iterator = new Iterator(haystack);
+			
+			/* Presumably only an Array will have a "length" property */
+			if (haystack.hasOwnProperty("length")) {
 				iterator.i = 0;
 				var end = haystack.length;
 				for (; iterator.i < end; iterator.i++) {
@@ -321,132 +340,116 @@ var Simple = {
 				}
 			}
 		}
-	},
-	
-	/*
-	 * Equals() returns Boolean
-	 * Input: Mixed, Mixed
-	    * Compares each element of both passed objects, checking for strict equality.
-	    * */
-	Equals: function(first, second) {
-		var result = true;
-		
-		Simple.Each(first, function(itr) {
-			if (itr.value !== second[itr.i]) {
-				return result = false;
-			}
-		});
-		
-		return result;
-	},
+	};
 	
 	/*
 	 * Exists() returns Mixed
 	 * Input: Mixed, Mixed, Boolean
-	    *
-	    * */
-	Exists: function(value, override, doReturnBoolean) {
-		var output;
+	 * */
+	__Simple.Exists = function(object, override, doReturnBoolean){
+		var useBool = (typeof doReturnBoolean !== "undefined" && doReturnBoolean);
 		
-		if (typeof value !== 'undefined') {
-			output = value;
-		} else if (typeof doReturnBoolean !== 'undefined' && doReturnBoolean === true) {
-			output = false;
+		if (typeof object !== "undefined") {
+			if (useBool) return true;
+			else return object;
 		} else {
-			output = override;
+			if (useBool) return false;
+			else return override;
+		}
+	};
+	
+	/*
+	 * EncodeQueryString() returns String
+	 * Input: Object
+	 * */
+	__Simple.EncodeQueryString = function(object){
+		var result = "";
+	
+		for (var index in object) {
+			result += (index + "=" + object[index] + "&");
 		}
 		
-		return output;
-	},
-	
-	DOM: {
-		callbacks: [], // The array of each callback function to be called when the DOM is ready.
-		isReady: false, // This boolean is used to ensure that DOM.OnReady is only called once.
-		
-		/*
-		 * OnDOMContentLoaded() returns Nothing
-		 * Input: Nothing
-		    * The function called by the event listeners.
-		    * Because of the legacy event listener this may be called twice.
-		    * */
-		OnDOMContentLoaded: function() {
-			if (typeof document.addEventListener !== 'undefined') {
-				document.removeEventListener('DOMContentLoaded', Simple.DOM.OnDOMContentLoaded, false);
-				Simple.DOM.OnReady();
-			} else if (typeof document.attachEvent !== 'undefined' && document.readyState === 'complete' && document.body !== null) {
-				document.detachEvent('onreadystatechange', Simple.DOM.OnDOMContentLoaded);
-				Simple.DOM.OnReady();
-			}
-		},
-		
-		/*
-		 * OnReady() returns Nothing
-		 * Input: Nothing
-		    * The function called when the DOM has finished loading/is ready.
-		    * Uses a boolean to prevent multiple calls because it may be called twice by 
-		    * the event listener and legacy event listener.
-		    * */
-		OnReady: function() {
-			if (Simple.DOM.isReady === false) {
-				if (Simple.DOM.callbacks.length > 0) {
-					Simple.Each(Simple.DOM.callbacks, function(){
-						this.call(null);
-					});
-				}
-				Simple.DOM.isReady = true;
-			}
-		},
-		
-		/*
-		 * WhenReady() returns Nothing
-		 * Input: Function
-		    * Adds the passed callback to the array of callbacks that are called when
-		    * the DOM is ready.
-		    * */
-		WhenReady: function(callback) {
-			if (Simple.DOM.isReady === false) {
-				Simple.DOM.callbacks.push(callback);
-			} else {
-				callback();
-			}
+		/* Trim off the extra ampersand. */
+		if (result.length > 0) {
+			result = result.substring(0, result.length-1);
 		}
-	},
-	
-	GET: {
-		data: document.location.search.decodeQueryString(),
 		
-		/*
-		 * exists() returns Boolean
-		 * Input: String
-		 * */
-		exists: function(index) {
-			return (typeof index === 'string' && index in this.data);
+		return result.replace(" ", "+");
+	};
+	
+	__Simple.GET = {
+		Exists: function(name){
+			return typeof __GET[name] !== "undefined";
 		},
 		
-		/*
-		 * find() returns Mixed
-		 * Input: String
-		 * */
-		find: function(index) {
-			if (this.exists(index)) {
-				return this.data[index];
-			}
+		Find: function(name){
+			return __Simple.GET.Exists(name) ? __GET[name] : undefined;
 		}
-	},
+	};
 	
-	Type: function(object){
-		return "";
+	/*
+	 * IsArray() returns Boolean
+	 * Input: Mixed
+	 * */
+	__Simple.IsArray = function(object){
+		return __Simple.Type(object) === "array";
+	};
+	
+	/*
+	 * IsEmptyObject() returns Boolean
+	 * Input: Mixed
+	 * */
+	__Simple.IsEmptyObject = function(object){
+		for (var index in object) {
+			return false;
+		}
+		return true;
+	};
+	
+	/*
+	 * IsFunction() returns Boolean
+	 * Input: Mixed
+	 * */
+	__Simple.IsFunction = function(object){
+		return __Simple.Type(object) === "function";
+	};
+	
+	/*
+	 * IsNumeric() returns Boolean
+	 * Input: Mixed
+	 * */
+	__Simple.IsNumeric = function(object){
+		return !isNaN(parseFloat(object)) && isFinite(object);
+	};
+	
+	/*
+	 * Simple.Type() returns String
+	 * Input: Mixed
+	     * Returns the type of the passed object.
+	     * Borrowed from jQuery.
+	 * */
+	__Simple.Type = function(object){
+		return object === null ? "null" : (ClassTypesInteral[Object.prototype.toString.call(object)] || "object");
+	};
+	
+	/*
+	 * Populate the class types.
+	 * Borrowed from jQuery.
+	 * */
+	__Simple.Each("Array Boolean Date Function Number Object RegExp String".split(" "), function(itr){
+		ClassTypesInteral["[object " + itr.value + "]"] = itr.value.toLowerCase();
+	});
+	
+	/* Decode the browser's query string, if it exists. */
+	var __GET = __Simple.DecodeQueryString(document.location.search);
+	
+	if (typeof document.addEventListener !== "undefined") {
+		document.addEventListener("DOMContentLoaded", DOMInternal.OnDOMContentLoaded, false);
+		window.addEventListener("load", DOMInternal.OnReady, false);
+	} else if (typeof document.attachEvent !== "undefined") {
+		document.attachEvent("onreadystatechange", DOMInternal.OnDOMContentLoaded);
+		window.attachEvent("onload", DOMInternal.OnReady, false);
+	} else {
+		window.onload = DOMInternal.OnReady;
 	}
-};
-
-Simple.Cookie.DoUpdateData();
-
-if (typeof document.addEventListener !== 'undefined') {
-	document.addEventListener('DOMContentLoaded', Simple.DOM.OnDOMContentLoaded, false);
-	window.addEventListener('load', Simple.DOM.OnReady, false);
-} else if (typeof document.attachEvent !== 'undefined') {
-	document.attachEvent('onreadystatechange', Simple.DOM.OnDOMContentLoaded);
-	window.attachEvent('onload', Simple.DOM.OnReady, false);
-} else {
-	window.onload = Simple.DOM.OnReady;
-}
+}(Simple));
