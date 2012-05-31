@@ -43,6 +43,22 @@ __Simple.Cookie__
 		
 		$.Cookie.Set("localAccessTime", new Date().getTime());
 	}(Simple));
+____
+	(function($){
+		"use strict";
+		
+		if ($.Cookie.Exists("foo")) {
+			console.log("Has cookie 'foo'. Might be valid; might expired. Who knows?");
+		}
+		
+		if ($.Cookie.IsValid("username")) {
+			console.log("Has valid cookie 'username'");
+		}
+		
+		if ($.Cookie.IsExpired("old_cookie")) {
+			console.log("Has expired cookie 'old_cookie'");
+		}
+	}(Simple));
 
 __Simple.DOMElement__
 
