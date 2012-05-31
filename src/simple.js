@@ -300,7 +300,7 @@ var Simple = {
 				parent: haystack,
 				value: null
 			};
-			if (haystack.forEach !== undefined) {
+			if (haystack.hasOwnProperty("forEach")) {
 				iterator.i = 0;
 				var end = haystack.length;
 				for (; iterator.i < end; iterator.i++) {
