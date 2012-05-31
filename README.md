@@ -13,10 +13,22 @@ __Simple.AJAX__
 		
 		$.AJAX({
 			method: "GET",
-			url: "somefile.txt",
+			url: "someFile.txt",
 			onSuccess: function(response, ms){
 				console.log(response);
 				console.log("\nTook '"+ms+"' milliseconds");
+			}
+		});
+	}(Simple));
+	
+	(function($){
+		"use strict";
+		
+		$.AJAX({
+			method: "GET",
+			url: "someFileThatDoesNotExist.txt",
+			onNotFound: function(response, ms){
+				console.log("It took '"+ms+"' to conclude that the file does not exist");
 			}
 		});
 	}(Simple));
