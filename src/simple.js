@@ -187,7 +187,6 @@ var Simple = {};
 		
 		ajaxRequest.http.open(ajaxRequest.method, ajaxRequest.urlToOpen, true);
 		ajaxRequest.http.setRequestHeader("Content-type", ajaxRequest.contentType+"; charset="+ajaxRequest.charset);
-		
 		ajaxRequest.http.onreadystatechange = function(){
 			switch (ajaxRequest.http.readyState) {
 				case 1: /* CONNECT */
