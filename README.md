@@ -49,3 +49,38 @@ __Simple.Each__
 			console.log(itr.i + " => " + itr.value);
 		});
 	}(Simple));
+
+__Simple.Equals__
+
+	(function($){
+		"use strict";
+		
+		var two = 2;
+		var five = 5;
+		var seven = 7;
+		
+		console.log($.Equals(five, five)); // True
+		console.log($.Equals(five, seven)); // False
+		console.log($.Equals(five + two, seven)); // True
+	}(Simple));
+	
+	(function($){
+		"use strict";
+		
+		var foo = 5;
+		var bar = "5";
+		
+		console.log($.Equals(foo, bar)); // False
+	}(Simple));
+	
+	(function($){
+		"use strict";
+		
+		var foo = [1,3,5,1];
+		var bar = [1,3,5,1];
+		var baz = {"a":1, "b":3, "c":5, "d":1};
+		
+		console.log($.Equals(foo, bar)); // True
+		console.log($.Equals(foo, baz)); // True
+		console.log($.Equals(foo, baz, true)); // False
+	}(Simple));
