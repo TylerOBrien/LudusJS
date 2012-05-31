@@ -6,7 +6,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et tellus non tor
 Examples
 ----------
 
-__Simple.Ajax__
+__Simple.AJAX__
 
 	(function($){
 		"use strict";
