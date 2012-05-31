@@ -46,6 +46,16 @@ __Simple.Cookie__
 	
 __Simple.Each__
 
+Without an iterator:
+	(function($){
+		"use strict";
+		
+		$.Each([1,2,3,4,5], function(){
+			console.log(this);
+		});
+	}(Simple)();
+
+With an iterator:
 	(function($){
 		"use strict";
 		
