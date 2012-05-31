@@ -33,6 +33,32 @@ ____
 		});
 	}(Simple));
 
+__Simple.Call__
+
+	(function($){
+		"use strict";
+		
+		function foo() {
+			console.log("Called foo()");
+		}
+		
+		var bar = "hello world";
+		
+		$.Call(foo); // Called foo()
+		$.Call(bar); // Will do nothing
+		$.Call(baz); // Will do nothing
+	}(Simple));
+____
+	(function($){
+		"use strict";
+		
+		function myCallback(id, args) {
+			console.log(id + " => " + args);
+		}
+		
+		$.Call(myCallback, 42, {"foo":"bar", "baz":1234});
+	}(Simple));
+
 __Simple.Cookie__
 
 	(function($){
