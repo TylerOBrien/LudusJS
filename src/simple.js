@@ -186,9 +186,13 @@ var Simple = {};
 		var ajaxRequest = new AJAXInternal.Request(args);
 		
 		ajaxRequest.http.open(ajaxRequest.method, ajaxRequest.urlToOpen, true);
-		ajaxRequest.http.setRequestHeader("Content-length", ajaxRequest.queryString.length);
 		ajaxRequest.http.setRequestHeader("Content-type", ajaxRequest.contentType+"; charset="+ajaxRequest.charset);
-		ajaxRequest.http.setRequestHeader("Connection", "close");
+		
+		if (ajaxRequest.method === "POST") {
+			ajaxRequest.http.setRequestHeader("Connection", "close");
+			ajaxRequest.http.setRequestHeader("Content-length", ajaxRequest.queryString.length);
+		}
+		
 		ajaxRequest.http.onreadystatechange = function(){
 			switch (ajaxRequest.http.readyState) {
 				case 1: /* CONNECT */
