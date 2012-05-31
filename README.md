@@ -87,3 +87,17 @@ __Simple.Equals__
 		console.log($.Equals(foo, baz)); // True
 		console.log($.Equals(foo, baz, true)); // False
 	}(Simple));
+
+__Simple.Exists__
+
+	(function($){
+		"use strict";
+		
+		console.log($.Exists(foo, 42)); // 42
+		console.log($.Exists(foo, 42, true)); // false
+		
+		var foo = "hello world";
+		
+		console.log($.Exists(foo, 42)); // hello world
+		console.log($.Exists(foo, 42, true)); // true
+	}(Simple));
