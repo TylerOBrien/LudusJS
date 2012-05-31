@@ -106,6 +106,7 @@ var Simple = {};
 		     * Updates the cookie data.
 	     * */
 		Update: function(){
+			this.data = {};
 			var buffer = null;
 			
 			__Simple.Each(document.cookie.split(";"), function(){
