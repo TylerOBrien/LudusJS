@@ -47,6 +47,7 @@ __Simple.Cookie__
 __Simple.Each__
 
 Without an iterator:
+
 	(function($){
 		"use strict";
 		
@@ -56,6 +57,7 @@ Without an iterator:
 	}(Simple)();
 
 With an iterator:
+
 	(function($){
 		"use strict";
 		
