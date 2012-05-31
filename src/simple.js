@@ -52,7 +52,7 @@ XMLHttpRequest.prototype.send_s = function(args) {
 	} else {
 		this.send_s();
 	}
-}
+};
 
 /* 
  * decodeQueryString() returns Object
@@ -429,6 +429,10 @@ var Simple = {
 				return this.data[index];
 			}
 		}
+	},
+	
+	Type: function(object){
+		return "";
 	}
 };
 
