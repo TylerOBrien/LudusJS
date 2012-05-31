@@ -94,8 +94,6 @@ __Simple.DOMReady__
 
 __Simple.Each__
 
-Without an iterator:
-
 	(function($){
 		"use strict";
 		
@@ -114,9 +112,7 @@ ____
 		$.Each(arr, function(){
 			console.log(this.id);
 		});
-
-With an iterator:
-
+____
 	(function($){
 		"use strict";
 		
