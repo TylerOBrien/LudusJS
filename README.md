@@ -20,7 +20,8 @@ __Simple.AJAX__
 			}
 		});
 	}(Simple));
-	
+
+
 	(function($){
 		"use strict";
 		
@@ -63,7 +64,8 @@ __Simple.Equals__
 		console.log($.Equals(five, seven)); // False
 		console.log($.Equals(five + two, seven)); // True
 	}(Simple));
-	
+
+
 	(function($){
 		"use strict";
 		
@@ -72,7 +74,8 @@ __Simple.Equals__
 		
 		console.log($.Equals(foo, bar)); // False
 	}(Simple));
-	
+
+
 	(function($){
 		"use strict";
 		
