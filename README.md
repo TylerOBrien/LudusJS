@@ -6,7 +6,20 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et tellus non tor
 Examples
 ----------
 
-__Simple.Each__
+__Simple.Ajax__
+
+	(function($){
+		"use strict";
+		
+		$.AJAX({
+			method: "GET",
+			url: "somefile.txt",
+			onSuccess: function(response, ms){
+				console.log(response);
+				console.log("\nTook '"+ms+"' milliseconds");
+			}
+		});
+	}(Simple));
 
 __Simple.Each__
 
