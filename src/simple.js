@@ -100,6 +100,11 @@ var Simple = {};
 	var CookieInternal = {
 		data: {},
 		
+		/*
+		 * Update() returns Nothing
+		 * Input: Nothing
+		     * Updates the cookie data.
+	     * */
 		Update: function(){
 			var buffer = null;
 			
