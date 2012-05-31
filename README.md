@@ -47,14 +47,22 @@ __Simple.Cookie__
 __Simple.DOMElement__
 
 	(function($){
-		var divs = $.DOMElement("div");
-		var elem = $.DOMElement("#foo");
-		var elemArr = $.DOMElement(".bar");
+		"use strict";
+		
+		$.DOMReady(function(){
+			var divs = $.DOMElement("div");
+			var elem = $.DOMElement("#foo");
+			var elemArr = $.DOMElement(".bar");
+		});
 	}(Simple));
 ____
 	(function($){
-		$.Each($.DOMElement(".myClass"), function(){
-			console.log(this.innerHTML);
+		"use strict";
+		
+		$.DOMReady(function(){
+			$.Each($.DOMElement(".myClass"), function(){
+				console.log(this.innerHTML);
+			});
 		});
 	}(Simple));
 
@@ -64,7 +72,7 @@ __Simple.DOMReady__
 		"use strict";
 		
 		$.DOMReady(function(){
-			var fooValue = $.DOMElement("#foo").getAttribute("value");
+			alert("DOM is ready");
 		});
 	}(Simple));
 
