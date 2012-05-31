@@ -34,6 +34,17 @@ __Simple.AJAX__
 		});
 	}(Simple));
 
+__Simple.Cookie__
+
+	(function($){
+		"use strict";
+		
+		var name = $.Cookie.Get("username");
+		var email = $.Cookie.Get("email");
+		
+		$.Cookie.Set("localAccessTime", new Date().getTime());
+	}(Simple));
+	
 __Simple.Each__
 
 	(function($){
@@ -107,8 +118,8 @@ __Simple.GET__
 	(function($){
 		"use strict";
 		
-		console.log($.GET.exists('foo')); // Will output true if "foo" is defined
-		console.log($.GET.find('foo')); // Will output value of "foo" if is defined, otherwise will output 'undefined'
+		console.log($.GET.exists("foo")); // Will output true if "foo" is defined
+		console.log($.GET.find("foo")); // Will output value of "foo" if is defined, otherwise will output 'undefined'
 	}(Simple));
 
 
