@@ -101,3 +101,12 @@ __Simple.Exists__
 		console.log($.Exists(foo, 42)); // hello world
 		console.log($.Exists(foo, 42, true)); // true
 	}(Simple));
+
+__Simple.GET__
+
+	(function($){
+		"use strict";
+		
+		console.log($.GET.exists('foo')); // Will output true if "foo" is defined
+		console.log($.GET.find('foo')); // Will output value of "foo" if is defined, otherwise will output 'undefined'
+	}(Simple));
