@@ -1,5 +1,5 @@
 /*
- * SimpleJS v0.0.2
+ * SimpleJS
  * https://github.com/TylerOBrien/SimpleJS
  *
  * Copyright (c) 2012 Tyler O'Brien
