@@ -470,6 +470,10 @@ var Simple = {};
 	/* Decode the browser's query string, if it exists. */
 	var __GET = __Simple.DecodeQueryString(document.location.search);
 	
+	/*
+	 * Different/older browsers may have different methods for DOM loading.
+	 * Based on jQuery.
+	 * */
 	if (typeof document.addEventListener !== "undefined") {
 		document.addEventListener("DOMContentLoaded", DOMInternal.OnDOMContentLoaded, false);
 		window.addEventListener("load", DOMInternal.OnReady, false);
