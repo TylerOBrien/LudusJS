@@ -50,7 +50,7 @@ XMLHttpRequest.prototype.send_s = function(args){
 		} else {
 			this.send(null);
 		}
-	} else if ("method" in args && "queryString" in args && args.method === "POST") {
+	} else if ("method" in args && "queryString" in args && args.method === "post") {
 		this.send(args.queryString);
 	} else {
 		this.send_s();
