@@ -66,7 +66,7 @@ var Simple = {};
 	"use strict";
 	
 	/*
-	 * Internal AJAX operations performed here.
+	 * Internal AJAX operations.
 	 * */
 	var AJAXInternal = {
 		/*
@@ -95,12 +95,18 @@ var Simple = {};
 		}
 	};
 	
+	/*
+	 *
+	 * */
 	var ClassTypesInteral = {
 		/* Populated by function at bottom using Simple.Each */
 	};
 	
+	/*
+	 * Internal cookie operations.
+	 * */
 	var CookieInternal = {
-		data: {},
+		data: {}, /* Map of cookie data */
 		
 		/*
 		 * Update() returns Nothing
@@ -112,7 +118,7 @@ var Simple = {};
 			var buffer = null;
 			
 			__Simple.Each(document.cookie.split(";"), function(){
-				if (buffer = RegexInteral.cookie(this)) {
+				if (buffer = RegexInteral.cookie.exec(this)) {
 					CookieInternal.data[escape(buffer[1])] = escape(buffer[2]);
 				}
 			});
@@ -162,7 +168,7 @@ var Simple = {};
 	};
 	
 	/*
-	 * Internal Regular Expressions.
+	 * Internal regular expressions.
 	 * */
 	var RegexInternal = {
 		cookie: /([^=]+)=(.*)/,
@@ -420,14 +426,6 @@ var Simple = {};
 	};
 	
 	/*
-	 * IsArray() returns Boolean
-	 * Input: Mixed
-	 * */
-	__Simple.IsArray = function(object){
-		return __Simple.Type(object) === "array";
-	};
-	
-	/*
 	 * IsEmptyObject() returns Boolean
 	 * Input: Mixed
 	 * */
@@ -436,14 +434,6 @@ var Simple = {};
 			return false;
 		}
 		return true;
-	};
-	
-	/*
-	 * IsFunction() returns Boolean
-	 * Input: Mixed
-	 * */
-	__Simple.IsFunction = function(object){
-		return __Simple.Type(object) === "function";
 	};
 	
 	/*
