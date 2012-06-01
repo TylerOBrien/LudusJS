@@ -146,6 +146,22 @@ __Simple.DOMReady__
 			alert("DOM is ready");
 		});
 	}(Simple));
+____
+	(function($){
+		"use strict";
+		
+		$.DOMReady(function(){
+			alert("DOM Ready Function #1");
+		});
+		
+		$.DOMReady(function(){
+			alert("DOM Ready Function #2");
+		});
+		
+		$.DOMReady(function(){
+			alert("DOM Ready Function #3");
+		});
+	}(Simple));
 
 __Simple.Each__
 ----------
