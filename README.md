@@ -143,14 +143,6 @@ __Simple.DOMReady__
 		"use strict";
 		
 		$.DOMReady(function(){
-			alert("DOM is ready");
-		});
-	}(Simple));
-____
-	(function($){
-		"use strict";
-		
-		$.DOMReady(function(){
 			alert("DOM Ready Function #1");
 		});
 		
