@@ -246,6 +246,10 @@ var Simple = {};
 	};
 	
 	__Simple.Cookie = {
+		/*
+		 * Get() returns String
+		 * Input: String
+		 * */
 		Get: function(name){
 			return CookieInternal.data[name];
 		},
