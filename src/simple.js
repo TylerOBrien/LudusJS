@@ -252,6 +252,9 @@ var Simple = {};
 		}
 	};
 	
+	/*
+	 * Functions for getting and setting cookies.
+	 * */
 	__Simple.Cookie = {
 		/*
 		 * Get() returns String
