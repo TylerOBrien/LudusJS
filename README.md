@@ -14,6 +14,10 @@ __Simple.AJAX__
 		
 		$.AJAX({
 			url: "someFile.txt",
+			onError: function(error, ms){
+				var response = error[0];
+				var errorCode = error[1];
+			},
 			onSuccess: function(response, ms){
 				console.log(response);
 				console.log("\nTook '"+ms+"' milliseconds");
