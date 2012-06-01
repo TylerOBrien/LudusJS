@@ -242,7 +242,22 @@ __Simple.Exists__
 		console.log($.Exists(foo, 42)); // hello world
 		console.log($.Exists(foo, 42, true)); // true
 	}(Simple));
+	
+__Simple.GenerateArray__
+----------
 
+	(function($){
+		"use strict";
+		
+		function myCallback() {
+			return "foo";
+		}
+		
+		var arr_1 = $.GenerateArray(3, "foo"); // ["foo", "foo", "foo"]
+		var arr_2 = $.GenerateArray(3, myCallback); // [function{}, function{}, function{}]
+		var arr_3 = $.GenerateArray(3, myCallback, true); // ["foo", "foo", "foo"]
+	}(Simple));
+	
 __Simple.GET__
 ----------
 
