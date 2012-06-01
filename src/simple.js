@@ -387,11 +387,28 @@ var Simple = {};
 		return result.replace(" ", "+");
 	};
 	
+	/*
+	 * GET
+	 * Contains functions for accessing GET variables.
+	 * */
 	__Simple.GET = {
+		/*
+		 * Exists() returns Boolean
+		 * Input: String
+		     * Returns true if the passed GET variable has been defined.
+			 * Does not require a value to have been assigned.
+		 * */
 		Exists: function(name){
 			return typeof __GET[name] !== "undefined";
 		},
 		
+		/*
+		 * Exists() returns String|undefined
+		 * Input: String
+		     * Returns the value of the passed GET variable.
+			 * If the GET variable has no value assigned this will return NULL.
+			 * If the GET variable does not exist this will return undefined.
+		 * */
 		Find: function(name){
 			return __Simple.GET.Exists(name) ? __GET[name] : undefined;
 		}
