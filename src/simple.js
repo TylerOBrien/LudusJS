@@ -355,6 +355,9 @@ var Simple = {};
 	/*
 	 * Exists() returns Mixed
 	 * Input: Mixed, Mixed, Boolean
+	     * Used for determining if "object" is defined.
+		 * If defined "object" will be returned, otherwise "override" is returned.
+		 * If "doReturnBoolean" is true then false/true is returned in place of object/override.
 	 * */
 	__Simple.Exists = function(object, override, doReturnBoolean){
 		var useBool = (typeof doReturnBoolean !== "undefined" && doReturnBoolean);
@@ -371,19 +374,21 @@ var Simple = {};
 	/*
 	 * EncodeQueryString() returns String
 	 * Input: Object
+	     * Encodes a passed Object into a query string.
+		 * For example, this:
+		     * {name:"John Doe", id:42}
+	     * Would become:
+		     * name=John+Doe&id=42
 	 * */
 	__Simple.EncodeQueryString = function(object){
 		var result = "";
-	
 		for (var index in object) {
 			result += (index + "=" + object[index] + "&");
 		}
 		
-		/* Trim off the extra ampersand. */
-		if (result.length > 0) {
+		if (result.length > 0) { /* Trim off the extra ampersand. */
 			result = result.substring(0, result.length-1);
 		}
-		
 		return result.replace(" ", "+");
 	};
 	
