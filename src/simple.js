@@ -264,8 +264,12 @@ var Simple = {};
 			return CookieInternal.data[name];
 		},
 		
-		Set: function(name, value, expires){
-		
+		/*
+		 * Set() returns Nothing
+		 * Input: String, String, String
+		 * */
+		Set: function(name, value, expiration){
+			//
 		},
 	};
 	
