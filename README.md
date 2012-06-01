@@ -13,7 +13,6 @@ __Simple.AJAX__
 		"use strict";
 		
 		$.AJAX({
-			method: "GET",
 			url: "someFile.txt",
 			onSuccess: function(response, ms){
 				console.log(response);
@@ -26,10 +25,22 @@ ____
 		"use strict";
 		
 		$.AJAX({
-			method: "GET",
 			url: "someFileThatDoesNotExist.txt",
 			onNotFound: function(response, ms){
 				console.log("It took '"+ms+"' to conclude that the file does not exist");
+			}
+		});
+	}(Simple));
+____
+	(function($){
+		"use strict";
+		
+		$.AJAX({
+			method: "POST",
+			url: "update.php",
+			data: {"id":42, "status":"foo"},
+			onSuccess: function(response, ms){
+				console.log("POST success");
 			}
 		});
 	}(Simple));
