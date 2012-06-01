@@ -96,9 +96,18 @@ __Simple.DOMElement__
 		"use strict";
 		
 		$.DOMReady(function(){
-			var divs = $.DOMElement("div");
-			var elem = $.DOMElement("#foo");
-			var elemArr = $.DOMElement(".bar");
+			var divArr = $.DOMElement("div");
+			var foo = $.DOMElement("#foo");
+			var barArr = $.DOMElement(".bar");
+		});
+	}(Simple));
+____
+	(function($){
+		"use strict";
+		
+		$.DOMReady(function(){
+			var parent = $.DOMElement("#parent");
+			var children = $.DOMElement(".child", parent);
 		});
 	}(Simple));
 ____
