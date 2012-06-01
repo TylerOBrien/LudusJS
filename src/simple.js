@@ -432,6 +432,14 @@ var Simple = {};
 		}
 	};
 	
+	__Simple.GenerateArray = function(num, value, isCallback){
+		var result = [];
+		for (var i = 0; i < num; i++) {
+			result.push(isCallback ? value(i) : value);
+		}
+		return result;
+	};
+	
 	/*
 	 * IsEmptyObject() returns Boolean
 	 * Input: Mixed
