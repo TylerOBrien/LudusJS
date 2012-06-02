@@ -266,10 +266,20 @@ var Simple = {};
 		
 		/*
 		 * Set() returns Nothing
-		 * Input: String, String, String
+		 * Input: String, String, Object
 		 * */
-		Set: function(name, value, expiration){
-			//
+		Set: function(name, value, milliseconds, path){
+			var date = new Date;
+			var expiration = new Date(milliseconds);
+			
+			date.setTime(date.getTime() + expiration.getTime());
+			
+			if (typeof path === "undefined") {
+				path = "/";
+			}
+			
+			document.cookie = name+"="+value+"; expires="+date.toUTCString()+"; path="+path;
+			CookieInternal[name] = value;
 		},
 	};
 	
