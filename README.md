@@ -82,7 +82,7 @@ __Simple.Cookie__
 		var name = $.Cookie.Get("username");
 		var email = $.Cookie.Get("email");
 		
-		$.Cookie.Set("id", "usr_445_foo");
+		$.Cookie.Set("id", "usr_445_foo", 3600000); // Set cookie for 3600 seconds.
 	}(Simple));
 ____
 	(function($){
