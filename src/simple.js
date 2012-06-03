@@ -106,6 +106,12 @@ var Simple = {};
 	 * Cache of commonly used strings.
 	 * */
 	var CacheInternal = {
+		array: "array",
+		func: "function",
+		length: "length",
+		null: "null",
+		number: "number",
+		object: "object",
 		undefined: "undefined"
 	};
 	
@@ -237,7 +243,7 @@ var Simple = {};
 		 * Add a new timeout if one is given.
 		 * The time is assumed to be milliseconds.
 		 * */
-		if (typeof args["timeout"] === "number") {
+		if (typeof args["timeout"] === CacheInternal.number) {
 			ajaxRequest.timeout = setTimeout(function(){
 				ajaxRequest.http.abort();
 				__Simple.Call(ajaxRequest.onTimeout);
@@ -252,7 +258,7 @@ var Simple = {};
 	 * Input: Mixed, Mixed, Mixed
 	 * */
 	__Simple.Call = function(callback, first, second){
-		if (__Simple.Type(callback) === "function") {
+		if (__Simple.Type(callback) === CacheInternal.func) {
 			if (typeof second !== CacheInternal.undefined) return callback(first, second);
 			else if (typeof first !== CacheInternal.undefined) return callback(first);
 			else return callback();
@@ -313,7 +319,7 @@ var Simple = {};
 	     * Calls the passed function when the DOM is ready.
 	 * */
 	__Simple.DOMReady = function(callback){
-		if (__Simple.Type(callback) === "function") {
+		if (__Simple.Type(callback) === CacheInternal.func) {
 			if (DOMInteral.ready === false && DOMInteral.busy === false) {
 				DOMInteral.callbacks.push(callback);
 			} else {
@@ -362,7 +368,7 @@ var Simple = {};
 			var iterator = new Iterator(haystack);
 			
 			/* Presumably only an Array will have a "length" property */
-			if (haystack.hasOwnProperty("length")) {
+			if (haystack.hasOwnProperty(CacheInternal.length)) {
 				iterator.i = 0;
 				var end = haystack.length;
 				for (; iterator.i < end; iterator.i++) {
@@ -404,12 +410,18 @@ var Simple = {};
 	};
 	
 	__Simple.Equals = function(first, second){
+		/* Possible haystack shortcuts */
+		if (first === __Simple.Cookie) first = CookieInternal.data;
+		else if (first === __Simple.GET) first = __GET;
+		if (second === __Simple.Cookie) second = CookieInternal.data;
+		else if (second === __Simple.GET) second = __GET;
+		
 		var firstType = __Simple.Type(first);
 		var secondType = __Simple.Type(second);
 		var result = true;
 		
-		if ((firstType === "array" || firstType === "object") && (secondType === "array" || secondType === "object")) {
-			if (firstType === "array" && secondType === "array" && first.length != second.length) {
+		if ((firstType === CacheInternal.array || firstType === CacheInternal.object) && (secondType === CacheInternal.array || secondType === CacheInternal.object)) {
+			if (firstType === CacheInternal.array && secondType === CacheInternal.array && first.length != second.length) {
 				result = false;
 			} else {
 				__Simple.Each(first, function(itr){
@@ -505,7 +517,7 @@ var Simple = {};
 	     * Borrowed from jQuery.
 	 * */
 	__Simple.Type = function(object){
-		return object === null ? "null" : (ClassTypesInteral[Object.prototype.toString.call(object)] || "object");
+		return object === null ? CacheInternal.null : (ClassTypesInteral[Object.prototype.toString.call(object)] || CacheInternal.object);
 	};
 	
 	/*
