@@ -421,7 +421,7 @@ var Simple = {};
 		
 		var firstType = __Simple.Type(first);
 		var secondType = __Simple.Type(second);
-		var result = false;
+		var result = true;
 		
 		if (firstType === CacheInternal.array && secondType === CacheInternal.array) {
 			if (first.length !== second.length) {
@@ -434,9 +434,9 @@ var Simple = {};
 				});
 			}
 		} else if (firstType === CacheInternal.object && secondType === CacheInternal.object) {
-			firstArr = __Simple.OjectToArray(first);
-			secondArr = __Simple.OjectToArray(second);
-			result = __Simple.Equals(firstArr[0][0], secondArr[0][0]) && __Simple.Equals(firstArr[0][1], secondArr[0][1]);
+			var firstArr = __Simple.ObjectToArray(first);
+			var secondArr = __Simple.ObjectToArray(second);
+			result = __Simple.Equals(firstArr[0], secondArr[0]) && __Simple.Equals(firstArr[1], secondArr[1]);
 		} else {
 			result = (first === second);
 		}
