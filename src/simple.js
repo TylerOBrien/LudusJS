@@ -383,25 +383,6 @@ var Simple = {};
 	};
 	
 	/*
-	 * Exists() returns Mixed
-	 * Input: Mixed, Mixed, Boolean
-	     * Used for determining if "object" is defined.
-		 * If defined "object" will be returned, otherwise "override" is returned.
-		 * If "doReturnBoolean" is true then false/true is returned in place of object/override.
-	 * */
-	__Simple.Exists = function(object, override, doReturnBoolean){
-		var useBool = (typeof doReturnBoolean !== CacheInternal.undefined && doReturnBoolean);
-		
-		if (typeof object !== CacheInternal.undefined) {
-			if (useBool) return true;
-			else return object;
-		} else {
-			if (useBool) return false;
-			else return override;
-		}
-	};
-	
-	/*
 	 * EncodeQueryString() returns String
 	 * Input: Object
 	     * Encodes a passed Object into a query string.
@@ -442,6 +423,25 @@ var Simple = {};
 		}
 		
 		return result;
+	};
+	
+	/*
+	 * Exists() returns Mixed
+	 * Input: Mixed, Mixed, Boolean
+	     * Used for determining if "object" is defined.
+		 * If defined "object" will be returned, otherwise "override" is returned.
+		 * If "doReturnBoolean" is true then false/true is returned in place of object/override.
+	 * */
+	__Simple.Exists = function(object, override, doReturnBoolean){
+		var useBool = (typeof doReturnBoolean !== CacheInternal.undefined && doReturnBoolean);
+		
+		if (typeof object !== CacheInternal.undefined) {
+			if (useBool) return true;
+			else return object;
+		} else {
+			if (useBool) return false;
+			else return override;
+		}
 	};
 	
 	/*
