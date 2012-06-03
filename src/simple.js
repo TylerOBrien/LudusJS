@@ -421,10 +421,10 @@ var Simple = {};
 		
 		var firstType = __Simple.Type(first);
 		var secondType = __Simple.Type(second);
-		var result = true;
+		var result = false;
 		
-		if ((firstType === CacheInternal.array || firstType === CacheInternal.object) && (secondType === CacheInternal.array || secondType === CacheInternal.object)) {
-			if (firstType === CacheInternal.array && secondType === CacheInternal.array && first.length != second.length) {
+		if (firstType === CacheInternal.array && secondType === CacheInternal.array) {
+			if (first.length !== second.length) {
 				result = false;
 			} else {
 				__Simple.Each(first, function(itr){
@@ -433,6 +433,10 @@ var Simple = {};
 					}
 				});
 			}
+		} else if (firstType === CacheInternal.object && secondType === CacheInternal.object) {
+			firstArr = __Simple.OjectToArray(first);
+			secondArr = __Simple.OjectToArray(second);
+			result = __Simple.Equals(firstArr[0][0], secondArr[0][0]) && __Simple.Equals(firstArr[0][1], secondArr[0][1]);
 		} else {
 			result = (first === second);
 		}
@@ -521,6 +525,17 @@ var Simple = {};
 	 * */
 	__Simple.Type = function(object){
 		return object === null ? CacheInternal.null : (ClassTypesInteral[Object.prototype.toString.call(object)] || CacheInternal.object);
+	};
+	
+	__Simple.ObjectToArray = function(object){
+		var result = [[],[]];
+		
+		__Simple.Each(object, function(itr){
+			result[0].push(itr.i);
+			result[1].push(itr.value);
+		});
+		
+		return result;
 	};
 	
 	/*
