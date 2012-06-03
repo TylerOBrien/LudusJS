@@ -107,11 +107,14 @@ var Simple = {};
 	 * */
 	var CacheInternal = {
 		array: "array",
+		contentType: "Content-type",
 		func: "function",
 		length: "length",
 		null: "null",
 		number: "number",
 		object: "object",
+		semicolon: ";",
+		timeout: "timeout",
 		undefined: "undefined"
 	};
 	
@@ -130,7 +133,7 @@ var Simple = {};
 			this.data = {};
 			var buffer = null;
 			
-			__Simple.Each(document.cookie.split(";"), function(){
+			__Simple.Each(document.cookie.split(CacheInternal.semicolon), function(){
 				if (buffer = RegexInteral.cookie.exec(this)) {
 					CookieInternal.data[escape(buffer[1])] = escape(buffer[2]);
 				}
@@ -207,7 +210,7 @@ var Simple = {};
 		var ajaxRequest = new AJAXInternal.Request(args);
 		
 		ajaxRequest.http.open(ajaxRequest.method, ajaxRequest.urlToOpen, ajaxRequest.async);
-		ajaxRequest.http.setRequestHeader("Content-type", ajaxRequest.contentType+"; charset="+ajaxRequest.charset);
+		ajaxRequest.http.setRequestHeader(CacheInternal.contentType, ajaxRequest.contentType+"; charset="+ajaxRequest.charset);
 		ajaxRequest.http.onreadystatechange = function(){
 			switch (ajaxRequest.http.readyState) {
 				case 1: /* CONNECT */
@@ -243,11 +246,11 @@ var Simple = {};
 		 * Add a new timeout if one is given.
 		 * The time is assumed to be milliseconds.
 		 * */
-		if (typeof args["timeout"] === CacheInternal.number) {
+		if (typeof args[CacheInternal.timeout] === CacheInternal.number) {
 			ajaxRequest.timeout = setTimeout(function(){
 				ajaxRequest.http.abort();
 				__Simple.Call(ajaxRequest.onTimeout);
-			}, args["timeout"]);
+			}, args[CacheInternal.timeout]);
 		}
 		
 		ajaxRequest.http.send_s(ajaxRequest);
