@@ -219,11 +219,20 @@ ____
 		var foo = [1,3,5,1];
 		var bar = [1,3,5,1];
 		var baz = {"a":1, "b":3, "c":5, "d":1};
+		var bes = {"a":1, "b":3, "c":5, "d":1};
 		
 		console.log($.Equals(foo, bar)); // True
-		console.log($.Equals(foo, baz)); // True
-		console.log($.Equals(foo, baz, true)); // False
+		console.log($.Equals(foo, baz)); // False
+		console.log($.Equals(baz, bes)); // True
 	}(Simple));
+____
+	(function($){
+		"use strict";
+		
+		if ($.Equals($.GET, {"id":"42", "name":"foo"})) {
+			// ...
+		}
+	});
 
 __Simple.Exists__
 ----------
