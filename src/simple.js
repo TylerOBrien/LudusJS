@@ -527,6 +527,10 @@ var Simple = {};
 		return object === null ? CacheInternal.null : (ClassTypesInteral[Object.prototype.toString.call(object)] || CacheInternal.object);
 	};
 	
+	/*
+	 * ObjectToArray() returns Array
+	 * Input: Object
+	 * */
 	__Simple.ObjectToArray = function(object){
 		var result = [[],[]];
 		
