@@ -490,6 +490,10 @@ var Simple = {};
 		}
 	};
 	
+	/*
+	 * GenerateArray() returns Array
+	 * Input: Integer, Mixed, Boolean
+	 * */
 	__Simple.GenerateArray = function(num, value, isCallback){
 		var result = [];
 		for (var i = 0; i < num; i++) {
