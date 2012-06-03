@@ -103,6 +103,13 @@ var Simple = {};
 	};
 	
 	/*
+	 * Cache of commonly used strings.
+	 * */
+	var CacheInternal = {
+		undefined: "undefined"
+	};
+	
+	/*
 	 * Internal cookie operations.
 	 * */
 	var CookieInternal = {
@@ -140,10 +147,10 @@ var Simple = {};
 			 * As function name suggests, is called when the DOM has finished loading.
 		 * */
 		OnDOMContentLoaded: function(){
-			if (typeof document.addEventListener !== "undefined") {
+			if (typeof document.addEventListener !== CacheInternal.undefined) {
 				document.removeEventListener("DOMContentLoaded", DOMInternal.OnDOMContentLoaded, false);
 				DOMInternal.OnReady();
-			} else if (typeof document.attachEvent !== "undefined" && document.readyState === "complete" && document.body !== null) {
+			} else if (typeof document.attachEvent !== CacheInternal.undefined && document.readyState === "complete" && document.body !== null) {
 				document.detachEvent("onreadystatechange", DOMInternal.OnDOMContentLoaded);
 				DOMInternal.OnReady();
 			}
@@ -208,7 +215,7 @@ var Simple = {};
 					__Simple.Call(ajaxRequest.onProcess);
 				break;
 				case 4: /* COMPLETE */
-					if (typeof ajaxRequest.timeout !== "undefined") {
+					if (typeof ajaxRequest.timeout !== CacheInternal.undefined) {
 						clearTimeout(ajaxRequest.timeout);
 					}
 					
@@ -246,8 +253,8 @@ var Simple = {};
 	 * */
 	__Simple.Call = function(callback, first, second){
 		if (__Simple.Type(callback) === "function") {
-			if (typeof second !== "undefined") return callback(first, second);
-			else if (typeof first !== "undefined") return callback(first);
+			if (typeof second !== CacheInternal.undefined) return callback(first, second);
+			else if (typeof first !== CacheInternal.undefined) return callback(first);
 			else return callback();
 		}
 	};
@@ -274,7 +281,7 @@ var Simple = {};
 			
 			date.setTime(date.getTime() + expiration.getTime());
 			
-			if (typeof path === "undefined") {
+			if (typeof path === CacheInternal.undefined) {
 				path = "/";
 			}
 			
@@ -288,7 +295,7 @@ var Simple = {};
 	 *	Input: String, Mixed
 	 * */
 	__Simple.DOMElement = function(elementString, context){
-		if (typeof context === "undefined") {
+		if (typeof context === CacheInternal.undefined) {
 			context = document;
 		}
 		
@@ -334,7 +341,7 @@ var Simple = {};
 		var result = {};
 		
 		while (buffer !== null) {
-			result[decodeURIComponent(buffer[1])] = (typeof buffer[2] !== "undefined" ? decodeURIComponent(buffer[2]) : null);
+			result[decodeURIComponent(buffer[1])] = (typeof buffer[2] !== CacheInternal.undefined ? decodeURIComponent(buffer[2]) : null);
 			buffer = RegexInternal.queryString.exec(queryString);
 		}
 		
@@ -346,7 +353,7 @@ var Simple = {};
 	 * Input: Mixed, Function
 	 * */
 	__Simple.Each = function(haystack, callback){
-		if (typeof haystack !== "undefined") {
+		if (typeof haystack !== CacheInternal.undefined) {
 			/* Possible haystack shortcuts */
 			if (haystack === __Simple.Cookie) haystack = CookieInternal.data;
 			else if (haystack === __Simple.GET) haystack = __GET;
@@ -383,9 +390,9 @@ var Simple = {};
 		 * If "doReturnBoolean" is true then false/true is returned in place of object/override.
 	 * */
 	__Simple.Exists = function(object, override, doReturnBoolean){
-		var useBool = (typeof doReturnBoolean !== "undefined" && doReturnBoolean);
+		var useBool = (typeof doReturnBoolean !== CacheInternal.undefined && doReturnBoolean);
 		
-		if (typeof object !== "undefined") {
+		if (typeof object !== CacheInternal.undefined) {
 			if (useBool) return true;
 			else return object;
 		} else {
@@ -415,6 +422,28 @@ var Simple = {};
 		return result.replace(" ", "+");
 	};
 	
+	__Simple.Equals = function(first, second){
+		var firstType = __Simple.Type(first);
+		var secondType = __Simple.Type(second);
+		var result = true;
+		
+		if ((firstType === "array" || firstType === "object") && (secondType === "array" || secondType === "object")) {
+			if (firstType === "array" && secondType === "array" && first.length != second.length) {
+				result = false;
+			} else {
+				__Simple.Each(first, function(itr){
+					if (itr.value !== second[itr.i]) {
+						return result = false;
+					}
+				});
+			}
+		} else {
+			result = (first === second);
+		}
+		
+		return result;
+	};
+	
 	/*
 	 * GET
 	 * Contains functions for accessing GET variables.
@@ -427,7 +456,7 @@ var Simple = {};
 			 * Does not require a value to have been assigned.
 		 * */
 		Exists: function(name){
-			return typeof __GET[name] !== "undefined";
+			return typeof __GET[name] !== CacheInternal.undefined;
 		},
 		
 		/*
@@ -494,10 +523,10 @@ var Simple = {};
 	 * Different/older browsers may have different methods for DOM loading.
 	 * Based on jQuery.
 	 * */
-	if (typeof document.addEventListener !== "undefined") {
+	if (typeof document.addEventListener !== CacheInternal.undefined) {
 		document.addEventListener("DOMContentLoaded", DOMInternal.OnDOMContentLoaded, false);
 		window.addEventListener("load", DOMInternal.OnReady, false);
-	} else if (typeof document.attachEvent !== "undefined") {
+	} else if (typeof document.attachEvent !== CacheInternal.undefined) {
 		document.attachEvent("onreadystatechange", DOMInternal.OnDOMContentLoaded);
 		window.attachEvent("onload", DOMInternal.OnReady, false);
 	} else {
