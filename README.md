@@ -232,7 +232,7 @@ ____
 		if ($.Equals($.GET, {"id":"42", "name":"foo"})) {
 			// ...
 		}
-	});
+	}(Simple));
 
 __Simple.Exists__
 ----------
@@ -280,4 +280,15 @@ ____
 		$.Each($.GET, function(itr){
 			console.log(itr.i + " => " + itr.value);
 		});
+	}(Simple));
+
+__Simple.ObjectToArray__
+----------
+
+	(function($){
+		var obj = {"foo":"bar", "hello":"world"};
+		var arr = $.ObjectToArray(obj);
+		
+		console.log("Keys: " + arr[0]);
+		console.log("Values: " + arr[1]);
 	}(Simple));
