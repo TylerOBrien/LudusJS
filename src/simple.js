@@ -530,6 +530,10 @@ var Simple = {};
 	__Simple.ObjectToArray = function(object){
 		var result = [[],[]];
 		
+		/* Possible haystack shortcuts */
+		if (object === __Simple.Cookie) object = CookieInternal.data;
+		else if (object === __Simple.GET) object = __GET;
+		
 		__Simple.Each(object, function(itr){
 			result[0].push(itr.i);
 			result[1].push(itr.value);
