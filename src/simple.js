@@ -285,7 +285,7 @@ var Simple = {};
 	
 	/*
 	 * DOMElement() returns Mixed
-	 *	Input: String, String
+	 *	Input: String, Mixed
 	 * */
 	__Simple.DOMElement = function(elementString, context){
 		if (typeof context === "undefined") {
