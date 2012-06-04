@@ -95,10 +95,11 @@ var Simple = {"ietest":true};
 	};
 	
 	/*
-	 *
+	 * Used to map class names (e.g "[object String]") to their object names (e.g. "string").
+	 * Is used by the Simple.Type() function.
 	 * */
 	var ClassTypesInteral = {
-		/* Populated by function at bottom using Simple.Each */
+		/* Populated by function at bottom using Simple.Each(). */
 	};
 	
 	/*
@@ -112,7 +113,7 @@ var Simple = {"ietest":true};
 		forwardSlash: "/",
 		func: "function",
 		length: "length",
-		nullstr: "null", /* Must use "nullstr" as name. Using "null" does not work in IE6 or 7. */
+		nullstr: "null", /* Must use "nullstr" as name. Using "null" does not work in IE6-8. */
 		number: "number",
 		object: "object",
 		semicolon: ";",
