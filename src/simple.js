@@ -204,8 +204,13 @@ var Simple = {"ietest":true};
 	 * Input: String|DOMObject, String, Function
 	 * */
 	__Simple.AddEventt = function(element, event, callback, useCapture){
-		if (__Simple.IsDOMObjectArray(element)) {
-			//
+		if (__Simple.IsDOMObjectArray(element) || __Simple.Type(element) === CacheInternal.array) {
+			__Simple.Each(element, function(itr){
+				console.log(itr.value);
+				__Simple.AddEventt(itr.value, event, callback, useCapture);
+			});
+		} else {
+			console.log(element);
 		}
 	};
 	 
@@ -216,7 +221,7 @@ var Simple = {"ietest":true};
 			});
 		} else {
 			if (__Simple.Type(element) === CacheInternal.string) {
-				element = __Simple.DOMElement(element);
+				element = __Simple.DOMObject(element);
 			}
 			if (typeof element[CacheInternal.length] !== CacheInternal.undefined) {
 				__Simple.Each(element, function(elementItr){
@@ -368,10 +373,10 @@ var Simple = {"ietest":true};
 	};
 	
 	/*
-	 * DOMElement() returns Mixed
+	 * DOMObject() returns Mixed
 	 *	Input: String, Mixed
 	 * */
-	__Simple.DOMElement = function(elementString, context){
+	__Simple.DOMObject = function(elementString, context){
 		if (typeof context === CacheInternal.undefined) {
 			context = document;
 		}
@@ -590,7 +595,8 @@ var Simple = {"ietest":true};
 	 * Input: Mixed
 	 * */
 	__Simple.IsDOMObjectArray = function(arr){
-		return __Simple.IsDOMObject(arr[0]) && typeof arr.item !== CacheInternal.undefined; // Should probably improve this.
+		/* Should probably improve this. */
+		return __Simple.IsDOMObject(arr[0]) && typeof arr.item !== CacheInternal.undefined;
 	};
 	
 	/*
@@ -598,7 +604,8 @@ var Simple = {"ietest":true};
 	 * Input: Mixed
 	 * */
 	__Simple.IsDOMObject = function(object){
-		return typeof object.ELEMENT_NODE !== CacheInternal.undefined; // Should probably improve this.
+		/* Should probably improve this. */
+		return typeof object !== CacheInternal.undefined && typeof object.ELEMENT_NODE !== CacheInternal.undefined;
 	};
 	
 	/*
