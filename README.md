@@ -53,6 +53,15 @@ ____
 			$.AddEvent(obj, "focus", onFocus);
 		});
 	}(Simple));
+_____
+	(function($){
+		"use strict";
+		
+		/* Let's do something crazy */
+		Simple.AddEvent([["input","h1"],["#myid",".myclass",["span"]]], "mouseover", function(){
+			console.log("over: " + this.getAttribute("id"));
+		});
+	}(Simple));
 
 __Simple.AJAX__
 ----------
