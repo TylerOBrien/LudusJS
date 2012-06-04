@@ -43,6 +43,26 @@ ____
 			$.AddEvent("#myObject", ["mouseout","mouseover"], Toggle);
 		});
 	}(Simple));
+____
+	(function($){
+		"use strict";
+		
+		function Handler() {
+			//
+		}
+		
+		$.DOMReady(function(){
+			$.AddEvent({
+				"foo": ["#fooA","#fooB"],
+				"bar": ["#barA","#barB",".barClass"]
+			},{
+				"foo": ["mouseout","mouseover"],
+				"bar": "focus"
+			},
+				Handler
+			);
+		});
+	}(Simple));
 
 __Simple.AJAX__
 ----------
