@@ -585,6 +585,10 @@ var Simple = {"ietest":true};
 		return __Simple.Type(object) === CacheInternal.array;
 	};
 	
+	__Simple.IsEmptyArray = function(object){
+		return __Simple.IsArray(object) && object.length === 0;
+	};
+	
 	/*
 	 * IsEmptyObject() returns Boolean
 	 * Input: Mixed
