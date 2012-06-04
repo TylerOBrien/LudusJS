@@ -135,7 +135,10 @@ var Simple = {"ietest":true};
 		 * Input: DOMObject, String, Function
 		 * */
 		AddEventListener: function(element, event, callback){
-			if ((typeof element.addEventListener).length === 8) { /* Look for "funcion" vs "undefined" */
+			/* Look for "funcion" vs "undefined".
+			 * Comparing "length" is cheaper than comparing the string's value.
+			 * */
+			if ((typeof element.addEventListener).length === 8) {
 				element.addEventListener(event, callback);
 			} else {
 				element.attachEvent("on"+event, callback);
