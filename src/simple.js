@@ -576,6 +576,14 @@ var Simple = {"ietest":true};
 	};
 	
 	/*
+	 * IsDOMObjectArray() returns Boolean
+	 * Input: Mixed
+	 * */
+	__Simple.IsDOMObjectArray = function(arr){
+		return __Simple.IsDOMObject(arr[0]) && typeof arr.item !== CacheInternal.undefined; // Should probably improve this.
+	};
+	
+	/*
 	 * IsDOMObject() returns Boolean
 	 * Input: Mixed
 	 * */
