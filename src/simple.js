@@ -135,15 +135,17 @@ var Simple = {"ietest":true};
 		 * Input: Boolean, Mixed, String, Function, Boolean
 		 * */
 		ManageEventListener: function(isAddingEvent, element, event, callback, useCapture){
-			if (typeof element.addEventListener !== CacheInternal.undefined) {
-				if (typeof useCapture === CacheInternal.undefined) {
-					useCapture = false;
+			if (typeof element !== CacheInternal.undefined && element !== null) {
+				if (typeof element.addEventListener !== CacheInternal.undefined) {
+					if (typeof useCapture === CacheInternal.undefined) {
+						useCapture = false;
+					}
+					if (isAddingEvent) element.addEventListener(event, callback, useCapture);
+					else element.removeEventListener(event, callback, useCapture);
+				} else {
+					if (isAddingEvent) element.attachEvent("on"+event, callback);
+					else element.detachEvent("on"+event, callback);
 				}
-				if (isAddingEvent) element.addEventListener(event, callback, useCapture);
-				else element.removeEventListener(event, callback, useCapture);
-			} else {
-				if (isAddingEvent) element.attachEvent("on"+event, callback);
-				else element.detachEvent("on"+event, callback);
 			}
 		},
 
