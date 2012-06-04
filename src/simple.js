@@ -403,11 +403,11 @@ var Simple = {"ietest":true};
 	 * */
 	__Simple.Each = function(haystack, callback){
 		if (typeof haystack !== CacheInternal.undefined) {
-			/* Possible haystack shortcuts */
+			/* Possible haystack shortcuts. */
 			if (haystack === __Simple.Cookie) haystack = __Simple.Cookie.GetAll();
 			else if (haystack === __Simple.GET) haystack = __GET;
 			
-			/* Iterator will hold a reference to haystack */
+			/* Iterator will hold a reference to haystack. */
 			var iterator = new Iterator(haystack);
 			
 			/* Presumably only an Array will have a "length" property */
