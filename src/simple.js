@@ -365,6 +365,7 @@ var Simple = {"ietest":true};
 	 *	Input: String, Mixed
 	 * */
 	__Simple.DOMElement = function(elementString, context){
+		/* Ensure context is defined. */
 		if (typeof context === CacheInternal.undefined) {
 			context = document;
 		} else if (__Simple.IsString(context)) {
@@ -600,7 +601,7 @@ var Simple = {"ietest":true};
 	 * Input: Mixed
 	 * */
 	__Simple.IsDOMElementArray = function(arr){
-		return __Simple.IsDOMElement(arr[0]) && __Simple.HasProperty(arr, "item");
+		return typeof arr !== CacheInternal.undefined && arr !== null && __Simple.IsDOMElement(arr[0]) && __Simple.HasProperty(arr, "item");
 	};
 	
 	/*
@@ -608,7 +609,7 @@ var Simple = {"ietest":true};
 	 * Input: Mixed
 	 * */
 	__Simple.IsDOMElement = function(object){
-		return typeof object !== CacheInternal.undefined && __Simple.HasProperty(object, "ELEMENT_NODE");
+		return typeof object !== CacheInternal.undefined && object !== null && __Simple.HasProperty(object, "ELEMENT_NODE");
 	};
 	
 	/*
