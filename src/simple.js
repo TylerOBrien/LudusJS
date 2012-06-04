@@ -108,6 +108,7 @@ var Simple = {};
 	var CacheInternal = {
 		array: "array",
 		contentType: "Content-type",
+		forwardSlash: "/",
 		func: "function",
 		length: "length",
 		null: "null",
@@ -291,11 +292,15 @@ var Simple = {};
 			date.setTime(date.getTime() + expiration.getTime());
 			
 			if (typeof path === CacheInternal.undefined) {
-				path = "/";
+				path = CacheInternal.forwardSlash;
 			}
 			
+			/* ToDo:
+			 * This needs to be fixed. If a 0 is passed as the number of milliseconds then the
+			 * cookie is not valid, but will still be stored in CookieInternal.data.
+			 * */
 			document.cookie = name+"="+value+"; expires="+date.toUTCString()+"; path="+path;
-			CookieInternal[name] = value;
+			CookieInternal.data[name] = value;
 		},
 	};
 	
