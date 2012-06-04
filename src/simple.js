@@ -373,15 +373,18 @@ var Simple = {"ietest":true};
 		}
 		
 		var result;
-		switch (elementString[0]) {
-			case "#": result = context.getElementById(elementString.substring(1)); break;
-			case ".": result = context.getElementsByClassName(elementString.substring(1)); break;
-			case ":": result = context.getElementsByName(elementString.substring(1)); break;
-			default:  result = context.getElementsByTagName(elementString); break;
-		}
 		
-		if (result !== null && __Simple.HasProperty(result, CacheInternal.length) && result.length === 0) {
-			result = null;
+		if (__Simple.IsDOMElement(context)) {
+			switch (elementString[0]) {
+				case "#": result = context.getElementById(elementString.substring(1)); break;
+				case ".": result = context.getElementsByClassName(elementString.substring(1)); break;
+				case ":": result = context.getElementsByName(elementString.substring(1)); break;
+				default:  result = context.getElementsByTagName(elementString); break;
+			}
+			
+			if (result !== null && __Simple.HasProperty(result, CacheInternal.length) && result.length === 0) {
+				result = null;
+			}
 		}
 		
 		return result;
