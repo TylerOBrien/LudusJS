@@ -103,6 +103,8 @@ var Simple = {"ietest":true};
 	
 	/*
 	 * Cache of commonly used strings.
+	 * The following are commonly used strings that are cached so that new string
+	 * objects don't need to be constantly created.
 	 * */
 	var CacheInternal = {
 		array: "array",
