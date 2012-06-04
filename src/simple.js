@@ -23,7 +23,7 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * */
-
+ 
 /*
  * AJAX fallback for IE6.
  * Might not work for IE5 and earlier.
@@ -128,6 +128,18 @@ var Simple = {"ietest":true};
 		ready: false,
 		
 		/*
+		 * AddEventListener() returns Nothing
+		 * Input: DOMObject, String, Function
+		 * */
+		AddEventListener: function(element, event, callback){
+			if ((typeof element.addEventListener).length === 8) { /* Look for "funcion" vs "undefined" */
+				element.addEventListener(event, callback);
+			} else {
+				element.attachEvent("on"+event, callback);
+			}
+		},
+		
+		/*
 		 * OnDOMContentLoaded() returns Nothing
 		 * Input: Nothing
 		     * Called by one of two possible event listeners.
@@ -188,13 +200,12 @@ var Simple = {"ietest":true};
 		if (__Simple.Type(element) === CacheInternal.string) {
 			element = __Simple.DOMElement(element);
 		}
-		
-		if (element.hasOwnProperty(CacheInternal.length)) {
+		if (typeof element[CacheInternal.length] !== CacheInternal.undefined) {
 			__Simple.Each(element, function(){
-				this.addEventListener(event, callback);
+				DOMInternal.AddEventListener(this, event, callback);
 			});
 		} else {
-			element.addEventListener(event, callback);
+			DOMInternal.AddEventListener(element, event, callback);
 		}
 	};
 	
@@ -397,7 +408,7 @@ var Simple = {"ietest":true};
 			var iterator = new Iterator(haystack);
 			
 			/* Presumably only an Array will have a "length" property */
-			if (haystack.hasOwnProperty(CacheInternal.length)) {
+			if (typeof haystack[CacheInternal.length] !== CacheInternal.undefined) {
 				iterator.i = 0;
 				var end = haystack.length;
 				for (; iterator.i < end; iterator.i++) {
