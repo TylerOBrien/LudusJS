@@ -9,8 +9,10 @@ __Simple.AddEvent__
 	(function($){
 		"use strict";
 		
-		$.AddEvent("#myObject", "focus", function(){
-			console.log("Object has focus");
+		$.DOMReady(function(){
+			$.AddEvent("#myObject", "focus", function(){
+				console.log("Object has focus");
+			});
 		});
 	}(Simple));
 ____
@@ -21,11 +23,13 @@ ____
 			console.log("event called");
 		}
 		
-		var arr = $.DOMElement(".myClass");
-		var obj = $.DOMElement("#myId");
-		
-		$.AddEvent(arr, "focus", onFocus);
-		$.AddEvent(obj, "focus", onFocus);
+		$.DOMReady(function(){
+			var arr = $.DOMElement(".myClass");
+			var obj = $.DOMElement("#myId");
+			
+			$.AddEvent(arr, "focus", onFocus);
+			$.AddEvent(obj, "focus", onFocus);
+		});
 	}(Simple));
 
 __Simple.AJAX__
