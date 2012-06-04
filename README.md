@@ -59,7 +59,7 @@ _____
 		
 		/* Let's do something crazy */
 		Simple.AddEvent([["input","h1"],["#myid",".myclass",["span"]]], "mouseover", function(){
-			console.log("over: " + this.getAttribute("id"));
+			console.log("over: " + this.getAttribute("name"));
 		});
 	}(Simple));
 
