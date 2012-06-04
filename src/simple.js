@@ -146,6 +146,29 @@ var Simple = {"ietest":true};
 				else element.detachEvent("on"+event, callback);
 			}
 		},
+
+		/*
+		 * ProcessEventListener() returns Nothing
+		 * Input: Boolean, Mixed, String, Function, Boolean
+		 * */
+		ProcessEventListener: function(isAddingEvent, element, event, callback, useCapture){
+			if (__Simple.IsString(element)) {
+				element = __Simple.DOMElement(element);
+			}
+			if (__Simple.IsDOMElementArray(element) || __Simple.IsArray(element)) {
+				__Simple.Each(element, function(){
+					__Simple.AddEvent(this, event, callback, useCapture);
+				});
+			} else {
+				if (__Simple.IsArray(event)) {
+					__Simple.Each(event, function(){
+						DOMInternal.ManageEventListener(isAddingEvent, element, this, callback, useCapture);
+					});
+				} else {
+					DOMInternal.ManageEventListener(isAddingEvent, element, event, callback, useCapture);
+				}
+			}
+		},
 		
 		/*
 		 * OnDOMContentLoaded() returns Nothing
@@ -202,19 +225,10 @@ var Simple = {"ietest":true};
 	
 	/*
 	 * AddEvent() returns Nothing
-	 * Input: String|DOMObject, String, Function
+	 * Input: String|DOMElement, String, Function
 	 * */
 	__Simple.AddEvent = function(element, event, callback, useCapture){
-		if (__Simple.IsString(element)) {
-			element = __Simple.DOMObject(element);
-		}
-		if (__Simple.IsDOMObjectArray(element) || __Simple.IsArray(element)) {
-			__Simple.Each(element, function(){
-				__Simple.AddEvent(this, event, callback, useCapture);
-			});
-		} else {
-			DOMInternal.ManageEventListener(true, element, callback, useCapture);
-		}
+		DOMInternal.ProcessEventListener(true, element, event, callback, useCapture);
 	};
 	
 	/*
@@ -345,10 +359,10 @@ var Simple = {"ietest":true};
 	};
 	
 	/*
-	 * DOMObject() returns Mixed
+	 * DOMElement() returns Mixed
 	 *	Input: String, Mixed
 	 * */
-	__Simple.DOMObject = function(elementString, context){
+	__Simple.DOMElement = function(elementString, context){
 		if (typeof context === CacheInternal.undefined) {
 			context = document;
 		}
@@ -571,18 +585,18 @@ var Simple = {"ietest":true};
 	};
 	
 	/*
-	 * IsDOMObjectArray() returns Boolean
+	 * IsDOMElementArray() returns Boolean
 	 * Input: Mixed
 	 * */
-	__Simple.IsDOMObjectArray = function(arr){
-		return __Simple.IsDOMObject(arr[0]) && __Simple.HasProperty(arr, "item");
+	__Simple.IsDOMElementArray = function(arr){
+		return __Simple.IsDOMElement(arr[0]) && __Simple.HasProperty(arr, "item");
 	};
 	
 	/*
-	 * IsDOMObject() returns Boolean
+	 * IsDOMElement() returns Boolean
 	 * Input: Mixed
 	 * */
-	__Simple.IsDOMObject = function(object){
+	__Simple.IsDOMElement = function(object){
 		return typeof object !== CacheInternal.undefined && __Simple.HasProperty(object, "ELEMENT_NODE");
 	};
 	
@@ -596,6 +610,14 @@ var Simple = {"ietest":true};
 	
 	__Simple.IsString = function(object){
 		return __Simple.Type(object) === CacheInternal.string;
+	};
+	
+	/*
+	 * RemoveEvent() returns Nothing
+	 * Input: String|DOMElement, String, Function
+	 * */
+	__Simple.RemoveEvent = function(element, event, callback, useCapture){
+		DOMInternal.ProcessEventListener(false, element, event, callback, useCapture);
 	};
 	
 	/*
