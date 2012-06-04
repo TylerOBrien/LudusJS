@@ -29,6 +29,18 @@ ____
 	(function($){
 		"use strict";
 		
+		function Toggle() {
+			console.log("over/out: foo");
+		}
+		
+		$.DOMReady(function(){
+			$.AddEvent("#foo", ["mouseout","mouseover"], Toggle);
+		});
+	}(Simple));
+____
+	(function($){
+		"use strict";
+		
 		function onFocus() {
 			console.log("focus");
 		}
@@ -39,18 +51,6 @@ ____
 			
 			$.AddEvent(arr, "focus", onFocus);
 			$.AddEvent(obj, "focus", onFocus);
-		});
-	}(Simple));
-____
-	(function($){
-		"use strict";
-		
-		function Toggle() {
-			console.log("over/out: foo");
-		}
-		
-		$.DOMReady(function(){
-			$.AddEvent("#foo", ["mouseout","mouseover"], Toggle);
 		});
 	}(Simple));
 
