@@ -83,22 +83,8 @@ __Simple.Cookie__
 		var email = $.Cookie.Get("email");
 		
 		$.Cookie.Set("id", "usr_445_foo", 3600000); // Set cookie for 3600 seconds.
-	}(Simple));
-____
-	(function($){
-		"use strict";
 		
-		if ($.Cookie.Exists("foo")) {
-			console.log("Has cookie 'foo'. Might be valid; might expired. Who knows?");
-		}
-		
-		if ($.Cookie.IsValid("username")) {
-			console.log("Has valid cookie 'username'");
-		}
-		
-		if ($.Cookie.IsExpired("old_cookie")) {
-			console.log("Has expired cookie 'old_cookie'");
-		}
+		console.log($.Cookie.Exists("id")); // true
 	}(Simple));
 
 __Simple.DOMElement__
