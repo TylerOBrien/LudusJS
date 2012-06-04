@@ -203,27 +203,39 @@ var Simple = {"ietest":true};
 	 * AddEvent() returns Nothing
 	 * Input: String|DOMObject, String, Function
 	 * */
-	__Simple.AddEvent = function(element, event, callback, useCapture){
-		if (__Simple.Type(element) === CacheInternal.string) {
-			element = __Simple.DOMElement(element);
+	__Simple.AddEventt = function(element, event, callback, useCapture){
+		if (__Simple.IsDOMObjectArray(element)) {
+			//
 		}
-		if (typeof element[CacheInternal.length] !== CacheInternal.undefined) {
-			__Simple.Each(element, function(elementItr){
-				if (__Simple.Type(event) === CacheInternal.array) {
-					__Simple.Each(event, function(eventItr){
-						DOMInternal.ManageEventListener(true, elementItr.value, eventItr.value, callback, useCapture);
-					});
-				} else {
-					DOMInternal.ManageEventListener(true, elementItr.value, event, callback, useCapture);
-				}
+	};
+	 
+	__Simple.AddEvent = function(element, event, callback, useCapture){
+		if (__Simple.Type(element) === CacheInternal.array) {
+			__Simple.Each(element, function(){
+				__Simple.AddEvent(this, event, callback, useCapture);
 			});
 		} else {
-			if (__Simple.Type(event) === CacheInternal.array) {
-				__Simple.Each(event, function(eventItr){
-					DOMInternal.ManageEventListener(true, element, eventItr.value, callback);
+			if (__Simple.Type(element) === CacheInternal.string) {
+				element = __Simple.DOMElement(element);
+			}
+			if (typeof element[CacheInternal.length] !== CacheInternal.undefined) {
+				__Simple.Each(element, function(elementItr){
+					if (__Simple.Type(event) === CacheInternal.array) {
+						__Simple.Each(event, function(eventItr){
+							DOMInternal.ManageEventListener(true, elementItr.value, eventItr.value, callback, useCapture);
+						});
+					} else {
+						DOMInternal.ManageEventListener(true, elementItr.value, event, callback, useCapture);
+					}
 				});
 			} else {
-				DOMInternal.ManageEventListener(true, element, event, callback);
+				if (__Simple.Type(event) === CacheInternal.array) {
+					__Simple.Each(event, function(eventItr){
+						DOMInternal.ManageEventListener(true, element, eventItr.value, callback);
+					});
+				} else {
+					DOMInternal.ManageEventListener(true, element, event, callback);
+				}
 			}
 		}
 	};
