@@ -10,8 +10,18 @@ __Simple.AddEvent__
 		"use strict";
 		
 		$.DOMReady(function(){
-			$.AddEvent("#myObject", "mouseover", function(){
-				console.log("Mouse is over object");
+			$.AddEvent("#foo", "mouseover", function(){
+				console.log("over: foo");
+			});
+		});
+	}(Simple));
+____
+	(function($){
+		"use strict";
+		
+		$.DOMReady(function(){
+			$.AddEvent(["#foo","#bar"], "mouseover", function(){
+				console.log("over: " + this.getAttribute("id"));
 			});
 		});
 	}(Simple));
@@ -20,12 +30,12 @@ ____
 		"use strict";
 		
 		function onFocus() {
-			console.log("event called");
+			console.log("focus");
 		}
 		
 		$.DOMReady(function(){
-			var arr = $.DOMObject(".myClass");
-			var obj = $.DOMObject("#myId");
+			var arr = $.DOMElement(".myClass");
+			var obj = $.DOMElement("#myId");
 			
 			$.AddEvent(arr, "focus", onFocus);
 			$.AddEvent(obj, "focus", onFocus);
@@ -36,31 +46,11 @@ ____
 		"use strict";
 		
 		function Toggle() {
-			console.log("mouse over/out");
+			console.log("over/out: foo");
 		}
 		
 		$.DOMReady(function(){
-			$.AddEvent("#myObject", ["mouseout","mouseover"], Toggle);
-		});
-	}(Simple));
-____
-	(function($){
-		"use strict";
-		
-		function Handler() {
-			//
-		}
-		
-		$.DOMReady(function(){
-			$.AddEvent({
-				"foo": ["#fooA","#fooB"],
-				"bar": ["#barA","#barB",".barClass"]
-			},{
-				"foo": ["mouseout","mouseover"],
-				"bar": "focus"
-			},
-				Handler
-			);
+			$.AddEvent("#foo", ["mouseout","mouseover"], Toggle);
 		});
 	}(Simple));
 
@@ -148,16 +138,16 @@ __Simple.Cookie__
 		console.log($.Cookie.Exists("id")); // true
 	}(Simple));
 
-__Simple.DOMObject__
+__Simple.DOMElement__
 ----------
 
 	(function($){
 		"use strict";
 		
 		$.DOMReady(function(){
-			var divArr = $.DOMObject("div");
-			var foo = $.DOMObject("#foo");
-			var barArr = $.DOMObject(".bar");
+			var divArr = $.DOMElement("div");
+			var foo = $.DOMElement("#foo");
+			var barArr = $.DOMElement(".bar");
 		});
 	}(Simple));
 ____
@@ -165,8 +155,8 @@ ____
 		"use strict";
 		
 		$.DOMReady(function(){
-			var parent = $.DOMObject("#parent");
-			var children = $.DOMObject(".child", parent);
+			var parent = $.DOMElement("#parent");
+			var children = $.DOMElement(".child", parent);
 		});
 	}(Simple));
 ____
@@ -174,7 +164,7 @@ ____
 		"use strict";
 		
 		$.DOMReady(function(){
-			$.Each($.DOMObject(".myClass"), function(){
+			$.Each($.DOMElement(".myClass"), function(){
 				console.log(this.innerHTML);
 			});
 		});
