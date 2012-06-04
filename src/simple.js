@@ -166,7 +166,7 @@ var Simple = {};
 	 * Internal regular expressions.
 	 * */
 	var RegexInternal = {
-		cookie: /([^=]+)=(.*)/,
+		cookie: /[ ]?([^=]+)=([^;]+)[; ]?/g,
 		queryString: /[?&]?([^&=]+)=?([^&]+)?/g
 	};
 	
@@ -275,6 +275,22 @@ var Simple = {};
 		},
 		
 		/*
+		 * GetAll() returns Object
+		 * Input: Nothing
+		 * */
+		GetAll: function(){
+			var buffer = RegexInternal.cookie.exec(document.cookie);
+			var result = {};
+			
+			while (buffer !== null) {
+				result[buffer[1]] = buffer[2];
+				buffer = RegexInternal.cookie.exec(document.cookie);
+			}
+			
+			return result;
+		},
+		
+		/*
 		 * Set() returns Nothing
 		 * Input: String, String, Object
 		 * */
@@ -357,7 +373,7 @@ var Simple = {};
 	__Simple.Each = function(haystack, callback){
 		if (typeof haystack !== CacheInternal.undefined) {
 			/* Possible haystack shortcuts */
-			if (haystack === __Simple.Cookie) haystack = CookieInternal.data;
+			if (haystack === __Simple.Cookie) haystack = __Simple.Cookie.GetAll();
 			else if (haystack === __Simple.GET) haystack = __GET;
 			
 			/* Iterator will hold a reference to haystack */
@@ -405,11 +421,15 @@ var Simple = {};
 		return result.replace(" ", "+");
 	};
 	
+	/*
+	 * Equals() returns Boolean
+	 * Input: Mixed, Mixed
+	 */
 	__Simple.Equals = function(first, second){
 		/* Possible haystack shortcuts */
-		if (first === __Simple.Cookie) first = CookieInternal.data;
+		if (first === __Simple.Cookie) first = __Simple.Cookie.GetAll();
 		else if (first === __Simple.GET) first = __GET;
-		if (second === __Simple.Cookie) second = CookieInternal.data;
+		if (second === __Simple.Cookie) second = __Simple.Cookie.GetAll();
 		else if (second === __Simple.GET) second = __GET;
 		
 		var firstType = __Simple.Type(first);
