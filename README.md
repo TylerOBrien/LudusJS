@@ -24,8 +24,8 @@ ____
 		}
 		
 		$.DOMReady(function(){
-			var arr = $.DOMElement(".myClass");
-			var obj = $.DOMElement("#myId");
+			var arr = $.DOMObject(".myClass");
+			var obj = $.DOMObject("#myId");
 			
 			$.AddEvent(arr, "focus", onFocus);
 			$.AddEvent(obj, "focus", onFocus);
@@ -128,16 +128,16 @@ __Simple.Cookie__
 		console.log($.Cookie.Exists("id")); // true
 	}(Simple));
 
-__Simple.DOMElement__
+__Simple.DOMObject__
 ----------
 
 	(function($){
 		"use strict";
 		
 		$.DOMReady(function(){
-			var divArr = $.DOMElement("div");
-			var foo = $.DOMElement("#foo");
-			var barArr = $.DOMElement(".bar");
+			var divArr = $.DOMObject("div");
+			var foo = $.DOMObject("#foo");
+			var barArr = $.DOMObject(".bar");
 		});
 	}(Simple));
 ____
@@ -145,8 +145,8 @@ ____
 		"use strict";
 		
 		$.DOMReady(function(){
-			var parent = $.DOMElement("#parent");
-			var children = $.DOMElement(".child", parent);
+			var parent = $.DOMObject("#parent");
+			var children = $.DOMObject(".child", parent);
 		});
 	}(Simple));
 ____
@@ -154,7 +154,7 @@ ____
 		"use strict";
 		
 		$.DOMReady(function(){
-			$.Each($.DOMElement(".myClass"), function(){
+			$.Each($.DOMObject(".myClass"), function(){
 				console.log(this.innerHTML);
 			});
 		});
