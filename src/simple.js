@@ -380,7 +380,7 @@ var Simple = {"ietest":true};
 			default:  result = context.getElementsByTagName(elementString); break;
 		}
 		
-		if (__Simple.HasProperty(result, CacheInternal.length) && result.length === 0) {
+		if (result !== null && __Simple.HasProperty(result, CacheInternal.length) && result.length === 0) {
 			result = null;
 		}
 		
