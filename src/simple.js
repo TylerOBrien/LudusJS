@@ -410,7 +410,7 @@ var Simple = {"ietest":true};
 			/* Iterator will hold a reference to haystack. */
 			var iterator = new Iterator(haystack);
 			
-			/* Presumably only an Array will have a "length" property */
+			/* Presumably only an Array will have a "length" property. */
 			if (typeof haystack[CacheInternal.length] !== CacheInternal.undefined) {
 				iterator.i = 0;
 				var end = haystack.length;
