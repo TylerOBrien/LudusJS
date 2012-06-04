@@ -367,6 +367,8 @@ var Simple = {"ietest":true};
 	__Simple.DOMElement = function(elementString, context){
 		if (typeof context === CacheInternal.undefined) {
 			context = document;
+		} else if (__Simple.IsString(context)) {
+			context = __Simple.DOMElement(context);
 		}
 		
 		switch (elementString[0]) {
