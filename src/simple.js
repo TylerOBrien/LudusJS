@@ -134,12 +134,15 @@ var Simple = {"ietest":true};
 		 * AddEventListener() returns Nothing
 		 * Input: DOMObject, String, Function
 		 * */
-		AddEventListener: function(element, event, callback){
+		AddEventListener: function(element, event, callback, useCapture){
 			/* Look for "funcion" vs "undefined".
 			 * Comparing "length" is cheaper than comparing the string's value.
 			 * */
 			if ((typeof element.addEventListener).length === 8) {
-				element.addEventListener(event, callback);
+				if (typeof useCapture === CacheInternal.undefined) {
+					useCapture = false;
+				}
+				element.addEventListener(event, callback, useCapture);
 			} else {
 				element.attachEvent("on"+event, callback);
 			}
@@ -202,16 +205,28 @@ var Simple = {"ietest":true};
 	 * AddEvent() returns Nothing
 	 * Input: String|DOMObject, String, Function
 	 * */
-	__Simple.AddEvent = function(element, event, callback){
+	__Simple.AddEvent = function(element, event, callback, useCapture){
 		if (__Simple.Type(element) === CacheInternal.string) {
 			element = __Simple.DOMElement(element);
 		}
 		if (typeof element[CacheInternal.length] !== CacheInternal.undefined) {
-			__Simple.Each(element, function(){
-				DOMInternal.AddEventListener(this, event, callback);
+			__Simple.Each(element, function(elementItr){
+				if (__Simple.Type(event) === CacheInternal.array) {
+					__Simple.Each(event, function(eventItr){
+						DOMInternal.AddEventListener(elementItr.value, eventItr.value, callback, useCapture);
+					});
+				} else {
+					DOMInternal.AddEventListener(elementItr.value, event, callback, useCapture);
+				}
 			});
 		} else {
-			DOMInternal.AddEventListener(element, event, callback);
+			if (__Simple.Type(event) === CacheInternal.array) {
+				__Simple.Each(event, function(eventItr){
+					DOMInternal.AddEventListener(element, eventItr.value, callback);
+				});
+			} else {
+				DOMInternal.AddEventListener(element, event, callback);
+			}
 		}
 	};
 	
@@ -558,6 +573,14 @@ var Simple = {"ietest":true};
 			return false;
 		}
 		return true;
+	};
+	
+	/*
+	 * IsDOMObject() returns Boolean
+	 * Input: Mixed
+	 * */
+	__Simple.IsDOMObject = function(object){
+		return typeof object.ELEMENT_NODE !== CacheInternal.undefined; // Should probably improve this.
 	};
 	
 	/*
