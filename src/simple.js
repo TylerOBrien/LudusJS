@@ -60,8 +60,7 @@ XMLHttpRequest.prototype.send_s = function(args){
 /*
  * SimpleJS
  * */
- 
-var Simple = {};
+var Simple = {"ietest":true};
 (function(__Simple){
 	"use strict";
 	
@@ -111,7 +110,7 @@ var Simple = {};
 		forwardSlash: "/",
 		func: "function",
 		length: "length",
-		null: "null",
+		nullstr: "null", /* Must use "nullstr" as name. Using "null" does not work in IE6 or 7. */
 		number: "number",
 		object: "object",
 		semicolon: ";",
@@ -153,8 +152,8 @@ var Simple = {};
 		OnReady: function(){
 			if (this.busy === false && this.ready === false) {
 				this.busy = true;
-				Simple.Each(this.callbacks, function(){
-					this.value();
+				Simple.Each(this.callbacks, function(itr){
+					itr.value();
 				});
 				this.ready = true;
 				this.busy = false;
@@ -179,6 +178,24 @@ var Simple = {};
 		this.container = container;
 		this.i = null;
 		this.value = null;
+	};
+	
+	/*
+	 * AddEvent() returns Nothing
+	 * Input: String|DOMObject, String, Function
+	 * */
+	__Simple.AddEvent = function(element, event, callback){
+		if (__Simple.Type(element) === CacheInternal.string) {
+			element = __Simple.DOMElement(element);
+		}
+		
+		if (element.hasOwnProperty(CacheInternal.length)) {
+			__Simple.Each(element, function(){
+				this.addEventListener(event, callback);
+			});
+		} else {
+			element.addEventListener(event, callback);
+		}
 	};
 	
 	/*
@@ -305,7 +322,7 @@ var Simple = {};
 			}
 			
 			document.cookie = name+"="+value+"; expires="+date.toUTCString()+"; path="+path;
-		},
+		}
 	};
 	
 	/*
@@ -332,8 +349,8 @@ var Simple = {};
 	 * */
 	__Simple.DOMReady = function(callback){
 		if (__Simple.Type(callback) === CacheInternal.func) {
-			if (DOMInteral.ready === false && DOMInteral.busy === false) {
-				DOMInteral.callbacks.push(callback);
+			if (DOMInternal.ready === false && DOMInternal.busy === false) {
+				DOMInternal.callbacks.push(callback);
 			} else {
 				callback();
 			}
@@ -541,7 +558,7 @@ var Simple = {};
 	     * Borrowed from jQuery.
 	 * */
 	__Simple.Type = function(object){
-		return object === null ? CacheInternal.null : (ClassTypesInteral[Object.prototype.toString.call(object)] || CacheInternal.object);
+		return object === null ? CacheInternal.nullstr : (ClassTypesInteral[Object.prototype.toString.call(object)] || CacheInternal.object);
 	};
 	
 	/*
