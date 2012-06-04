@@ -131,20 +131,18 @@ var Simple = {"ietest":true};
 		ready: false,
 		
 		/*
-		 * AddEventListener() returns Nothing
-		 * Input: DOMObject, String, Function
+		 * ManageEventListener() returns Nothing
 		 * */
-		AddEventListener: function(element, event, callback, useCapture){
-			/* Look for "funcion" vs "undefined".
-			 * Comparing "length" is cheaper than comparing the string's value.
-			 * */
-			if ((typeof element.addEventListener).length === 8) {
+		ManageEventListener: function(isAddingEvent, element, event, callback, useCapture){
+			if (typeof element.addEventListener !== CacheInternal.undefined) {
 				if (typeof useCapture === CacheInternal.undefined) {
 					useCapture = false;
 				}
-				element.addEventListener(event, callback, useCapture);
+				if (isAddingEvent) element.addEventListener(event, callback, useCapture);
+				else element.removeEventListener(event, callback, useCapture);
 			} else {
-				element.attachEvent("on"+event, callback);
+				if (isAddingEvent) element.attachEvent("on"+event, callback);
+				else element.detachEvent("on"+event, callback);
 			}
 		},
 		
@@ -213,19 +211,19 @@ var Simple = {"ietest":true};
 			__Simple.Each(element, function(elementItr){
 				if (__Simple.Type(event) === CacheInternal.array) {
 					__Simple.Each(event, function(eventItr){
-						DOMInternal.AddEventListener(elementItr.value, eventItr.value, callback, useCapture);
+						DOMInternal.ManageEventListener(true, elementItr.value, eventItr.value, callback, useCapture);
 					});
 				} else {
-					DOMInternal.AddEventListener(elementItr.value, event, callback, useCapture);
+					DOMInternal.ManageEventListener(true, elementItr.value, event, callback, useCapture);
 				}
 			});
 		} else {
 			if (__Simple.Type(event) === CacheInternal.array) {
 				__Simple.Each(event, function(eventItr){
-					DOMInternal.AddEventListener(element, eventItr.value, callback);
+					DOMInternal.ManageEventListener(true, element, eventItr.value, callback);
 				});
 			} else {
-				DOMInternal.AddEventListener(element, event, callback);
+				DOMInternal.ManageEventListener(true, element, event, callback);
 			}
 		}
 	};
