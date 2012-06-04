@@ -10,8 +10,8 @@ __Simple.AddEvent__
 		"use strict";
 		
 		$.DOMReady(function(){
-			$.AddEvent("#myObject", "focus", function(){
-				console.log("Object has focus");
+			$.AddEvent("#myObject", "mouseover", function(){
+				console.log("Mouse is over object");
 			});
 		});
 	}(Simple));
