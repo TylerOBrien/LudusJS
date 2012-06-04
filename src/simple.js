@@ -203,14 +203,16 @@ var Simple = {"ietest":true};
 	 * AddEvent() returns Nothing
 	 * Input: String|DOMObject, String, Function
 	 * */
-	__Simple.AddEventt = function(element, event, callback, useCapture){
-		if (__Simple.IsDOMObjectArray(element) || __Simple.Type(element) === CacheInternal.array) {
-			__Simple.Each(element, function(itr){
-				console.log(itr.value);
-				__Simple.AddEventt(itr.value, event, callback, useCapture);
+	__Simple.AddEvent = function(element, event, callback, useCapture){
+		if (__Simple.IsString(element)) {
+			element = __Simple.DOMObject(element);
+		}
+		if (__Simple.IsDOMObjectArray(element) || __Simple.IsArray(element)) {
+			__Simple.Each(element, function(){
+				__Simple.AddEvent(this, event, callback, useCapture);
 			});
 		} else {
-			console.log(element);
+			//
 		}
 	};
 	 
@@ -579,6 +581,14 @@ var Simple = {"ietest":true};
 		return result;
 	};
 	
+	__Simple.HasProperty = function(object, property){
+		return typeof object[property] !== CacheInternal.undefined;
+	};
+	
+	__Simple.IsArray = function(object){
+		return __Simple.Type(object) === CacheInternal.array;
+	};
+	
 	/*
 	 * IsEmptyObject() returns Boolean
 	 * Input: Mixed
@@ -595,8 +605,7 @@ var Simple = {"ietest":true};
 	 * Input: Mixed
 	 * */
 	__Simple.IsDOMObjectArray = function(arr){
-		/* Should probably improve this. */
-		return __Simple.IsDOMObject(arr[0]) && typeof arr.item !== CacheInternal.undefined;
+		return __Simple.IsDOMObject(arr[0]) && __Simple.HasProperty(arr, "item");
 	};
 	
 	/*
@@ -604,8 +613,7 @@ var Simple = {"ietest":true};
 	 * Input: Mixed
 	 * */
 	__Simple.IsDOMObject = function(object){
-		/* Should probably improve this. */
-		return typeof object !== CacheInternal.undefined && typeof object.ELEMENT_NODE !== CacheInternal.undefined;
+		return typeof object !== CacheInternal.undefined && __Simple.HasProperty(object, "ELEMENT_NODE");
 	};
 	
 	/*
@@ -614,6 +622,10 @@ var Simple = {"ietest":true};
 	 * */
 	__Simple.IsNumeric = function(object){
 		return !isNaN(parseFloat(object)) && isFinite(object);
+	};
+	
+	__Simple.IsString = function(object){
+		return __Simple.Type(object) === CacheInternal.string;
 	};
 	
 	/*
