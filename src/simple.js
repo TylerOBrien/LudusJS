@@ -557,7 +557,7 @@ var Simple = {"ietest":true};
 		},
 		
 		/*
-		 * Exists() returns String|undefined
+		 * Find() returns String|undefined
 		 * Input: String
 		     * Returns the value of the passed GET variable.
 			 * If the GET variable has no value assigned this will return NULL.
