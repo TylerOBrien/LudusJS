@@ -577,14 +577,26 @@ var Simple = {"ietest":true};
 		return result;
 	};
 	
+	/*
+	 * HasProperty() returns Boolean
+	 * Input: Mixed, String
+	 * */
 	__Simple.HasProperty = function(object, property){
 		return typeof object[property] !== CacheInternal.undefined;
 	};
 	
+	/*
+	 * IsEmptyArray() returns Boolean
+	 * Input: Mixed
+	 * */
 	__Simple.IsArray = function(object){
 		return __Simple.Type(object) === CacheInternal.array;
 	};
 	
+	/*
+	 * IsEmptyArray() returns Boolean
+	 * Input: Array
+	 * */
 	__Simple.IsEmptyArray = function(object){
 		return __Simple.IsArray(object) && object.length === 0;
 	};
@@ -624,6 +636,10 @@ var Simple = {"ietest":true};
 		return !isNaN(parseFloat(object)) && isFinite(object);
 	};
 	
+	/*
+	 * IsString() returns Boolean
+	 * Input: Mixed
+	 * */
 	__Simple.IsString = function(object){
 		return __Simple.Type(object) === CacheInternal.string;
 	};
