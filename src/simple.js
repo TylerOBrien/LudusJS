@@ -132,6 +132,7 @@ var Simple = {"ietest":true};
 		
 		/*
 		 * ManageEventListener() returns Nothing
+		 * Input: Boolean, Mixed, String, Function, Boolean
 		 * */
 		ManageEventListener: function(isAddingEvent, element, event, callback, useCapture){
 			if (typeof element.addEventListener !== CacheInternal.undefined) {
