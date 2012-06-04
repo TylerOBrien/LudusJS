@@ -31,6 +31,18 @@ ____
 			$.AddEvent(obj, "focus", onFocus);
 		});
 	}(Simple));
+____
+	(function($){
+		"use strict";
+		
+		function Toggle() {
+			console.log("mouse over/out");
+		}
+		
+		$.DOMReady(function(){
+			$.AddEvent("#myObject", ["mouseout","mouseover"], Toggle);
+		});
+	}(Simple));
 
 __Simple.AJAX__
 ----------
