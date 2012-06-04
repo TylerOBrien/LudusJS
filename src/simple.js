@@ -580,7 +580,7 @@ var Simple = {"ietest":true};
 		var result = [[],[]];
 		
 		/* Possible haystack shortcuts */
-		if (object === __Simple.Cookie) object = CookieInternal.data;
+		if (object === __Simple.Cookie) object = __Simple.Cookie.GetAll();
 		else if (object === __Simple.GET) object = __GET;
 		
 		__Simple.Each(object, function(itr){
