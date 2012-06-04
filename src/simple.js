@@ -114,8 +114,8 @@ var Simple = {};
 		null: "null",
 		number: "number",
 		object: "object",
-		regexFindCookie: "%s=([^;]+);?",
 		semicolon: ";",
+		string: "string",
 		timeout: "timeout",
 		undefined: "undefined"
 	};
@@ -252,13 +252,26 @@ var Simple = {};
 	 * */
 	__Simple.Cookie = {
 		/*
+		 * Exists() returns Boolean
+		 * Input: String
+		 * */
+		Exists: function(name){
+			return __Simple.Cookie.Get(name) !== undefined;
+		},
+		
+		/*
 		 * Get() returns String
 		 * Input: String
 		 * */
 		Get: function(name){
-			var result = new RegExp(CacheInternal.regexFindCookie.replace("%s", name), "g").exec(document.cookie);
-			if (result !== null) return result[1];
-			else return undefined;
+			if (__Simple.Type(name) === CacheInternal.string) {
+				var result = new RegExp(name+"=([^;]+);?", "g").exec(document.cookie);
+				if (result !== null) {
+					return result[1];
+				}
+			}
+			
+			return undefined;
 		},
 		
 		/*
