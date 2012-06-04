@@ -371,12 +371,19 @@ var Simple = {"ietest":true};
 			context = __Simple.DOMElement(context);
 		}
 		
+		var result;
 		switch (elementString[0]) {
-			case "#": return context.getElementById(elementString.substring(1));
-			case ".": return context.getElementsByClassName(elementString.substring(1));
-			case ":": return context.getElementsByName(elementString.substring(1));
-			default:  return context.getElementsByTagName(elementString);
+			case "#": result = context.getElementById(elementString.substring(1)); break;
+			case ".": result = context.getElementsByClassName(elementString.substring(1)); break;
+			case ":": result = context.getElementsByName(elementString.substring(1)); break;
+			default:  result = context.getElementsByTagName(elementString); break;
 		}
+		
+		if (__Simple.HasProperty(result, CacheInternal.length) && result.length === 0) {
+			result = null;
+		}
+		
+		return result;
 	};
 	
 	/*
