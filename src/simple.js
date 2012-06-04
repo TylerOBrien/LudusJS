@@ -156,13 +156,13 @@ var Simple = {"ietest":true};
 				element = __Simple.DOMElement(element);
 			}
 			if (__Simple.IsDOMElementArray(element) || __Simple.IsArray(element)) {
-				__Simple.Each(element, function(){
-					__Simple.AddEvent(this, event, callback, useCapture);
+				__Simple.Each(element, function(elementItr){
+					DOMInternal.ProcessEventListener(isAddingEvent, elementItr.value, event, callback, useCapture);
 				});
 			} else {
 				if (__Simple.IsArray(event)) {
-					__Simple.Each(event, function(){
-						DOMInternal.ManageEventListener(isAddingEvent, element, this, callback, useCapture);
+					__Simple.Each(event, function(eventItr){
+						DOMInternal.ManageEventListener(isAddingEvent, element, eventItr.value, callback, useCapture);
 					});
 				} else {
 					DOMInternal.ManageEventListener(isAddingEvent, element, event, callback, useCapture);
