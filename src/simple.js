@@ -60,7 +60,7 @@ XMLHttpRequest.prototype.send_s = function(args){
 /*
  * SimpleJS
  * */
-var Simple = {"ietest":true};
+var Simple = {};
 (function(__Simple){
 	"use strict";
 	
