@@ -114,32 +114,10 @@ var Simple = {};
 		null: "null",
 		number: "number",
 		object: "object",
+		regexFindCookie: "%s=([^;]+);?",
 		semicolon: ";",
 		timeout: "timeout",
 		undefined: "undefined"
-	};
-	
-	/*
-	 * Internal cookie operations.
-	 * */
-	var CookieInternal = {
-		data: {}, /* Map of cookie data */
-		
-		/*
-		 * Update() returns Nothing
-		 * Input: Nothing
-		     * Updates the cookie data.
-	     * */
-		Update: function(){
-			this.data = {};
-			var buffer = null;
-			
-			__Simple.Each(document.cookie.split(CacheInternal.semicolon), function(){
-				if (buffer = RegexInteral.cookie.exec(this)) {
-					CookieInternal.data[escape(buffer[1])] = escape(buffer[2]);
-				}
-			});
-		}
 	};
 	
 	/*
@@ -278,7 +256,9 @@ var Simple = {};
 		 * Input: String
 		 * */
 		Get: function(name){
-			return CookieInternal.data[name];
+			var result = new RegExp(CacheInternal.regexFindCookie.replace("%s", name), "g").exec(document.cookie);
+			if (result !== null) return result[1];
+			else return undefined;
 		},
 		
 		/*
