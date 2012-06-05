@@ -46,11 +46,8 @@ ____
 		}
 		
 		$.DOMReady(function(){
-			var arr = $.DOMElement(".myClass");
-			var obj = $.DOMElement("#myId");
-			
-			$.AddEvent(arr, "focus", onFocus);
-			$.AddEvent(obj, "focus", onFocus);
+			$.AddEvent($.DOMElement(".myClass"), "focus", onFocus);
+			$.AddEvent($.DOMElement("#myId"), "focus", onFocus);
 		});
 	}(Simple));
 _____
