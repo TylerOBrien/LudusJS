@@ -316,10 +316,8 @@ The _$.GenerateArray_ function can also be used to generate a Fibonacci number s
 		$.GenerateArray(10, function(arr, i){
 			if (arr.length > 1) {
 				return arr[i-1] + arr[i-2];
-			} else if (arr.length === 1) {
-				return 1;
 			} else {
-				return 0;
+				return arr.length;
 			}
 		}, true);
 	}(Simple));
