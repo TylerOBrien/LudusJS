@@ -87,7 +87,6 @@ Simple.AJAX
 > > The default __request method__ is _"GET"_, and the default __path__ is _"/"_.
 > >
 > > The following is an example of all available properties:  
-> > ```javascript
 > > Simple.AJAX({
 > >     method: "GET",
 > >     url: "myPage.php",
@@ -97,7 +96,7 @@ Simple.AJAX
 > >     onNotFound: function(response, ms){},
 > >     onError: function(error, ms){}
 > > });
-> > ```
+> > 
 
 ```javascript
 (function($){
