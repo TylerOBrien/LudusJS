@@ -351,7 +351,7 @@ ____
 
 Simple.Exists
 ----------
-> > __Input:__ Mixed val, Mixed override[, Boolean doReturnBool]  
+> > __Input:__ _Mixed val, Mixed override[, Boolean doReturnBool]_  
 > > __Output:__ _Boolean|Mixed result_
 > >
 > > Used for determining if "val" has been defined. If so then "val" will be returned. If not then "override" will be returned.  
