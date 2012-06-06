@@ -5,6 +5,7 @@ This is a lightweight JavaScript library designed to simplify common tasks in va
 Simple.AddEvent
 ----------
 > > __Input:__ _element, event, callback_
+> > __Output:__ _Nothing_
 > >
 > > Adds the passed event(s) to the passed element(s).
 > > If an array is given as the element then all elements will be given the passed event.
@@ -82,6 +83,7 @@ _____
 Simple.AJAX
 ----------
 > > __Input:__ _args_
+> > __Output:__ _Nothing_
 > >
 > > Used to perform AJAX operations. Is very similar to way jQuery and Prototype handle AJAX.  
 > > The default __request method__ is _"GET"_, and the default __path__ is _"/"_.
@@ -135,9 +137,12 @@ ____
 Simple.Call
 ----------
 > > __Input:__ _callback_, [_args1_, [_args2_]]
+> > __Output:__ _Mixed_
 > >
 > > If the passed "callback" variable is a function then it will be called. If it is anything other than a function then it will be ignored.  
 > > The two args variables are optional parameters that when defined will be passed to the callback.
+> >
+> > The return value of this function will be the return value of the passed callback.
 
 ```javascript
 (function($){
@@ -184,6 +189,9 @@ Simple.Cookie
 
 __Simple.DOMElement__
 ----------
+> > __Input:__ _element_  
+> > __Output:__ _DOMObject_
+> > 
 ```javascript
 (function($){
 	"use strict";
