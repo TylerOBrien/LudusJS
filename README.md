@@ -82,7 +82,7 @@ _____
 
 Simple.AJAX
 ----------
-> > __Input:__ _Object args_
+> > __Input:__ _Object args_  
 > > __Output:__ _Nothing_
 > >
 > > Used to perform AJAX operations. Is very similar to way jQuery and Prototype handle AJAX.  
@@ -192,6 +192,7 @@ __Simple.DOMElement__
 > > __Input:__ _String element_  
 > > __Output:__ _Array|DOMObject result_
 > > 
+
 ```javascript
 (function($){
 	"use strict";
@@ -249,7 +250,7 @@ Simple.DOMReady
 
 Simple.Each
 ----------
-> > __Input:__ _Array|Object haystack, Function callback_
+> > __Input:__ _Array|Object haystack, Function callback_  
 > > __Output:__ _Nothing_
 > > 
 > > Iterates through the passed haystack, passing each element to the callback.  
