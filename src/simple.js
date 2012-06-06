@@ -211,6 +211,7 @@ var Simple = {};
 	 * */
 	var RegexInternal = {
 		cookie: /[ ]?([^=]+)=([^;]+)[; ]?/g,
+		number: /[0-9.]+/g,
 		queryString: /[?&]?([^&=]+)=?([^&]+)?/g
 	};
 	
