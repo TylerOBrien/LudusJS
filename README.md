@@ -1,9 +1,8 @@
 SimpleJS
-==========
-
+----------
 This is a lightweight JavaScript library designed to simplify common tasks in vanilla JavaScript. Originally this was designed as an AJAX wrapper, but eventually grew into a much larger library. SimpleJS makes no attempt to replicate, or replace, other existing libraries such as jQuery or MooTools; it is merely something I designed to simplify JavaScript when specifically _not_ using those libraries.
 
-__Simple.AddEvent__
+Simple.AddEvent
 ----------
 > > __Input:__ _element, event, callback_
 > >
@@ -76,7 +75,7 @@ _____
 }(Simple));
 ```
 
-__Simple.AJAX__
+Simple.AJAX
 ----------
 ```javascript
 (function($){
@@ -124,7 +123,7 @@ ____
 }(Simple));
 ```
 
-__Simple.Call__
+Simple.Call
 ----------
 ```javascript
 (function($){
@@ -154,7 +153,7 @@ ____
 }(Simple));
 ```
 
-__Simple.Cookie__
+Simple.Cookie
 ----------
 ```javascript
 (function($){
@@ -206,7 +205,7 @@ ____
 }(Simple));
 ```
 
-__Simple.DOMReady__
+Simple.DOMReady
 ----------
 ```javascript
 (function($){
@@ -226,7 +225,7 @@ __Simple.DOMReady__
 }(Simple));
 ```
 
-__Simple.Each__
+Simple.Each
 ----------
 ```javascript
 (function($){
@@ -269,7 +268,7 @@ ____
 }(Simple));
 ```
 
-__Simple.Equals__
+Simple.Equals
 ----------
 ```javascript
 (function($){
@@ -321,7 +320,7 @@ ____
 }(Simple));
 ```
 
-__Simple.Exists__
+Simple.Exists
 ----------
 ```javascript
 (function($){
@@ -337,7 +336,7 @@ __Simple.Exists__
 }(Simple));
 ```
 	
-__Simple.GenerateArray__
+Simple.GenerateArray
 ----------
 ```javascript
 (function($){
@@ -368,7 +367,7 @@ The _$.GenerateArray_ function can also be used to generate a Fibonacci number s
 }(Simple));
 ```
 
-__Simple.GET__
+Simple.GET
 ----------
 ```javascript
 (function($){
@@ -389,7 +388,7 @@ ____
 }(Simple));
 ```
 
-__Simple.ObjectToArray__
+Simple.ObjectToArray
 ----------
 ```javascript
 (function($){
