@@ -351,6 +351,12 @@ ____
 
 Simple.Exists
 ----------
+> > __Input:__ Mixed val, Mixed override[, Boolean doReturnBool]  
+> > __Output:__ _Boolean|Mixed result_
+> >
+> > Used for determining if "val" has been defined. If so then "val" will be returned. If not then "override" will be returned.  
+> > If "doReturnBool" is _true_ then true/false values will be returned instead of val/override, respectively.
+
 ```javascript
 (function($){
 	"use strict";
@@ -367,7 +373,7 @@ Simple.Exists
 	
 Simple.GenerateArray
 ----------
-> > __Input:__ _Integer num, Mixed val, Boolean isValueCallback_  
+> > __Input:__ _Integer num, Mixed val[, Boolean isValueCallback_]  
 > > __Output:__ _Array result_
 > >
 > > Creates a new array of _n_ size where _n_ is the value of "num", assigning "val" to each element.
