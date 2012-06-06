@@ -211,11 +211,12 @@ ____
 	(function($){
 		"use strict";
 		
-		var arr = [{id:1}, {id:2}, {id:3}, {id:4}, {id:5}];
+		var arr = [{"id":1},{"id":2},{"id":3},{"id":4},{"id":5}];
 		
 		$.Each(arr, function(){
-			console.log(this.id);
+			console.log(this);
 		});
+	}(Simple));
 ____
 	(function($){
 		"use strict";
