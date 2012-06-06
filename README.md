@@ -4,7 +4,7 @@ This is a lightweight JavaScript library designed to simplify common tasks in va
 
 Simple.AddEvent
 ----------
-> > __Input:__ _element, event, callback_  
+> > __Input:__ _Array|DOMObject|String element, Array|String event, Function callback_  
 > > __Output:__ _Nothing_
 > >
 > > Adds the passed event(s) to the passed element(s).
