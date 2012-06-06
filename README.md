@@ -77,6 +77,12 @@ _____
 
 Simple.AJAX
 ----------
+> > __Input:__ _args_
+> >
+> > Used to perform AJAX operations. Is very similar to way jQuery and Prototype handle AJAX.
+> >
+> > The default __request method__ is _"GET"_, and the default __path__ is _"/"_.
+
 ```javascript
 (function($){
 	"use strict";
