@@ -308,7 +308,8 @@ __Simple.GenerateArray__
 		var arr_3 = $.GenerateArray(3, myCallback, true); // ["foo", "foo", "foo"]
 	}(Simple));
 _____
-The function _$.GenerateArray_ can also be used to generate a Fibonacci number sequence:
+The _$.GenerateArray_ function can also be used to generate a Fibonacci number sequence:
+
 	(function($){
 		"use strict";
 		
