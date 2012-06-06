@@ -420,7 +420,7 @@ ____
 Simple.ObjectToArray
 ----------
 > > __Input:__ _Object source_
-> > __Output:__ _Array result_
+> > __Output:__ _Array result_  
 > >
 > > Converts the passed object into a two dimensional array.  
 > > The first index will contain all of the object's keys/indices.  
