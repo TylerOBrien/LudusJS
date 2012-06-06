@@ -588,6 +588,10 @@ var Simple = {};
 	 * Input: Mixed, String
 	 * */
 	__Simple.HasProperty = function(object, property){
+		/* Possible haystack shortcuts */
+		if (object === __Simple.Cookie) object = __Simple.Cookie.GetAll();
+		else if (object === __Simple.GET) object = __GET;
+		
 		if (__Simple.IsArray(property)) {
 			var count = 0;
 			__Simple.Each(property, function(){
