@@ -5,8 +5,12 @@ This is a lightweight JavaScript library designed to simplify common tasks in va
 
 __Simple.AddEvent__
 ----------
-__Input:__ _element, event, callback_
+> > __Input:__ _element, event, callback_
+> >
 > > Adds the passed event(s) to the passed element(s).
+> > If an array is given as the element then all elements will be given the passed event.
+> > If an array is given as the event, the element will be given all events.
+> > If an array is given for both then all given elements will contain all given events.
 
 ```javascript
 (function($){
