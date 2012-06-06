@@ -168,7 +168,7 @@ ____
 ```
 
 Simple.Cookie
-----------W
+----------
 ```javascript
 (function($){
 	"use strict";
