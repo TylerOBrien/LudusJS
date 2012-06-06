@@ -134,6 +134,11 @@ ____
 
 Simple.Call
 ----------
+> > __Input:__ _callback_, [_args1_, [_args2_]]
+> >
+> > If the passed "callback" variable is a function then it will be called. If it is anything other than a function then it will be ignored.  
+> > The two args variables are optional parameters that when defined will be passed to the callback.
+
 ```javascript
 (function($){
 	"use strict";
@@ -163,7 +168,7 @@ ____
 ```
 
 Simple.Cookie
-----------
+----------W
 ```javascript
 (function($){
 	"use strict";
