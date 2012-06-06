@@ -86,17 +86,14 @@ Simple.AJAX
 > > Used to perform AJAX operations. Is very similar to way jQuery and Prototype handle AJAX.  
 > > The default __request method__ is _"GET"_, and the default __path__ is _"/"_.
 > >
-> > The following is an example of all available properties:  
-> > Simple.AJAX({
-> >     method: "GET",
-> >     url: "myPage.php",
-> >     data: {"id":"42", "name":"foo"},
-> >     timeout: 3000,
-> >     onSuccess: function(response, ms){},
-> >     onNotFound: function(response, ms){},
-> >     onError: function(error, ms){}
-> > });
-> > 
+> > The following are all available properties and their default values:
+> > * method: _"GET"_
+> > * url: _"/"_
+> > * data: _None_
+> > * timeout: _None_
+> > * onSuccess: _None_
+> > * onNotFound: _None_
+> > * onError: _None_ 
 
 ```javascript
 (function($){
