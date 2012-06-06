@@ -12,8 +12,8 @@ Simple.AddEvent
 > > If an array is given for both then all given elements will contain all given events.
 > >
 > > Note:
-
-> > The passed elements can either be strings, which will be converted into DOM objects, or DOM objects themselves. Arrays can be a mix of both.
+> > The passed elements can either be strings, which will be converted into DOM objects, or DOM objects themselves.
+> > Arrays can be a mix of both.
 
 ```javascript
 (function($){
@@ -84,7 +84,6 @@ Simple.AJAX
 > > __Input:__ _args_
 > >
 > > Used to perform AJAX operations. Is very similar to way jQuery and Prototype handle AJAX.
-
 > > The default __request method__ is _"GET"_, and the default __path__ is _"/"_.
 
 ```javascript
