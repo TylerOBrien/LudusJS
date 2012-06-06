@@ -110,6 +110,7 @@ var Simple = {};
 	var CacheInternal = {
 		array: "array",
 		contentType: "Content-type",
+		emptyString: "",
 		forwardSlash: "/",
 		func: "function",
 		length: "length",
@@ -211,6 +212,7 @@ var Simple = {};
 	 * */
 	var RegexInternal = {
 		cookie: /[ ]?([^=]+)=([^;]+)[; ]?/g,
+		notNumber: /[^0-9.]+/g,
 		number: /[0-9.]+/g,
 		queryString: /[?&]?([^&=]+)=?([^&]+)?/g
 	};
@@ -663,6 +665,18 @@ var Simple = {};
 	 * */
 	__Simple.RemoveEvent = function(element, event, callback, useCapture){
 		DOMInternal.ProcessEventListener(false, element, event, callback, useCapture);
+	};
+	
+	/*
+	 * ToInteger() returns Integer
+	 * Input: Mixed, Integer
+	 * */
+	__Simple.ToInteger = function(source, base){
+		if (source.match(RegexInternal.number).length === 1) {
+			return parseInt(source.replace(RegexInternal.notNumber, CacheInternal.emptyString), typeof base !== CacheInternal.undefined ? base : 10);
+		} else {
+			return NaN;
+		}
 	};
 	
 	/*
