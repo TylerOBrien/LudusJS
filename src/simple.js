@@ -585,7 +585,16 @@ var Simple = {};
 	 * Input: Mixed, String
 	 * */
 	__Simple.HasProperty = function(object, property){
-		return typeof object[property] !== CacheInternal.undefined;
+		if (__Simple.Type(property) === CacheInternal.array) {
+			var count = 0;
+			__Simple.Each(property, function(){
+				count++;
+				return __Simple.HasProperty(object, this);
+			});
+			return count > 0 && count === property.length;
+		} else {
+			return typeof object[property] !== CacheInternal.undefined;
+		}
 	};
 	
 	/*
