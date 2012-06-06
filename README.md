@@ -387,11 +387,11 @@ Simple.GenerateArray
 }(Simple));
 ```
 _____
-The _$.GenerateArray_ function can also be used to generate a Fibonacci number sequence:
 ```javascript
 (function($){
 	"use strict";
 	
+	/* Generate a Fibonacci number sequence */
 	$.GenerateArray(10, function(arr, i){
 		if (arr.length > 1) {
 			return arr[i-1] + arr[i-2];
