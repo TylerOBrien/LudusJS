@@ -5,6 +5,9 @@ This is a lightweight JavaScript library designed to simplify common tasks in va
 
 __Simple.AddEvent__
 ----------
+__Input:__ _element, event, callback_
+> > Adds the passed event(s) to the passed element(s).
+
 ```javascript
 (function($){
 	"use strict";
