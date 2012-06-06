@@ -136,8 +136,8 @@ ____
 
 Simple.Call
 ----------
-> > __Input:__ _callback_, [_args1_, [_args2_]]  
-> > __Output:__ _Mixed_
+> > __Input:__ _Function callback_, [Mixed _args1_, [Mixed _args2_]]  
+> > __Output:__ _Mixed returnValue_
 > >
 > > If the passed "callback" variable is a function then it will be called. If it is anything other than a function then it will be ignored.  
 > > The two args variables are optional parameters that when defined will be passed to the callback.
@@ -412,6 +412,13 @@ ____
 
 Simple.ObjectToArray
 ----------
+> > __Input:__ _Object source_
+> > __Output:__ _Array result_
+> >
+> > Converts the passed object into a two dimensional array.  
+> > The first index will contain all of the object's keys/indices.  
+> > The second index will contain all of the object's values, stored respective to the keys/indices.
+
 ```javascript
 (function($){
 	var obj = {"foo":"bar", "hello":"world"};
