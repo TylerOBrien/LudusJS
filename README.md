@@ -4,7 +4,7 @@ This is a lightweight JavaScript library designed to simplify common tasks in va
 
 Simple.AddEvent
 ----------
-> > __Input:__ _element, event, callback_
+> > __Input:__ _element, event, callback_  
 > > __Output:__ _Nothing_
 > >
 > > Adds the passed event(s) to the passed element(s).
@@ -136,7 +136,7 @@ ____
 
 Simple.Call
 ----------
-> > __Input:__ _callback_, [_args1_, [_args2_]]
+> > __Input:__ _callback_, [_args1_, [_args2_]]  
 > > __Output:__ _Mixed_
 > >
 > > If the passed "callback" variable is a function then it will be called. If it is anything other than a function then it will be ignored.  
