@@ -406,7 +406,7 @@ _____
 		}
 	}
 	
-	$.GenerateArray(10, fibonacci, true);
+	var arr = $.GenerateArray(10, fibonacci, true);
 }(Simple));
 ```
 
