@@ -398,14 +398,15 @@ _____
 (function($){
 	"use strict";
 	
-	/* Generate a Fibonacci number sequence */
-	$.GenerateArray(10, function(arr, i){
+	function fibonacci(arr, i) {
 		if (arr.length > 1) {
 			return arr[i-1] + arr[i-2];
 		} else {
 			return arr.length;
 		}
-	}, true);
+	}
+	
+	$.GenerateArray(10, fibonacci, true);
 }(Simple));
 ```
 
