@@ -5,7 +5,7 @@ This is a lightweight JavaScript library designed to simplify common tasks in va
 
 __Simple.AddEvent__
 ----------
-
+```javascript
 	(function($){
 		"use strict";
 		
@@ -15,6 +15,7 @@ __Simple.AddEvent__
 			});
 		});
 	}(Simple));
+```
 ____
 	(function($){
 		"use strict";
