@@ -370,8 +370,9 @@ Simple.GenerateArray
 > > __Input:__ _Integer num, Mixed val, Boolean isValueCallback_  
 > > __Output:__ _Array result_
 > >
-> > Creates a new array of _n_ size where _n_ is the value of "num", assigning "val" to each element.  
-> > If "isValueCallback" is _true_ then the return value of "val" will be used instead of "val" itself.
+> > Creates a new array of _n_ size where _n_ is the value of "num", assigning "val" to each element.
+> >
+> > If "isValueCallback" is _true_ then the return value of "val" will be used instead of "val" itself. As well a reference to the array, and the current index position, will be passed to the callback (see second example).
 
 ```javascript
 (function($){
