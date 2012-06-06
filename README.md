@@ -454,7 +454,7 @@ Simple.ObjectToArray
 
 Simple.Sprintf
 ----------
-> > __Input:__ _String source_
+> > __Input:__ _String source_  
 > > __Output:__ _String result_
 > >
 
