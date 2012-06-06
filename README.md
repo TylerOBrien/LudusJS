@@ -442,10 +442,29 @@ Simple.ObjectToArray
 
 ```javascript
 (function($){
+	"use strict";
+	
 	var obj = {"foo":"bar", "hello":"world"};
 	var arr = $.ObjectToArray(obj);
 	
 	console.log("Keys: " + arr[0]);
 	console.log("Values: " + arr[1]);
+}(Simple));
+```
+
+Simple.Sprintf
+----------
+> > __Input:__ _String source_
+> > __Output:__ _String result_
+> >
+
+```javascript
+(function($){
+	"use strict";
+	
+	var source = "The quick %s jumped over the lazy %s.";
+	var result = $.Sprintf(source, "fox", "dog");
+	
+	console.log(result);
 }(Simple));
 ```
