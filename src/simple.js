@@ -585,7 +585,7 @@ var Simple = {};
 	 * Input: Mixed, String
 	 * */
 	__Simple.HasProperty = function(object, property){
-		if (__Simple.Type(property) === CacheInternal.array) {
+		if (__Simple.IsArray(property)) {
 			var count = 0;
 			__Simple.Each(property, function(){
 				count++;
