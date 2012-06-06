@@ -82,7 +82,7 @@ _____
 
 Simple.AJAX
 ----------
-> > __Input:__ _args_
+> > __Input:__ _Object args_
 > > __Output:__ _Nothing_
 > >
 > > Used to perform AJAX operations. Is very similar to way jQuery and Prototype handle AJAX.  
@@ -189,8 +189,8 @@ Simple.Cookie
 
 __Simple.DOMElement__
 ----------
-> > __Input:__ _element_  
-> > __Output:__ _DOMObject_
+> > __Input:__ _String element_  
+> > __Output:__ _Array|DOMObject result_
 > > 
 ```javascript
 (function($){
@@ -249,6 +249,12 @@ Simple.DOMReady
 
 Simple.Each
 ----------
+> > __Input:__ _Array|Object haystack, Function callback_
+> > __Output:__ _Nothing_
+> > 
+> > Iterates through the passed haystack, passing each element to the callback.  
+> > In the context of the callback the _this_ operator will always refer to the current element (see examples).
+
 ```javascript
 (function($){
 	"use strict";
