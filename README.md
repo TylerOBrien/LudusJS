@@ -202,6 +202,24 @@ Simple.Cookie
 }(Simple));
 ```
 
+Simple.DecodeQueryString
+----------
+> > __Input:__ _String source_
+> > __Output:__ _Object result_
+> > 
+> > Converts the passed query string into an object.
+
+```javascript
+(function($){
+	"use strict";
+	
+	var queryString = "id=42&name=John+Doe&type=Burly";
+	var object = $.DecodeQueryString(queryString);
+	
+	console.log(object);
+}(Simple));
+```
+
 __Simple.DOMElement__
 ----------
 > > __Input:__ _String element [, DOMObject|String context]_  
@@ -326,6 +344,27 @@ ____
 	$.Each(obj, function(itr){
 		console.log(itr.i + " => " + itr.value);
 	});
+}(Simple));
+```
+
+Simple.EncodeQueryString
+----------
+> > __Input:__ _Object source_
+> > __Output:__ _String result_
+> > 
+> > Converts the passed object into a query string.
+
+```javascript
+(function($){
+	"use strict";
+	
+	var data = {
+		"id": 42,
+		"name": "John Doe",
+		"type": "Burly"
+	};
+	
+	console.log($.EncodeQueryString(data)); // id=42&name=John+Doe&type=Burly
 }(Simple));
 ```
 
