@@ -126,7 +126,7 @@ var Simple = window.$ = {};
 	};
 	
 	/*
-	 * Internal DOM operations performed here.
+	 * Internal DOM operations.
 	 * */
 	var DOMInternal = {
 		busy: false,
