@@ -625,22 +625,6 @@ var Simple = {};
 	};
 	
 	/*
-	 * Integer() returns Integer
-	 * Input: Float|Integer|String
-	 * */
-	__Simple.Integer = function(source){
-		if (__Simple.Type(source) !== CacheInternal.number) {
-			if (__Simple.Type(source) === CacheInternal.string) {
-				if (source.match(RegexInternal.number).length === 1) {
-					source = source.replace(RegexInternal.notNumber, CacheInternal.emptyString);
-				}
-			}
-			source = NaN;
-		}
-		return parseInt(source,10);
-	};
-	
-	/*
 	 * IsEmptyArray() returns Boolean
 	 * Input: Mixed
 	 * */
@@ -713,7 +697,7 @@ var Simple = {};
 	 * */
 	__Simple.ToInteger = function(source, base){
 		if (source.match(RegexInternal.number).length === 1) {
-			return parseInt(source.replace(RegexInternal.notNumber, CacheInternal.emptyString), typeof base !== CacheInternal.undefined ? base : 10);
+			return parseInt(source.replace(RegexInternal.notNumber, CacheInternal.emptyString), __Simple.Exists(base, 10));
 		} else {
 			return NaN;
 		}
