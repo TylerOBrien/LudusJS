@@ -63,12 +63,10 @@ ____
 (function($){
 	"use strict";
 	
-	function Toggle() {
-		console.log("over/out: foo");
-	}
-	
 	$.DOMReady(function(){
-		$.AddEvent("#foo", ["mouseout","mouseover"], Toggle);
+		$.AddEvent("#foo", ["mouseout","mouseover"], function(){
+			console.log("out/over: " + this.getAttribute("id"));
+		});
 	});
 }(Simple));
 ```
@@ -84,17 +82,6 @@ ____
 	$.DOMReady(function(){
 		$.AddEvent($.DOMElement(".myClass"), "focus", onFocus);
 		$.AddEvent($.DOMElement("#myId"), "focus", onFocus);
-	});
-}(Simple));
-```
-_____
-```javascript
-(function($){
-	"use strict";
-	
-	/* Let's do something crazy */
-	Simple.AddEvent([["input","h1"],["#myid",".myclass",["span"]]], "mouseover", function(){
-		console.log("over: " + this.getAttribute("name"));
 	});
 }(Simple));
 ```
