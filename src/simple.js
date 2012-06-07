@@ -60,7 +60,7 @@ XMLHttpRequest.prototype.send_s = function(args){
 /*
  * SimpleJS
  * */
-var Simple = {};
+var Simple = window.$ = {};
 (function(__Simple){
 	"use strict";
 	
@@ -217,7 +217,7 @@ var Simple = {};
 		notNumber: /[^0-9.\-+]+/g,
 		number: /[0-9.\-+]+/g,
 		queryString: /[?&]?([^&=]+)=?([^&]+)?/g,
-		sprintfVariable: /%[b|d|f|o|u|x|X]/g
+		sprintfVariable: /%[b|d|f|o|s|u|x|X]/g
 	};
 	
 	/*
@@ -762,10 +762,10 @@ var Simple = {};
 			}
 			
 			var variables = source.match(RegexInternal.sprintfVariable);
-			var end = variables.length;
+			var end = (variables) ? variables.length : 0;
 
 			for (var i = 0; i < end; i++) {
-				source = source.replace(variables[i], SprintfInternal.Process(variables[i], values[i+indexOffset]));
+				source = source.replace(variables[i], SprintfInternal.Process(variables[i], values[i+indexOffset].toString()));
 			}
 		}
 		
