@@ -204,7 +204,7 @@ Simple.Cookie
 
 Simple.DecodeQueryString
 ----------
-> > __Input:__ _String source_
+> > __Input:__ _String source_  
 > > __Output:__ _Object result_
 > > 
 > > Converts the passed query string into an object.
@@ -349,7 +349,7 @@ ____
 
 Simple.EncodeQueryString
 ----------
-> > __Input:__ _Object source_
+> > __Input:__ _Object source_  
 > > __Output:__ _String result_
 > > 
 > > Converts the passed object into a query string.
