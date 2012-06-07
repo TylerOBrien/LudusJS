@@ -230,6 +230,13 @@ ____
 
 Simple.DOMReady
 ----------
+> > __Input:__ _Function callback_  
+> > __Output:__ _Nothing_  
+> >
+> > Behaves in an identical manner as the _jQuery.ready_ function.  
+> > The passed callback will be called when the DOM is ready. If the DOM is ready when the callback is passed then it will be called immediately.  
+> > Callbacks will be called in the order that they are passed.
+
 ```javascript
 (function($){
 	"use strict";
