@@ -136,7 +136,7 @@ ____
 
 Simple.Call
 ----------
-> > __Input:__ _Function callback_, [Mixed _args1_, [Mixed _args2_]]  
+> > __Input:__ _Function callback, [Mixed args1, [Mixed args2]]_  
 > > __Output:__ _Mixed returnValue_
 > >
 > > If the passed "callback" variable is a function then it will be called. If it is anything other than a function then it will be ignored.  
