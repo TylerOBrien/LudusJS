@@ -85,7 +85,7 @@ Simple.AJAX
 > > __Input:__ _Object args_  
 > > __Output:__ _Nothing_
 > >
-> > Used to perform AJAX operations.
+> > Used to perform AJAX operations.  
 > > Behaves in a manner similar to a combination of jQuery and Prototype's methods of handling AJAX.
 > >
 > > The following are all available properties:  
