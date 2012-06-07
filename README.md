@@ -492,8 +492,8 @@ Simple.GET
 (function($){
 	"use strict";
 	
-	console.log($.GET.Exists("foo")); // Will output true if "foo" is defined
-	console.log($.GET.Find("foo")); // Will output value of "foo" if is defined, otherwise will output 'undefined'
+	console.log($.GET.Exists("foo")); // Will output true if "foo" is defined.
+	console.log($.GET.Find("foo")); // Will output the value of "foo".
 }(Simple));
 ```
 ____
@@ -523,8 +523,8 @@ Simple.ObjectToArray
 	var obj = {"foo":"bar", "hello":"world"};
 	var arr = $.ObjectToArray(obj);
 	
-	console.log("Keys: " + arr[0]);
-	console.log("Values: " + arr[1]);
+	console.log("Keys: " + arr[0]); // foo, hello
+	console.log("Values: " + arr[1]); // bar, world
 }(Simple));
 ```
 
