@@ -552,7 +552,7 @@ Simple.Sprintf
 	var source = "The quick brown %s jumps over the lazy %s.";
 	var result = $.Sprintf(source, "fox", "dog");
 	
-	console.log(result);
+	console.log(result); // The quick brown fox jumps over the lazy dog.
 }(Simple));
 ```
 _____
@@ -563,6 +563,6 @@ _____
 	var source = "%d bottles of %s on the %s.";
 	var result = $.Sprintf(source, [99,"beer","wall"]);
 	
-	console.log(result);
+	console.log(result); // 99 bottles of beer on the wall.
 }(Simple));
 ```
