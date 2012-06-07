@@ -4,6 +4,10 @@ This is a lightweight JavaScript library designed to simplify common tasks in va
 
 The current version, while usable, is not yet complete.
 
+Examples Index
+----------
+* # [Simple.AddEvent()](#simpleaddevent)
+
 Simple.AddEvent
 ----------
 > > __Input:__ _Array|DOMObject|String element, Array|String event, Function callback_  
