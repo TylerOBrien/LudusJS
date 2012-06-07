@@ -479,3 +479,14 @@ Simple.Sprintf
 	console.log(result);
 }(Simple));
 ```
+_____
+```javascript
+(function($){
+	"use strict";
+	
+	var source = "%d bottles of %s on the %s.";
+	var result = $.Sprintf(source, [99,"beer","wall"]);
+	
+	console.log(result);
+}(Simple));
+```
