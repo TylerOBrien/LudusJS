@@ -158,6 +158,7 @@ var Simple = window.$ = {};
 		/*
 		 * ProcessEventListener() returns Nothing
 		 * Input: Boolean, Mixed, String, Function, Boolean
+		     * Processes any bases elements/events.
 		 * */
 		ProcessEventListener: function(isAddingEvent, element, event, callback, useCapture){
 			if (__Simple.IsString(element)) {
