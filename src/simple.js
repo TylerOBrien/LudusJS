@@ -714,10 +714,8 @@ var Simple = window.$ = {};
 	__Simple.ToUnsignedInt = function(source, base){
 		if (source = __Simple.ToInt(source, base)) {
 			return (source >= 0) ? source : (CacheInternal.uint32max - Math.abs(source));
-		} else if (source === 0) {
-			return source;
 		} else {
-			return NaN;
+			return source;
 		}
 	};
 	
