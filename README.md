@@ -13,8 +13,7 @@ Simple.AddEvent
 > > If an array is given as the element then all elements will be given the passed event.
 > > If an array is given as the event, the element will be given all events.
 > > If an array is given for both then all given elements will contain all given events.
-> >
-> > Note:  
+> > 
 > > The passed elements can either be strings, which will be converted into DOM objects, or DOM objects themselves.  
 > > Arrays can be a mix of both.
 
