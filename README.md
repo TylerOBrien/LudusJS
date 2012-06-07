@@ -375,6 +375,11 @@ Simple.EncodeQueryString
 
 Simple.Equals
 ----------
+> > __Input:__ _Mixed first, Mixed second_  
+> > __Output:__ _Boolean result_
+> > 
+> > Returns _true_ if the two objects are considered equal.
+
 ```javascript
 (function($){
 	"use strict";
