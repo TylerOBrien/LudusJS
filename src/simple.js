@@ -70,7 +70,8 @@ var Simple = window.$ = {};
 	var AJAXInternal = {
 		/*
 		 * class Request
-		 *
+		 * Basic wrapper of an XMLHttpRequest object.
+		 * Is only ever used in the Simple.AJAX function.
 		 * */
 		Request: function(args){
 			this.async = __Simple.Exists(args["async"], true);
