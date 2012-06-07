@@ -136,6 +136,9 @@ var Simple = window.$ = {};
 		/*
 		 * ManageEventListener() returns Nothing
 		 * Input: Boolean, Mixed, String, Function, Boolean
+		     * This function adds or removes an event listener, depending on the
+			 * value of the first parameter.
+			 * Is called by DOMInternal.ProcessEventListener().
 		 * */
 		ManageEventListener: function(isAddingEvent, element, event, callback, useCapture){
 			if (typeof element !== CacheInternal.undefined && element !== null) {
