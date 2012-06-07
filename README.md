@@ -85,17 +85,18 @@ Simple.AJAX
 > > __Input:__ _Object args_  
 > > __Output:__ _Nothing_
 > >
-> > Used to perform AJAX operations. Is very similar to way jQuery and Prototype handle AJAX.  
-> > The default __request method__ is _"GET"_, and the default __path__ is _"/"_.
+> > Used to perform AJAX operations.
+> > Behaves in a manner similar to a combination of jQuery and Prototype's methods of handling AJAX.
 > >
 > > The following are all available properties:  
-> > ``` charset ``` ```  ```  
-> > ``` contentType ``` ```  ```  
+> > ``` charset ``` ``` The charset of the target. Default is 'UTF-8'. ```  
+> > ``` contentType ``` ``` The Content-Type header of the target. Default is 'application/x-www-form-urlencoded'. ```  
 > > ``` data ``` ``` The GET/POST variables that will be passed. ```  
-> > ``` method ``` ``` The request method to use. Can only be GET or POST. ```  
+> > ``` method ``` ``` The request method to use. Can only be GET or POST. Default is 'GET'. ```  
+> > ``` onConnect ``` ``` The function called upon connection with target. ```  
 > > ``` onError ``` ``` The function called upon encountering an error. ```  
 > > ``` onNotFound ``` ``` The function called upon encountering a 404 not found error. ```  
-> > ``` onSuccess ``` ``` The function call upon success. ```  
+> > ``` onSuccess ``` ``` The function call upon a successful request. ```  
 > > ``` timeout ``` ``` The timeout for the request, in milliseconds. ```  
 > > ``` url ``` ``` The target URL. ```  
 
