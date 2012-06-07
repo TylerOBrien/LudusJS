@@ -6,7 +6,21 @@ The current version, while usable, is not yet complete.
 
 Examples Index
 ----------
-* # [Simple.AddEvent()](#simpleaddevent)
+* [Simple.AddEvent](#simpleaddevent)
+* [Simple.AJAX](#simpleajax)
+* [Simple.Call](#simplecall)
+* [Simple.Cookie](#simplecookie)
+* [Simple.DecodeQueryString](#simpledecodequerystring)
+* [Simple.DOMElement](#simpledomelement)
+* [Simple.DOMReady](#simpledomready)
+* [Simple.Each](#simpleeach)
+* [Simple.EncodeQueryString](#simpleencodequerystring)
+* [Simple.Equals](#simpleequals)
+* [Simple.Exists](#simpleexists)
+* [Simple.GenerateArray](#simplegeneratearray)
+* [Simple.GET](#simpleget)
+* [Simple.ObjectToArray](#simpleobjecttoarray)
+* [Simple.Sprintf](#simplesprintf)
 
 Simple.AddEvent
 ----------
