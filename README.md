@@ -474,7 +474,7 @@ Simple.Sprintf
 > > __Input:__ _String source_  
 > > __Output:__ _String result_
 > >
-> > Behaves almost identically to the PHP function of the same name.   
+> > Behaves almost identically to the C/PHP/whatever function of the same name.   
 > > The only difference is that this function does not support the all of the same % variables as the PHP function; I have not seen any real need for them.
 > >
 > > The available variables are:  
