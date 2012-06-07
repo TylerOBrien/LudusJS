@@ -220,6 +220,24 @@ var Simple = {};
 	};
 	
 	/*
+	 * Internal Sprintf operations.
+	 * */
+	var SprintfInternal = {
+		Process: function(type, value){
+			switch (type){
+				case "%d": return parseInt(value, 10).toString();
+				case "%f": return value;
+				case "%o": return parseInt(value, 10).toString(8);
+				case "%u": return __Simple.ToUnsignedInt(parseInt(value, 10)).toString();
+				case "%x": return "0x" + parseInt(value, 10).toString(16);
+				case "%X": return "0x" + parseInt(value, 10).toString(16).toUpperCase();
+				case "%s":
+				default: return value;
+			}
+		}
+	};
+	
+	/*
 	 * class Iterator
 	 * Used for storing iteration informating by the Simple.Each function.
 	 * Is only used internally, so there's no point in making it public-facing.
