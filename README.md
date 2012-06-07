@@ -2,6 +2,8 @@ SimpleJS
 ----------
 This is a lightweight JavaScript library designed to simplify common tasks in vanilla JavaScript. Originally this was designed as an AJAX wrapper, but eventually grew into a much larger library. SimpleJS makes no attempt to replicate, or replace, other existing libraries such as jQuery or MooTools; it is merely something I designed to simplify JavaScript when specifically _not_ using those libraries.
 
+The current version, while usable, is not yet complete.
+
 Simple.AddEvent
 ----------
 > > __Input:__ _Array|DOMObject|String element, Array|String event, Function callback_  
