@@ -529,7 +529,7 @@ Simple.ObjectToArray
 
 Simple.Sprintf
 ----------
-> > __Input:__ _String source_  
+> > __Input:__ _String source_[, Array|String ...]  
 > > __Output:__ _String result_
 > >
 > > Behaves almost identically to the C/PHP/whatever function of the same name.   
