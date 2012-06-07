@@ -420,7 +420,7 @@ ____
 	"use strict";
 	
 	if ($.Equals($.GET, {"id":"42", "name":"foo"})) {
-		// ...
+		console.log("Query string is 'id=42&name=foo'.");
 	}
 }(Simple));
 ```
