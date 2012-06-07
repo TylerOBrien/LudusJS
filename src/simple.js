@@ -215,7 +215,8 @@ var Simple = {};
 		floatingPoint: /[0-9]+([.][0-9]+)?/g,
 		notNumber: /[^0-9.]+/g,
 		number: /[0-9.]+/g,
-		queryString: /[?&]?([^&=]+)=?([^&]+)?/g
+		queryString: /[?&]?([^&=]+)=?([^&]+)?/g,
+		sprintfVariable: /%[b|d|f|o|u|x|X]/g
 	};
 	
 	/*
@@ -711,6 +712,27 @@ var Simple = {};
 		});
 		
 		return result;
+	};
+	
+	/*
+	 * Sprintf() returns String
+	 * Input: String[, Array|String ...]
+	 * */
+	__Simple.Sprintf = function(source){
+		if (arguments.length > 1) {
+			if (__Simple.Type(arguments[1]) === CacheInternal.array) {
+				arguments = [null,arguments[1]];
+			}
+			
+			var variables = source.match(RegexInternal.sprintfVariable);
+			var end = variables.length;
+
+			for (var i = 0; i < end; i++) {
+				source = source.replace(variables[i], SprintfInternal.Process(variables[i], arguments[i+1]));
+			}
+		}
+		
+		return source;
 	};
 	
 	/*
