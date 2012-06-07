@@ -96,6 +96,8 @@ Simple.AJAX
 > > ``` onConnect ``` ``` The function called upon connection with target. ```  
 > > ``` onError ``` ``` The function called upon encountering an error. ```  
 > > ``` onNotFound ``` ``` The function called upon encountering a 404 not found error. ```  
+> > ``` onProcess ``` ``` The function called upon beginning processing of request. ```  
+> > ``` onRequestRecv ``` ``` The function called upon receiving a request. ```  
 > > ``` onSuccess ``` ``` The function call upon a successful request. ```  
 > > ``` timeout ``` ``` The timeout for the request, in milliseconds. ```  
 > > ``` url ``` ``` The target URL. ```  
