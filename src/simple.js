@@ -214,8 +214,8 @@ var Simple = {};
 	var RegexInternal = {
 		cookie: /[ ]?([^=]+)=([^;]+)[; ]?/g,
 		floatingPoint: /[0-9]+([.][0-9]+)?/g,
-		notNumber: /[^0-9.]+/g,
-		number: /[0-9.]+/g,
+		notNumber: /[^0-9.\-+]+/g,
+		number: /[0-9.\-+]+/g,
 		queryString: /[?&]?([^&=]+)=?([^&]+)?/g,
 		sprintfVariable: /%[b|d|f|o|u|x|X]/g
 	};
@@ -226,12 +226,12 @@ var Simple = {};
 	var SprintfInternal = {
 		Process: function(type, value){
 			switch (type){
-				case "%d": return __Simple.ToInteger(value).toString();
+				case "%d": return __Simple.ToInt(value).toString();
 				case "%f": return value;
-				case "%o": return __Simple.ToInteger(value).toString(8);
-				case "%u": return __Simple.ToUnsignedInteger(value).toString();
-				case "%x": return "0x" + __Simple.ToInteger(value).toString(16);
-				case "%X": return "0x" + __Simple.ToInteger(value).toString(16).toUpperCase();
+				case "%o": return __Simple.ToInt(value).toString(8);
+				case "%u": return __Simple.ToUnsignedInt(value).toString();
+				case "%x": return "0x" + __Simple.ToInt(value).toString(16);
+				case "%X": return "0x" + __Simple.ToInt(value).toString(16).toUpperCase();
 				case "%s":
 				default: return value;
 			}
@@ -693,10 +693,10 @@ var Simple = {};
 	};
 	
 	/*
-	 * ToInteger() returns Integer
+	 * ToInt() returns Integer
 	 * Input: Mixed, Integer
 	 * */
-	__Simple.ToInteger = function(source, base){
+	__Simple.ToInt = function(source, base){
 		if (source.match(RegexInternal.number).length === 1) {
 			return parseInt(source.replace(RegexInternal.notNumber, CacheInternal.emptyString), __Simple.Exists(base, 10));
 		} else {
@@ -705,12 +705,14 @@ var Simple = {};
 	};
 	
 	/*
-	 * ToUnsignedInteger() returns Integer
+	 * ToUnsignedInt() returns Integer
 	 * Input: Mixed
 	 * */
-	__Simple.ToUnsignedInteger = function(source, base){
-		if (source = __Simple.ToInteger(source, base)) {
-			return (source >= 0) ? source : (Cache.uint32max - Math.abs(source));
+	__Simple.ToUnsignedInt = function(source, base){
+		if (source = __Simple.ToInt(source, base)) {
+			return (source >= 0) ? source : (CacheInternal.uint32max - Math.abs(source));
+		} else if (source === 0) {
+			return source;
 		} else {
 			return NaN;
 		}
