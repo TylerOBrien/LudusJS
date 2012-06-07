@@ -83,7 +83,7 @@ var Simple = {};
 			this.onConnect = args["onConnect"];
 			this.onNotFound = args["onNotFound"];
 			this.onProcess = args["onProcess"];
-			this.onRequestRecv = args["onRequestRecv"];
+			this.onRecvRequest = args["onRecvRequest"];
 			this.onSuccess = args["onSuccess"];
 			this.queryString = __Simple.EncodeQueryString(this.data);
 			this.timeBegin = 0;
@@ -253,7 +253,7 @@ var Simple = {};
 					__Simple.Call(ajaxRequest.onConnect);
 				break;
 				case 2: /* REQUEST RECEIVED */
-					__Simple.Call(ajaxRequest.onRequestRecv);
+					__Simple.Call(ajaxRequest.onRecvRequest);
 				break;
 				case 3: /* PROCESSING */
 					__Simple.Call(ajaxRequest.onProcess);
