@@ -457,6 +457,17 @@ Simple.Sprintf
 > > __Input:__ _String source_  
 > > __Output:__ _String result_
 > >
+> > Behaves almost identically to the PHP function of the same name.   
+> > The only difference is that this function does not support the all of the same % variables as the PHP function; I have not seen any real need for them.
+> >
+> > The available variables are:  
+> > ```%b  Value will be treated as a signed integer; formatted as binary.```  
+> > ```%d  Value will be treated as a signed integer.```  
+> > ```%f  Value will be treated as a floating point number.```  
+> > ```%o  Value will be treated as an octal number.```  
+> > ```%u  Value will be treated as an unsigned integer.```  
+> > ```%x  Value will be treated as a signed integer; formatted as hexadecimal in lowercase.```  
+> > ```%X  Value will be treated as a signed integer; formatted as hexadecimal in uppercase.```
 
 ```javascript
 (function($){
