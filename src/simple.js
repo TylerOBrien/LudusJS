@@ -754,15 +754,19 @@ var Simple = {};
 	 * */
 	__Simple.Sprintf = function(source){
 		if (arguments.length > 1) {
+			var indexOffset = 1;
+			var values = arguments;
+			
 			if (__Simple.Type(arguments[1]) === CacheInternal.array) {
-				arguments = [null,arguments[1]];
+				indexOffset = 0;
+				values = arguments[1];
 			}
 			
 			var variables = source.match(RegexInternal.sprintfVariable);
 			var end = variables.length;
 
 			for (var i = 0; i < end; i++) {
-				source = source.replace(variables[i], SprintfInternal.Process(variables[i], arguments[i+1]));
+				source = source.replace(variables[i], SprintfInternal.Process(variables[i], values[i+indexOffset]));
 			}
 		}
 		
