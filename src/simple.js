@@ -616,8 +616,11 @@ var Simple = window.$ = {};
 		if (__Simple.IsArray(property)) {
 			var count = 0;
 			__Simple.Each(property, function(){
-				count++;
-				return __Simple.HasProperty(object, this);
+				if (__Simple.HasProperty(object, this)) {
+					count++;
+				} else {
+					return false;
+				}
 			});
 			return count > 0 && count === property.length;
 		} else {
