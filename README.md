@@ -192,7 +192,9 @@ __Simple.DOMElement__
 > > __Input:__ _String element_ [, DOMObject|String context]  
 > > __Output:__ _Array|DOMObject result_
 > > 
-> > Used for selecting DOM elements. Depending on the value of the passed string one of four _getElement_ functions will be called.  
+> > Used for selecting DOM elements.  
+> > Depending on the value of the passed string one of four _getElement_ functions will be called.  
+> >
 > > The following are example values:  
 > > ``` #foo ``` ``` <div id="foo"></div> ```  
 > > ``` .bar ``` ``` <div class="bar"></div> ```  
