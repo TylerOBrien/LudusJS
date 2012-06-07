@@ -290,15 +290,15 @@ Simple.DOMReady
 	"use strict";
 	
 	$.DOMReady(function(){
-		alert("DOM Ready Function #1");
+		console.log("DOM Ready Function #1");
 	});
 	
 	$.DOMReady(function(){
-		alert("DOM Ready Function #2");
+		console.log("DOM Ready Function #2");
 	});
 	
 	$.DOMReady(function(){
-		alert("DOM Ready Function #3");
+		console.log("DOM Ready Function #3");
 	});
 }(Simple));
 ```
@@ -487,7 +487,7 @@ _____
 		}
 	}
 	
-	var arr = $.GenerateArray(10, fibonacci, true);
+	console.log($.GenerateArray(10, fibonacci, true)); // 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
 }(Simple));
 ```
 
