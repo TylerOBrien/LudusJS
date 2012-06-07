@@ -773,19 +773,6 @@ var Simple = {};
 	};
 	
 	/*
-	 * UnsignedInteger() returns Integer
-	 * Input: Integer
-	 * */
-	__Simple.UnsignedInteger = function(integer){
-		if (integer = __Simple.Integer(integer)) {
-			while (integer < 0) {
-				integer = (CacheInternal.uint32max - Math.abs(integer));
-			}
-		}
-		return integer;
-	};
-	
-	/*
 	 * Populate the class types.
 	 * Borrowed from jQuery.
 	 * */
