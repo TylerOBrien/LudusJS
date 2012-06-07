@@ -203,7 +203,7 @@ Simple.Cookie
 
 __Simple.DOMElement__
 ----------
-> > __Input:__ _String element_ [, DOMObject|String context]  
+> > __Input:__ _String element [, DOMObject|String context]_  
 > > __Output:__ _Array|DOMObject result_
 > > 
 > > Used for selecting DOM elements.  
