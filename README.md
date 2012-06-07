@@ -549,7 +549,7 @@ Simple.Sprintf
 (function($){
 	"use strict";
 	
-	var source = "The quick %s jumped over the lazy %s.";
+	var source = "The quick brown %s jumps over the lazy %s.";
 	var result = $.Sprintf(source, "fox", "dog");
 	
 	console.log(result);
