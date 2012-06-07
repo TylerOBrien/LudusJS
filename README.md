@@ -212,7 +212,7 @@ __Simple.DOMElement__
 > > The following are example values:  
 > > ``` #foo ``` ``` <div id="foo"></div> ```  
 > > ``` .bar ``` ``` <section class="bar"></section> ```  
-> > ``` :baz ``` ``` <input name="baz"> ```  
+> > ``` :baz ``` ``` <input name="baz" type="text"> ```  
 > > ``` span ``` ``` <span></span> ```  
 > >
 > > Unlike jQuery the objects returned will not be wrappers of the original DOMObjects. The DOMObjects themselves will be returned. This function acts only as a "shortcut" for calling the _getElement_ functions.
