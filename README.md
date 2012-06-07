@@ -462,12 +462,12 @@ Simple.Sprintf
 > >
 > > The available variables are:  
 > > ``` %b ``` ``` Value will be treated as a signed integer; formatted as binary. ```  
-> > ``` %d ``` ``` Value will be treated as a signed integer.```  
-> > ``` %f ``` ``` Value will be treated as a floating point number.```  
-> > ``` %o ``` ``` Value will be treated as an octal number.```  
-> > ``` %u ``` ``` Value will be treated as an unsigned integer.```  
-> > ``` %x ``` ``` Value will be treated as a signed integer; formatted as hexadecimal in lowercase.```  
-> > ``` %X ``` ``` Value will be treated as a signed integer; formatted as hexadecimal in uppercase.```
+> > ``` %d ``` ``` Value will be treated as a signed integer. ```  
+> > ``` %f ``` ``` Value will be treated as a floating point number. ```  
+> > ``` %o ``` ``` Value will be treated as an octal number. ```  
+> > ``` %u ``` ``` Value will be treated as an unsigned integer. ```  
+> > ``` %x ``` ``` Value will be treated as a signed integer; formatted as hexadecimal in lowercase. ```  
+> > ``` %X ``` ``` Value will be treated as a signed integer; formatted as hexadecimal in uppercase. ```
 
 ```javascript
 (function($){
