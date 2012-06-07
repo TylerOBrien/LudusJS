@@ -120,6 +120,7 @@ var Simple = {};
 		semicolon: ";",
 		string: "string",
 		timeout: "timeout",
+		uint32max: 4294967296,
 		undefined: "undefined"
 	};
 	
@@ -225,12 +226,12 @@ var Simple = {};
 	var SprintfInternal = {
 		Process: function(type, value){
 			switch (type){
-				case "%d": return parseInt(value, 10).toString();
+				case "%d": return __Simple.ToInteger(value).toString();
 				case "%f": return value;
-				case "%o": return parseInt(value, 10).toString(8);
-				case "%u": return __Simple.ToUnsignedInt(parseInt(value, 10)).toString();
-				case "%x": return "0x" + parseInt(value, 10).toString(16);
-				case "%X": return "0x" + parseInt(value, 10).toString(16).toUpperCase();
+				case "%o": return __Simple.ToInteger(value).toString(8);
+				case "%u": return __Simple.ToUnsignedInteger(value).toString();
+				case "%x": return "0x" + __Simple.ToInteger(value).toString(16);
+				case "%X": return "0x" + __Simple.ToInteger(value).toString(16).toUpperCase();
 				case "%s":
 				default: return value;
 			}
@@ -698,6 +699,18 @@ var Simple = {};
 	__Simple.ToInteger = function(source, base){
 		if (source.match(RegexInternal.number).length === 1) {
 			return parseInt(source.replace(RegexInternal.notNumber, CacheInternal.emptyString), __Simple.Exists(base, 10));
+		} else {
+			return NaN;
+		}
+	};
+	
+	/*
+	 * ToUnsignedInteger() returns Integer
+	 * Input: Mixed
+	 * */
+	__Simple.ToUnsignedInteger = function(source, base){
+		if (source = __Simple.ToInteger(source, base)) {
+			return (source >= 0) ? source : (Cache.uint32max - Math.abs(source));
 		} else {
 			return NaN;
 		}
