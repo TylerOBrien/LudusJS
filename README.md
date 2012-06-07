@@ -4,7 +4,7 @@ This is a lightweight JavaScript library designed to simplify common tasks in va
 
 The current version, while usable, is not yet complete.
 
-Examples Index
+List of Examples
 ----------
 * [Simple.AddEvent](#simpleaddevent)
 * [Simple.AJAX](#simpleajax)
