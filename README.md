@@ -193,11 +193,11 @@ __Simple.DOMElement__
 > > __Output:__ _Array|DOMObject result_
 > > 
 > > Used for selecting DOM elements. Depending on the value of the passed string one of four _getElement_ functions will be called.  
-> > The following are example values:
+> > The following are example values:  
 > > ``` #foo ``` ``` <div id="foo"></div> ```  
 > > ``` .bar ``` ``` <div class="bar"></div> ```  
 > > ``` :baz ``` ``` <div name="baz"></div> ```  
-> > ``` div ``` ``` <div></div> ```  
+> > ``` span ``` ``` <span></span> ```  
 > >
 > > Unlike jQuery the objects returned will not be wrappers of the original DOMObjects. The DOMObjects themselves will be returned. This function acts only as a "shortcut" for calling the _getElement_ functions.
 
