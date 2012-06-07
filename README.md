@@ -89,10 +89,10 @@ Simple.AJAX
 > > Behaves in a manner similar to a combination of jQuery and Prototype's methods of handling AJAX.
 > >
 > > The following are all available properties:  
-> > ``` charset ``` ``` The charset of the target. Default is 'UTF-8'. ```  
-> > ``` contentType ``` ``` The Content-Type header of the target. Default is 'application/x-www-form-urlencoded'. ```  
+> > ``` charset ``` ``` The charset of the target. ``` ``` Default is 'UTF-8'. ```  
+> > ``` contentType ``` ``` The Content-Type header of the target. ``` ``` Default is 'application/x-www-form-urlencoded'. ```  
 > > ``` data ``` ``` The GET/POST variables that will be passed. ```  
-> > ``` method ``` ``` The request method to use. Can only be GET or POST. Default is 'GET'. ```  
+> > ``` method ``` ``` The request method to use. Can only be GET or POST. ``` ``` Default is 'GET'. ```  
 > > ``` onConnect ``` ``` The function called upon connection with target. ```  
 > > ``` onError ``` ``` The function called upon encountering an error. ```  
 > > ``` onNotFound ``` ``` The function called upon encountering a 404 not found error. ```  
