@@ -83,7 +83,7 @@ var Simple = {};
 			this.onConnect = args["onConnect"];
 			this.onNotFound = args["onNotFound"];
 			this.onProcess = args["onProcess"];
-			this.onRequest = args["onRequest"];
+			this.onRequestRecv = args["onRequestRecv"];
 			this.onSuccess = args["onSuccess"];
 			this.queryString = __Simple.EncodeQueryString(this.data);
 			this.timeBegin = 0;
@@ -212,6 +212,7 @@ var Simple = {};
 	 * */
 	var RegexInternal = {
 		cookie: /[ ]?([^=]+)=([^;]+)[; ]?/g,
+		floatingPoint: /[0-9]+([.][0-9]+)?/g,
 		notNumber: /[^0-9.]+/g,
 		number: /[0-9.]+/g,
 		queryString: /[?&]?([^&=]+)=?([^&]+)?/g
@@ -252,7 +253,7 @@ var Simple = {};
 					__Simple.Call(ajaxRequest.onConnect);
 				break;
 				case 2: /* REQUEST RECEIVED */
-					__Simple.Call(ajaxRequest.onRequest);
+					__Simple.Call(ajaxRequest.onRequestRecv);
 				break;
 				case 3: /* PROCESSING */
 					__Simple.Call(ajaxRequest.onProcess);
@@ -578,7 +579,7 @@ var Simple = {};
 	__Simple.GenerateArray = function(num, value, isCallback){
 		var result = [];
 		for (var i = 0; i < num; i++) {
-			result.push(isCallback ? value(i) : value);
+			result.push(isCallback ? value(result, i) : value);
 		}
 		return result;
 	};
