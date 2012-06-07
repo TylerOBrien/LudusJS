@@ -226,13 +226,13 @@ var Simple = window.$ = {};
 	var SprintfInternal = {
 		Process: function(type, value){
 			switch (type){
+				case "%b": return "b" + __Simple.ToInt(value).toString(2);
 				case "%d": return __Simple.ToInt(value).toString();
-				case "%f": return value;
+				case "%f": return parseFloat(value).toString();
 				case "%o": return __Simple.ToInt(value).toString(8);
 				case "%u": return __Simple.ToUnsignedInt(value).toString();
 				case "%x": return "0x" + __Simple.ToInt(value).toString(16);
 				case "%X": return "0x" + __Simple.ToInt(value).toString(16).toUpperCase();
-				case "%s":
 				default: return value;
 			}
 		}
