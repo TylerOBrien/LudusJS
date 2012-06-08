@@ -522,11 +522,14 @@ _____
 
 Simple.GET.Get
 ----------
-> > __Input:__ _String name_  
-> > __Output:__ _String|Undefined value_  
+> > __Input:__ _Array|String name_  
+> > __Output:__ _Object|String|Undefined value_  
 > >
 > > Returns the value of the GET variable by the passed name.  
 > > If said variable does not exist then _undefined_ is returned.
+> >
+> > If the value of "name" is an _Array_ then an _Object_ is returned.  
+> > Each index will be the GET variable name. Each value will be the GET variable value (see second example).
 
 ```javascript
 (function($){
@@ -535,6 +538,14 @@ Simple.GET.Get
 	var id = $.GET.Get("id");
 	var name = $.GET.Get("name");
 	var foo = $.GET.Get("foo");
+}(Simple));
+```
+_____
+```javascript
+(function($){
+	"use strict";
+	
+	var object = $.GET.Get(["id","name","foo"]);
 }(Simple));
 ```
 
