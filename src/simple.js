@@ -586,7 +586,7 @@ var Simple = window.$ = {};
 			if (__Simple.Type(name) === CacheInternal.array) {
 				var result = false;
 				__Simple.Each(name, function(){
-					return result = __Simple.GET.Exists(name);
+					return result = __Simple.GET.Exists(this);
 				});
 				return result;
 			} else {
