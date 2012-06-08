@@ -578,7 +578,7 @@ var Simple = window.$ = {};
 	__Simple.GET = {
 		/*
 		 * Exists() returns Boolean
-		 * Input: String
+		 * Input: Array|String
 		     * Returns true if the passed GET variable has been defined.
 			 * Does not require a value to have been assigned.
 		 * */
