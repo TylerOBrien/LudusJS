@@ -448,7 +448,7 @@ var Simple = window.$ = {};
 	     * Will be NULL valued in the object.
 	 * */
 	__Simple.DecodeQueryString = function(queryString){
-		queryString = queryString.replace("+", " ");
+		queryString = queryString.replace(/[+]/g, " ");
 		
 		var buffer = RegexInternal.queryString.exec(queryString);
 		var result = {};
