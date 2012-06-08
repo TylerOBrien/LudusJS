@@ -492,12 +492,30 @@ _____
 }(Simple));
 ```
 
+Simple.GET.Exists()
+----------
+> > __Input:__ _String name_  
+> > __Output:__ _Boolean result_  
+> >
+> > Returns _true_ if the GET variable by the passed name has been defined.  
+> > Does not require the variable to have a value.
+
+```javascript
+(function($){
+	"use strict";
+	
+	if ($.GET.Exists("id") && $.GET.Exists("name")) {
+		console.log("GET['id'] and GET['name'] have been defined.");
+	}
+}(Simple));
+```
+
 Simple.GET.Get()
 ----------
 > > __Input:__ _String name_  
 > > __Output:__ _String|Undefined value_  
 > >
-> > Returns the value of the GET variable by the passed name.
+> > Returns the value of the GET variable by the passed name.  
 > > If said variable does not exist then _undefined_ is returned.
 
 ```javascript
