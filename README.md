@@ -498,7 +498,7 @@ Simple.GET
 	"use strict";
 	
 	console.log($.GET.Exists("foo")); // Will output true if "foo" is defined.
-	console.log($.GET.Find("foo")); // Will output the value of "foo".
+	console.log($.GET.Get("foo")); // Will output the value of "foo".
 }(Simple));
 ```
 ____
