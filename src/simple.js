@@ -595,14 +595,22 @@ var Simple = window.$ = {};
 		},
 		
 		/*
-		 * Get() returns String|undefined
-		 * Input: String
+		 * Get() returns Array|String|undefined
+		 * Input: Object|String
 		     * Returns the value of the passed GET variable.
 			 * If the GET variable has no value assigned this will return NULL.
 			 * If the GET variable does not exist this will return undefined.
 		 * */
 		Get: function(name){
-			return __Simple.GET.Exists(name) ? __GET[name] : undefined;
+			if (__Simple.Type(name) === CacheInternal.array) {
+				var result = {};
+				__Simple.Each(name, function(){
+					result[this] = __Simple.GET.Get(this);
+				});
+				return result;
+			} else {
+				return __Simple.GET.Exists(name) ? __GET[name] : undefined;
+			}
 		}
 	};
 	
