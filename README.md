@@ -499,6 +499,8 @@ Simple.GET.Exists
 > >
 > > Returns _true_ if the GET variable by the passed name has been defined.  
 > > Does not require the variable to have a value.
+> >
+> > The following two examples are identical.
 
 ```javascript
 (function($){
