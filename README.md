@@ -492,7 +492,7 @@ _____
 }(Simple));
 ```
 
-Simple.GET.Exists()
+Simple.GET.Exists
 ----------
 > > __Input:__ _String name_  
 > > __Output:__ _Boolean result_  
@@ -510,7 +510,7 @@ Simple.GET.Exists()
 }(Simple));
 ```
 
-Simple.GET.Get()
+Simple.GET.Get
 ----------
 > > __Input:__ _String name_  
 > > __Output:__ _String|Undefined value_  
