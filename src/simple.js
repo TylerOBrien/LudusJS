@@ -222,7 +222,7 @@ var Simple = window.$ = {};
 		notNumber: /[^0-9.\-+]+/g,
 		number: /[0-9.\-+]+/g,
 		queryString: /[?&]?([^&=]+)=?([^&]+)?/g,
-		sprintfVariable: /^|[\s]+%[b|d|f|o|s|u|x|X]$|[\s]+/g
+		sprintfVariable: /%[b|d|f|o|s|u|x|X]/g
 	};
 	
 	/*
