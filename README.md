@@ -494,7 +494,7 @@ _____
 
 Simple.GET.Exists
 ----------
-> > __Input:__ _String name_  
+> > __Input:__ _Array|String name_  
 > > __Output:__ _Boolean result_  
 > >
 > > Returns _true_ if the GET variable by the passed name has been defined.  
@@ -504,8 +504,18 @@ Simple.GET.Exists
 (function($){
 	"use strict";
 	
-	if ($.GET.Exists("id") && $.GET.Exists("name")) {
-		console.log("GET['id'] and GET['name'] have been defined.");
+	if ($.GET.Exists("id") && $.GET.Exists("name") && $.GET.Exists("foo")) {
+		console.log("GET['id'], GET['name'], and GET['foo'] have been defined.");
+	}
+}(Simple));
+```
+_____
+```javascript
+(function($){
+	"use strict";
+	
+	if ($.GET.Exists(["id","name","foo"])) {
+		console.log("GET['id'], GET['name'], and GET['foo'] have been defined.");
 	}
 }(Simple));
 ```
