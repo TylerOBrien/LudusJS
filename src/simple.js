@@ -706,7 +706,9 @@ var Simple = window.$ = {};
 	 * Input: Mixed, Integer
 	 * */
 	__Simple.ToInt = function(source, base){
-		if (source.match(RegexInternal.number).length === 1) {
+		var result = source.match(RegexInternal.number);
+		
+		if (result !== null && result.length === 1) {
 			return parseInt(source.replace(RegexInternal.notNumber, CacheInternal.emptyString), __Simple.Exists(base, 10));
 		} else {
 			return NaN;
