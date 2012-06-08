@@ -653,6 +653,7 @@ var Simple = window.$ = {};
 	/*
 	 * IsEmptyObject() returns Boolean
 	 * Input: Mixed
+	     * Borrowed from jQuery.
 	 * */
 	__Simple.IsEmptyObject = function(object){
 		for (var index in object) {
