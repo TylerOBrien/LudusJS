@@ -587,13 +587,13 @@ var Simple = window.$ = {};
 		},
 		
 		/*
-		 * Find() returns String|undefined
+		 * Get() returns String|undefined
 		 * Input: String
 		     * Returns the value of the passed GET variable.
 			 * If the GET variable has no value assigned this will return NULL.
 			 * If the GET variable does not exist this will return undefined.
 		 * */
-		Find: function(name){
+		Get: function(name){
 			return __Simple.GET.Exists(name) ? __GET[name] : undefined;
 		}
 	};
