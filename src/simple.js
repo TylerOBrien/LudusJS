@@ -585,8 +585,8 @@ var Simple = window.$ = {};
 		Exists: function(name){
 			if (__Simple.Type(name) === CacheInternal.array) {
 				var result = false;
-				__Simple.Each(name, function(){
-					return result = __Simple.GET.Exists(this);
+				__Simple.Each(name, function(itr){
+					return result = __Simple.GET.Exists(itr.value);
 				});
 				return result;
 			} else {
@@ -604,8 +604,8 @@ var Simple = window.$ = {};
 		Get: function(name){
 			if (__Simple.Type(name) === CacheInternal.array) {
 				var result = {};
-				__Simple.Each(name, function(){
-					result[this] = __Simple.GET.Get(this);
+				__Simple.Each(name, function(itr){
+					result[itr.value] = __Simple.GET.Get(itr.value);
 				});
 				return result;
 			} else {
