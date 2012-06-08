@@ -18,7 +18,7 @@ List of Examples
 * [Simple.Equals](#simpleequals)
 * [Simple.Exists](#simpleexists)
 * [Simple.GenerateArray](#simplegeneratearray)
-* [Simple.GET](#simpleget)
+* [Simple.GET.Get](#simplegetget)
 * [Simple.ObjectToArray](#simpleobjecttoarray)
 * [Simple.Sprintf](#simplesprintf)
 
