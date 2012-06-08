@@ -491,24 +491,21 @@ _____
 }(Simple));
 ```
 
-Simple.GET
+Simple.GET.Get()
 ----------
+> > __Input:__ _String name_  
+> > __Output:__ _String|Undefined value_  
+> >
+> > Returns the value of the GET variable by the passed name.
+> > If said variable does not exist then _undefined_ is returned.
+
 ```javascript
 (function($){
 	"use strict";
 	
-	console.log($.GET.Exists("foo")); // Will output true if "foo" is defined.
-	console.log($.GET.Get("foo")); // Will output the value of "foo".
-}(Simple));
-```
-____
-```javascript
-(function($){
-	"use strict";
-	
-	$.Each($.GET, function(itr){
-		console.log(itr.i + " => " + itr.value);
-	});
+	var id = $.GET.Get("id");
+	var name = $.GET.Get("name");
+	var foo = $.GET.Get("foo");
 }(Simple));
 ```
 
