@@ -513,7 +513,7 @@ var Simple = window.$ = {};
 		if (result.length > 0) { /* Trim off the extra ampersand. */
 			result = result.substring(0, result.length-1);
 		}
-		return result.replace(" ", "+");
+		return result.replace(/ /g, "+");
 	};
 	
 	/*
