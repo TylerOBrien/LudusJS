@@ -651,6 +651,24 @@ var Simple = window.$ = {};
 	};
 	
 	/*
+	 * HasValue() returns Boolean
+	 * Input: Mixed, Mixed
+	 * */
+	__Simple.HasValue = function(object, value){
+		/* Possible haystack shortcuts */
+		if (object === __Simple.Cookie) object = __Simple.Cookie.GetAll();
+		else if (object === __Simple.GET) object = __GET;
+		
+		var result = false;
+		__Simple.Each(object, function(itr){
+			if (result = __Simple.Equals(value, itr.value)) {
+				return false; /* Break out of the Each() loop. */
+			}
+		});
+		return result;
+	};
+	
+	/*
 	 * IsEmptyArray() returns Boolean
 	 * Input: Mixed
 	 * */
