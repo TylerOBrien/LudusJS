@@ -437,6 +437,10 @@ var Simple = window.$ = {};
 				default:  result = context.getElementsByTagName(elementString); break;
 			}
 			
+			/*
+			 * The getElements functions return arrays.
+			 * Replace any empty ones with NULL values.
+			 * */
 			if (result !== null && __Simple.HasProperty(result, CacheInternal.length) && result.length === 0) {
 				result = null;
 			}
