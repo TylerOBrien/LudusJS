@@ -276,6 +276,20 @@ var Simple = window.$ = {};
 	};
 	
 	/*
+	 * ArraysEqual() returns Boolean
+	 * Input: Array, Array
+	 * */
+	__Simple.ArraysEqual = function(first, second){
+		var result = false;
+		if (__Simple.IsArray([first,second],true)) {
+			__Simple.Each(first, function(itr){
+				return result = __Simple.Equals(itr.value, second[itr.i]);
+			});
+		}
+		return result;
+	};
+	
+	/*
 	 * AJAX() returns nothing
 	 * Input: Object
 	 * */
