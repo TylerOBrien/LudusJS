@@ -686,6 +686,22 @@ var Simple = window.$ = {};
 	};
 	
 	/*
+	 * IsObject() returns Boolean
+	 * Input: Array|Object
+	 * */
+	__Simple.IsObject = function(source){
+		var result = false;
+		if (__Simple.IsArray(source)) {
+			__Simple.Each(source, function(itr){
+				return result = __Simple.IsObject(itr.value);
+			});
+		} else {
+			result = (__Simple.Type(source) === CacheInternal.object);
+		}
+		return result;
+	};
+	
+	/*
 	 * IsEmptyArray() returns Boolean
 	 * Input: Array
 	 * */
