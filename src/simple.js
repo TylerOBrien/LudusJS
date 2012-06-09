@@ -428,7 +428,7 @@ var Simple = window.$ = {};
 		
 		var result;
 		
-		/* Second argument is necessary for IE6-8. */
+		/* Second condition is necessary for IE6-8. */
 		if (__Simple.IsDOMElement(context) || context === document) {
 			switch (elementString[0]) {
 				case "#": result = context.getElementById(elementString.substring(1)); break;
