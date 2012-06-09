@@ -119,6 +119,7 @@ var Simple = window.$ = {};
 		nullstr: "null", /* Must use "nullstr" as name. Using "null" does not work in IE6-8. */
 		number: "number",
 		object: "object",
+		on: "on",
 		semicolon: ";",
 		string: "string",
 		timeout: "timeout",
@@ -162,8 +163,8 @@ var Simple = window.$ = {};
 					if (isAddingEvent) element.addEventListener(event, callback, useCapture);
 					else element.removeEventListener(event, callback, useCapture);
 				} else {
-					if (isAddingEvent) element.attachEvent("on"+event, callback);
-					else element.detachEvent("on"+event, callback);
+					if (isAddingEvent) element.attachEvent(CacheInternal.on+event, callback);
+					else element.detachEvent(CacheInternal.on+event, callback);
 				}
 			}
 		},
