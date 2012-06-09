@@ -126,7 +126,7 @@ var Simple = window.$ = {};
 	};
 	
 	var GetInternalShortcut = function(object){
-		switch (name){
+		switch (object){
 			case __Simple.Cookie: return __Simple.Cookie.GetAll();
 			case __Simple.GET: return __GET;
 		}
