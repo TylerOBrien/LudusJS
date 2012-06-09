@@ -687,11 +687,11 @@ var Simple = window.$ = {};
 	
 	/*
 	 * IsObject() returns Boolean
-	 * Input: Array|Object
+	 * Input: Array|Object, Boolean
 	 * */
-	__Simple.IsObject = function(source){
+	__Simple.IsObject = function(source, doIterateSource){
 		var result = false;
-		if (__Simple.IsArray(source)) {
+		if (__Simple.Equals(doIterateSource, true) && __Simple.IsArray(source)) {
 			__Simple.Each(source, function(itr){
 				return result = __Simple.IsObject(itr.value);
 			});
