@@ -629,6 +629,21 @@ _____
 }(Simple));
 ```
 
+Simple.GET.GetAll
+----------
+> > __Input:__ _Nothing_  
+> > __Output:__ _Object result_  
+> >
+> > Returns an _Object_ containing all GET data.
+
+```javascript
+(function($){
+	"use strict";
+	
+	var object = $.GET.GetAll();
+}(Simple));
+```
+
 Simple.ObjectToArray
 ----------
 > > __Input:__ _Object source_  
