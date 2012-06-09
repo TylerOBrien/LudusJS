@@ -550,14 +550,11 @@ var Simple = window.$ = {};
 		first = GetInternalShortcut(first);
 		second = GetInternalShortcut(second);
 		
-		/* The types are needed because of the various comparisons that can be made. */
-		var firstType = __Simple.Type(first);
-		var secondType = __Simple.Type(second);
-		var result = true;
+		var result = false;
 		
-		if (firstType === CacheInternal.array && secondType === CacheInternal.array) {
-			
-		} else if (firstType === CacheInternal.object && secondType === CacheInternal.object) {
+		if (__Simple.IsArray([first,second],true)) {
+			result = __Simple.ArraysEqual(first, second);
+		} else if (__Simple.IsObject([first,second])) {
 			var firstArr = __Simple.ObjectToArray(first);
 			var secondArr = __Simple.ObjectToArray(second);
 			result = __Simple.Equals(firstArr[0], secondArr[0]) && __Simple.Equals(firstArr[1], secondArr[1]);
