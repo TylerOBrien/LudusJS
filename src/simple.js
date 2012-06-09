@@ -281,7 +281,7 @@ var Simple = window.$ = {};
 	 * */
 	__Simple.ArraysEqual = function(first, second){
 		var result = false;
-		if (__Simple.IsArray([first,second],true)) {
+		if (__Simple.IsArray([first,second],true) && first.length === second.length) {
 			__Simple.Each(first, function(itr){
 				return result = __Simple.Equals(itr.value, second[itr.i]);
 			});
