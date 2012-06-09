@@ -23,6 +23,7 @@ List of Examples
 * [Simple.GenerateArray](#simplegeneratearray)
 * [Simple.GET.Exists](#simplegetexists)
 * [Simple.GET.Get](#simplegetget)
+* [Simple.GET.GetAll](#simplegetgetall)
 * [Simple.ObjectToArray](#simpleobjecttoarray)
 * [Simple.Sprintf](#simplesprintf)
 
