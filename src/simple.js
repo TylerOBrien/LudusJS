@@ -372,12 +372,13 @@ var Simple = window.$ = {};
 		 * Input: Nothing
 		 * */
 		GetAll: function(){
-			var buffer = RegexInternal.cookie.exec(document.cookie);
+			var currentCookie = document.cookie;
+			var buffer = RegexInternal.cookie.exec(currentCookie);
 			var result = {};
 			
 			while (buffer !== null) {
 				result[buffer[1]] = buffer[2];
-				buffer = RegexInternal.cookie.exec(document.cookie);
+				buffer = RegexInternal.cookie.exec(currentCookie);
 			}
 			
 			return result;
