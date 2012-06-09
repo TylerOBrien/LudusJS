@@ -374,7 +374,7 @@ var Simple = window.$ = {};
 		 * Input: String
 		 * */
 		Get: function(name){
-			if (__Simple.Type(name) === CacheInternal.string) {
+			if (__Simple.IsString(name)) {
 				var result = new RegExp(name+CacheInternal.cookieGetRegex, "g").exec(document.cookie);
 				if (result !== null) {
 					return result[1];
