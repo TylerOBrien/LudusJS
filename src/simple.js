@@ -554,7 +554,7 @@ var Simple = window.$ = {};
 		
 		if (__Simple.IsArray([first,second],true)) {
 			result = __Simple.ArraysEqual(first, second);
-		} else if (__Simple.IsObject([first,second])) {
+		} else if (__Simple.IsObject([first,second],true)) {
 			var firstArr = __Simple.ObjectToArray(first);
 			var secondArr = __Simple.ObjectToArray(second);
 			result = __Simple.Equals(firstArr[0], secondArr[0]) && __Simple.Equals(firstArr[1], secondArr[1]);
