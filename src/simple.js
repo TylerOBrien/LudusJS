@@ -666,7 +666,7 @@ var Simple = window.$ = {};
 		if (__Simple.Equals(doIterateSource, true)) {
 			var result = false;
 			__Simple.Each(source, function(itr){
-				return result = __Simple.IsArray(itr.value, doIterateSource);
+				return result = __Simple.IsArray(itr.value);
 			});
 			return result;
 		} else {
