@@ -606,7 +606,7 @@ var Simple = window.$ = {};
 			 * If the GET variable does not exist this will return undefined.
 		 * */
 		Get: function(name){
-			if (__Simple.Type(name) === CacheInternal.array) {
+			if (__Simple.IsArray(name)) {
 				var result = {};
 				__Simple.Each(name, function(itr){
 					result[itr.value] = __Simple.GET.Get(itr.value);
