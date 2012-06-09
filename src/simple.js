@@ -499,7 +499,7 @@ var Simple = window.$ = {};
 			var iterator = new Iterator(haystack);
 			
 			/* Presumably only an Array will have a "length" property. */
-			if (typeof haystack[CacheInternal.length] !== CacheInternal.undefined) {
+			if (__Simple.HasProperty(haystack, CacheInternal.length)) {
 				iterator.i = 0;
 				var end = haystack.length;
 				for (; iterator.i < end; iterator.i++) {
