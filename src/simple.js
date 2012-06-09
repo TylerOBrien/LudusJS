@@ -349,7 +349,7 @@ var Simple = window.$ = {};
 		 * Input: String
 		 * */
 		Exists: function(name){
-			return __Simple.Cookie.Get(name) !== undefined;
+			return __Simple.HasProperty(__Simple.Cookie.GetAll(), name);
 		},
 		
 		/*
