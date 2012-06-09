@@ -241,6 +241,7 @@ var Simple = window.$ = {};
 	
 	/*
 	 * Internal Sprintf operations.
+	 * Should probably cache these string values.
 	 * */
 	var SprintfInternal = {
 		Process: function(type, value){
