@@ -529,6 +529,7 @@ var Simple = window.$ = {};
 	 * */
 	__Simple.EncodeQueryString = function(object){
 		var result = "";
+		
 		for (var index in object) {
 			result += (index + "=" + object[index] + "&");
 		}
@@ -536,7 +537,8 @@ var Simple = window.$ = {};
 		if (result.length > 0) { /* Trim off the extra ampersand. */
 			result = result.substring(0, result.length-1);
 		}
-		return result.replace(/ /g, "+");
+		
+		return encodeUriComponent(result);
 	};
 	
 	/*
