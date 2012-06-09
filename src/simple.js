@@ -583,15 +583,7 @@ var Simple = window.$ = {};
 			 * Does not require a value to have been assigned.
 		 * */
 		Exists: function(name){
-			if (__Simple.Type(name) === CacheInternal.array) {
-				var result = false;
-				__Simple.Each(name, function(itr){
-					return result = __Simple.GET.Exists(itr.value);
-				});
-				return result;
-			} else {
-				return typeof __GET[name] !== CacheInternal.undefined;
-			}
+			return __Simple.HasProperty(__GET, name);
 		},
 		
 		/*
