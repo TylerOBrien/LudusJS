@@ -125,6 +125,10 @@ var Simple = window.$ = {};
 		undefined: "undefined"
 	};
 	
+	/* 
+	 * Used for treating certain objects has shortcuts.
+	 * Generally only used when the object is going to be iterated.
+	 * */
 	var GetInternalShortcut = function(object){
 		switch (object){
 			case __Simple.Cookie: return __Simple.Cookie.GetAll();
