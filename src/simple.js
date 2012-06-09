@@ -531,14 +531,14 @@ var Simple = window.$ = {};
 		var result = "";
 		
 		for (var index in object) {
-			result += (index + "=" + object[index] + "&");
+			result += (encodeURIComponent(index) + "=" + encodeURIComponent(object[index]) + "&");
 		}
 		
 		if (result.length > 0) { /* Trim off the extra ampersand. */
 			result = result.substring(0, result.length-1);
 		}
 		
-		return encodeUriComponent(result);
+		return result;
 	};
 	
 	/*
