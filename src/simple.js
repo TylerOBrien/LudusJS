@@ -498,8 +498,9 @@ var Simple = window.$ = {};
 			/* Iterator will hold a reference to haystack. */
 			var iterator = new Iterator(haystack);
 			
-			/* Presumably only an Array will have a "length" property. */
-			if (__Simple.HasProperty(haystack, CacheInternal.length)) {
+			/* DOMObjectArrays aren't considered arrays for some reason.
+  			   So also check for a length property. Need to look into this and improve it. */
+			if (__Simple.IsArray(haystack) || __Simple.HasProperty(haystack, CacheInternal.length)) {
 				iterator.i = 0;
 				var end = haystack.length;
 				for (; iterator.i < end; iterator.i++) {
