@@ -104,8 +104,8 @@ var Simple = window.$ = {};
 	};
 	
 	/*
-	 * Cache of commonly used strings.
-	 * The following are commonly used strings that are cached so that new string
+	 * Cache of commonly used values.
+	 * The following are commonly used values that are cached so that new string
 	 * objects don't need to be constantly created.
 	 * */
 	var CacheInternal = {
