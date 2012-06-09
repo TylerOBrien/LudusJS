@@ -639,15 +639,11 @@ var Simple = window.$ = {};
 		object = GetInternalShortcut(object);
 		
 		if (__Simple.IsArray(property)) {
-			var count = 0;
-			__Simple.Each(property, function(){
-				if (__Simple.HasProperty(object, this)) {
-					count++;
-				} else {
-					return false;
-				}
+			var result = false;
+			__Simple.Each(property, function(itr){
+				return result = __Simple.HasProperty(object, itr.value);
 			});
-			return count > 0 && count === property.length;
+			return result;
 		} else {
 			return typeof object[property] !== CacheInternal.undefined;
 		}
