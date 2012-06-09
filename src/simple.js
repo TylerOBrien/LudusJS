@@ -408,8 +408,8 @@ var Simple = window.$ = {};
 			var expiration = new Date(milliseconds);
 			
 			date.setTime(date.getTime() + expiration.getTime());
-			path = __Simple.Exists(path, CacheInternal.forwardSlash);
 			
+			path = __Simple.Exists(path, CacheInternal.forwardSlash);
 			document.cookie = name+"="+value+"; expires="+date.toUTCString()+"; path="+path;
 		}
 	};
