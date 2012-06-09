@@ -616,6 +616,18 @@ var Simple = window.$ = {};
 				return __Simple.GET.Exists(name) ? __GET[name] : undefined;
 			}
 		}
+		
+		/*
+		 * GetAll() returns Object
+		 * Input: Nothing
+		 * */
+		 GetAll: function(){
+			var result = {};
+			__Simple.Each(__GET, function(itr){
+				result[itr.i] = itr.value;
+			});
+			return result;
+		}
 	};
 	
 	/*
