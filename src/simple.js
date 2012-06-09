@@ -125,6 +125,13 @@ var Simple = window.$ = {};
 		undefined: "undefined"
 	};
 	
+	var GetInternalShortcut = function(object){
+		switch (name){
+			case __Simple.Cookie: return __Simple.Cookie.GetAll();
+			case __Simple.GET: return __GET;
+		}
+	};
+	
 	/*
 	 * Internal DOM operations.
 	 * */
