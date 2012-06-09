@@ -474,9 +474,7 @@ var Simple = window.$ = {};
 	 * */
 	__Simple.Each = function(haystack, callback){
 		if (typeof haystack !== CacheInternal.undefined) {
-			/* Possible haystack shortcuts. */
-			if (haystack === __Simple.Cookie) haystack = __Simple.Cookie.GetAll();
-			else if (haystack === __Simple.GET) haystack = __GET;
+			haystack = GetInternalShortcut(haystack);
 			
 			/* Iterator will hold a reference to haystack. */
 			var iterator = new Iterator(haystack);
@@ -528,11 +526,8 @@ var Simple = window.$ = {};
 	 * Input: Mixed, Mixed
 	 */
 	__Simple.Equals = function(first, second){
-		/* Possible haystack shortcuts */
-		if (first === __Simple.Cookie) first = __Simple.Cookie.GetAll();
-		else if (first === __Simple.GET) first = __GET;
-		if (second === __Simple.Cookie) second = __Simple.Cookie.GetAll();
-		else if (second === __Simple.GET) second = __GET;
+		first = GetInternalShortcut(first);
+		second = GetInternalShortcut(second);
 		
 		var firstType = __Simple.Type(first);
 		var secondType = __Simple.Type(second);
@@ -630,9 +625,7 @@ var Simple = window.$ = {};
 	 * Input: Mixed, String
 	 * */
 	__Simple.HasProperty = function(object, property){
-		/* Possible haystack shortcuts */
-		if (object === __Simple.Cookie) object = __Simple.Cookie.GetAll();
-		else if (object === __Simple.GET) object = __GET;
+		object = GetInternalShortcut(object);
 		
 		if (__Simple.IsArray(property)) {
 			var count = 0;
@@ -654,9 +647,7 @@ var Simple = window.$ = {};
 	 * Input: Mixed, Mixed
 	 * */
 	__Simple.HasValue = function(object, value){
-		/* Possible haystack shortcuts */
-		if (object === __Simple.Cookie) object = __Simple.Cookie.GetAll();
-		else if (object === __Simple.GET) object = __GET;
+		object = GetInternalShortcut(object);
 		
 		var result = false;
 		__Simple.Each(object, function(itr){
@@ -779,11 +770,8 @@ var Simple = window.$ = {};
 	 * Input: Object
 	 * */
 	__Simple.ObjectToArray = function(object){
+		object = GetInternalShortcut(object);
 		var result = [[],[]];
-		
-		/* Possible haystack shortcuts */
-		if (object === __Simple.Cookie) object = __Simple.Cookie.GetAll();
-		else if (object === __Simple.GET) object = __GET;
 		
 		__Simple.Each(object, function(itr){
 			result[0].push(itr.i);
