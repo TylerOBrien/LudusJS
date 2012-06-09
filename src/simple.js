@@ -129,6 +129,7 @@ var Simple = window.$ = {};
 		switch (object){
 			case __Simple.Cookie: return __Simple.Cookie.GetAll();
 			case __Simple.GET: return __GET;
+			default: return object;
 		}
 	};
 	
