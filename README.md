@@ -226,6 +226,25 @@ _____
 }(Simple));
 ```
 
+Simple.Cookie.Set
+----------
+> > __Input:__ _String name, String value, Integer milliseconds_  
+> > __Output:__ _Nothing_
+> > 
+> > Sets cookie data.
+> > Is similar to the way PHP sets cookies.
+
+```javascript
+(function($){
+	"use strict";
+	
+	/* Set cookies for 3600000 milliseconds, or, 1 hour. */
+	$.Cookie.Set("id", "johndoe42", 3600000);
+	$.Cookie.Set("name", "John Doe", 3600000);
+	$.Cookie.Set("email", "johndoe@foo.bar.com", 3600000);
+}(Simple));
+```
+
 Simple.DecodeQueryString
 ----------
 > > __Input:__ _String source_  
