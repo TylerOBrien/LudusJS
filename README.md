@@ -252,6 +252,21 @@ _____
 }(Simple));
 ```
 
+Simple.Cookie.GetAll
+----------
+> > __Input:__ _Nothing_  
+> > __Output:__ _Object result_
+> > 
+> > Returns an _Object_ containing the data for all cookies.
+
+```javascript
+(function($){
+	"use strict";
+	
+	var object = $.Cookie.GetAll();
+}(Simple));
+```
+
 Simple.Cookie.Set
 ----------
 > > __Input:__ _String name, String value, Integer milliseconds_  
