@@ -196,18 +196,33 @@ ____
 }(Simple));
 ```
 
-Simple.Cookie
+Simple.Cookie.Exists
 ----------
+> > __Input:__ _Array|String name_  
+> > __Output:__ _Boolean result_
+> > 
+> > Returns _true_ if the cookie by the passed name has been defined.  
+> > Does not require the cookie to have a value.
+> >
+> > The following two examples are identical.
+
 ```javascript
 (function($){
 	"use strict";
 	
-	var name = $.Cookie.Get("username");
-	var email = $.Cookie.Get("email");
+	if ($.Cookie.Exists("id") && $.Cookie.Exists("name")) {
+		console.log("The 'id' and 'name' cookies have been set.");
+	}
+}(Simple));
+```
+_____
+```javascript
+(function($){
+	"use strict";
 	
-	$.Cookie.Set("id", "usr_445_foo", 3600000); // Set cookie for 3600 seconds.
-	
-	console.log($.Cookie.Exists("id")); // true
+	if ($.Cookie.Exists(["id","name"])) {
+		console.log("The 'id' and 'name' cookies have been set.");
+	}
 }(Simple));
 ```
 
