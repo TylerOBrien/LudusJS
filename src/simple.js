@@ -536,6 +536,7 @@ var Simple = window.$ = {};
 		first = GetInternalShortcut(first);
 		second = GetInternalShortcut(second);
 		
+		/* The types are needed because of the various comparisons that can be made. */
 		var firstType = __Simple.Type(first);
 		var secondType = __Simple.Type(second);
 		var result = true;
