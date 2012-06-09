@@ -226,6 +226,32 @@ _____
 }(Simple));
 ```
 
+Simple.Cookie.Get
+----------
+> > __Input:__ _Array|String source_  
+> > __Output:__ _Object|String result_
+> > 
+> > Returns the value of the passed cookie name (the value of "source").  
+> > If "source" is an _Array_ then an _Object_ will be returned.
+
+```javascript
+(function($){
+	"use strict";
+	
+	var id = $.Cookie.Get("id");
+	var email = $.Cookie.Get("email");
+	var name = $.Cookie.Get("name");
+}(Simple));
+```
+_____
+```javascript
+(function($){
+	"use strict";
+	
+	var object = $.Cookie.Get(["id","email","name"]);
+}(Simple));
+```
+
 Simple.Cookie.Set
 ----------
 > > __Input:__ _String name, String value, Integer milliseconds_  
@@ -240,8 +266,8 @@ Simple.Cookie.Set
 	
 	/* Set cookies for 3600000 milliseconds, or, 1 hour. */
 	$.Cookie.Set("id", "johndoe42", 3600000);
-	$.Cookie.Set("name", "John Doe", 3600000);
 	$.Cookie.Set("email", "johndoe@foo.bar.com", 3600000);
+	$.Cookie.Set("name", "John Doe", 3600000);
 }(Simple));
 ```
 
