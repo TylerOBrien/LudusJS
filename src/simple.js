@@ -110,6 +110,7 @@ var Simple = window.$ = {};
 	 * */
 	var CacheInternal = {
 		array: "array",
+		cookieGetRegex: "=([^;]+);?",
 		contentType: "Content-type",
 		emptyString: "",
 		forwardSlash: "/",
@@ -358,7 +359,7 @@ var Simple = window.$ = {};
 		 * */
 		Get: function(name){
 			if (__Simple.Type(name) === CacheInternal.string) {
-				var result = new RegExp(name+"=([^;]+);?", "g").exec(document.cookie);
+				var result = new RegExp(name+CacheInternal.cookieGetRegex, "g").exec(document.cookie);
 				if (result !== null) {
 					return result[1];
 				}
