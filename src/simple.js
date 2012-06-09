@@ -542,15 +542,7 @@ var Simple = window.$ = {};
 		var result = true;
 		
 		if (firstType === CacheInternal.array && secondType === CacheInternal.array) {
-			if (first.length !== second.length) {
-				result = false;
-			} else {
-				__Simple.Each(first, function(itr){
-					if (itr.value !== second[itr.i]) {
-						return result = false;
-					}
-				});
-			}
+			
 		} else if (firstType === CacheInternal.object && secondType === CacheInternal.object) {
 			var firstArr = __Simple.ObjectToArray(first);
 			var secondArr = __Simple.ObjectToArray(second);
@@ -668,10 +660,18 @@ var Simple = window.$ = {};
 	
 	/*
 	 * IsEmptyArray() returns Boolean
-	 * Input: Mixed
+	 * Input: Array, Boolean
 	 * */
-	__Simple.IsArray = function(object){
-		return __Simple.Type(object) === CacheInternal.array;
+	__Simple.IsArray = function(source, doIterateSource){
+		if (__Simple.Equals(doIterateSource, true)) {
+			var result = false;
+			__Simple.Each(source, function(itr){
+				return result = __Simple.IsArray(itr.value);
+			});
+			return result;
+		} else {
+			return __Simple.Type(source) === CacheInternal.array;
+		}
 	};
 	
 	/*
