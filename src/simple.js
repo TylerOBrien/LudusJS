@@ -380,7 +380,6 @@ var Simple = window.$ = {};
 					return result[1];
 				}
 			}
-			
 			return undefined;
 		},
 		
