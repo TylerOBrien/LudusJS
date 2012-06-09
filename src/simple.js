@@ -687,6 +687,7 @@ var Simple = window.$ = {};
 	     * Borrowed from jQuery.
 	 * */
 	__Simple.IsEmptyObject = function(object){
+		object = GetInternalShortcut(object);
 		for (var index in object) {
 			return false;
 		}
