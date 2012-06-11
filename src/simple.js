@@ -430,7 +430,7 @@ var Simple = window.$ = {};
 		
 		/* Second condition is necessary for IE6-8. */
 		if (__Simple.IsDOMElement(context) || context === document) {
-			switch (elementString[0]) {
+			switch (elementString.charAt(0)) {
 				case "#": result = context.getElementById(elementString.substring(1)); break;
 				case ".": result = context.getElementsByClassName(elementString.substring(1)); break;
 				case ":": result = context.getElementsByName(elementString.substring(1)); break;
