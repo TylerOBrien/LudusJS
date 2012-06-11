@@ -617,7 +617,7 @@ var Simple = window.$ = {};
 			} else {
 				return __Simple.GET.Exists(name) ? __GET[name] : undefined;
 			}
-		}
+		},
 		
 		/*
 		 * GetAll() returns Object
@@ -683,7 +683,7 @@ var Simple = window.$ = {};
 	 * Input: Array, Boolean
 	 * */
 	__Simple.IsArray = function(source, doIterateSource){
-		if (__Simple.Equals(doIterateSource, true)) {
+		if (typeof doIterateSource !== CacheInternal.undefined && doIterateSource) {
 			var result = false;
 			__Simple.Each(source, function(itr){
 				return result = __Simple.IsArray(itr.value);
