@@ -690,7 +690,7 @@ var Simple = window.$ = {};
 			});
 			return result;
 		} else {
-			return __Simple.Type(source) === CacheInternal.array;
+			return (__Simple.Type(source) === CacheInternal.array);
 		}
 	};
 	
@@ -699,15 +699,15 @@ var Simple = window.$ = {};
 	 * Input: Array|Object, Boolean
 	 * */
 	__Simple.IsObject = function(source, doIterateSource){
-		var result = false;
-		if (__Simple.Equals(doIterateSource, true) && __Simple.IsArray(source)) {
+		if (typeof doIterateSource !== CacheInternal.undefined && doIterateSource) {
+			var result = false;
 			__Simple.Each(source, function(itr){
 				return result = __Simple.IsObject(itr.value);
 			});
+			return result;
 		} else {
-			result = (__Simple.Type(source) === CacheInternal.object);
+			return (__Simple.Type(source) === CacheInternal.object);
 		}
-		return result;
 	};
 	
 	/*
