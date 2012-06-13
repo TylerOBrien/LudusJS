@@ -99,7 +99,7 @@ var Simple = window.$s = {};
 	 * Used to map class names (e.g "[object String]") to their object names (e.g. "string").
 	 * Is used by the Simple.Type() function.
 	 * */
-	var ClassTypesInteral = {
+	var ClassTypesInternal = {
 		/* Populated by function at bottom using Simple.Each(). */
 	};
 	
