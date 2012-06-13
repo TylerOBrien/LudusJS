@@ -110,7 +110,7 @@ var Simple = window.$ = {};
 	 * */
 	var CacheInternal = {
 		array: "array",
-		cookieGetRegex: "=([^;]+);?",
+		cookieGetRegex: "=([^;]+);?", /* Passed as an argument to RegExp's constructor. */
 		contentType: "Content-type",
 		emptyString: "",
 		forwardSlash: "/",
