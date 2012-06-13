@@ -76,21 +76,21 @@ var Simple = window.$ = {};
 		
 		/* 
 		 * Send() returns Nothing
-		 * Input: Object
+		 * Input: AJAXInternal.Request, Object
 			* A "safe" version of XMLHttpRequest.send().
 			* Is compatible with both ActiveX-based AJAX and otherwise.
 			* */
-		Send: function(ajaxRequest){
-			if (typeof ajaxRequest === CacheInternal.undefined || ajaxRequest === null) {
+		Send: function(ajaxRequest, args){
+			if (typeof args === "undefined" || args === null) {
 				if (ajaxRequest.isActiveX) {
 					ajaxRequest.send();
 				} else {
 					ajaxRequest.send(null);
 				}
-			} else if ("method" in ajaxRequest && "queryString" in ajaxRequest && ajaxRequest.method === "post") {
-				ajaxRequest.send(ajaxRequest.queryString);
+			} else if ("method" in args && "queryString" in args && args.method === "post") {
+				ajaxRequest.send(args.queryString);
 			} else {
-				ajaxRequest.send_s();
+				Send(ajaxRequest, null);
 			}
 		};
 	};
@@ -344,7 +344,9 @@ var Simple = window.$ = {};
 			}, args[CacheInternal.timeout]);
 		}
 		
-		AJAXInternal.Send(ajaxRequest);
+		/* Send twice because the request object will also contain the GET/POST
+		 * variables being sent through HTTP (that's what the second parameter is for). */
+		AJAXInternal.Send(ajaxRequest, ajaxRequest);
 	};
 	
 	/*
