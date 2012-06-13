@@ -233,8 +233,8 @@ var Simple = window.$ = {};
 	var RegexInternal = {
 		cookie: /[ ]?([^=]+)=([^;]+)[; ]?/g,
 		floatingPoint: /[0-9]+([.][0-9]+)?/g,
-		notNumber: /[^0-9.\-+]+/g,
-		number: /[0-9,]+([.][0-9]+)?/g,
+		notNumber: /[^0-9.\-+]+/g, /* Used to match anything NOT a number. That is 0-9 and decimal points. */
+		number: /([0-9]{3}[,]|[0-9])+([.][0-9]+)?/g, /* Used to match any number. Includes commas because some string-numbers use them. */
 		queryString: /[?&]?([^&=]+)=?([^&]+)?/g,
 		sprintfVariable: /%[b|d|f|o|s|u|x|X]/g
 	};
