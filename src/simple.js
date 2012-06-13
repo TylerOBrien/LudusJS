@@ -81,7 +81,7 @@ var Simple = window.$ = {};
 			* Is compatible with both ActiveX-based AJAX and otherwise.
 			* */
 		Send: function(ajaxRequest, args){
-			if (typeof args === "undefined" || args === null) {
+			if (typeof args === CacheInternal.undefined || args === null) {
 				if (ajaxRequest.isActiveX) {
 					ajaxRequest.send();
 				} else {
