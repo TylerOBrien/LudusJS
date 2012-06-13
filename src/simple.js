@@ -234,7 +234,7 @@ var Simple = window.$ = {};
 		cookie: /[ ]?([^=]+)=([^;]+)[; ]?/g,
 		floatingPoint: /[0-9]+([.][0-9]+)?/g,
 		notNumber: /[^0-9.\-+]+/g,
-		number: /[0-9.\-+]+/g,
+		number: /[0-9,]+([.][0-9]+)?/g,
 		queryString: /[?&]?([^&=]+)=?([^&]+)?/g,
 		sprintfVariable: /%[b|d|f|o|s|u|x|X]/g
 	};
