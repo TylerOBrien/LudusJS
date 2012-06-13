@@ -649,7 +649,7 @@ var Simple = window.$ = {};
 	
 	/*
 	 * HasProperty() returns Boolean
-	 * Input: Mixed, String
+	 * Input: Mixed, Array|String
 	 * */
 	__Simple.HasProperty = function(object, property){
 		object = GetInternalShortcut(object);
