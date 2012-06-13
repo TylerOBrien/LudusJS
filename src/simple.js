@@ -27,7 +27,7 @@
 /*
  * SimpleJS
  * */
-var Simple = window.$ = {};
+var Simple = window.$s = {};
 (function(__Simple){
 	"use strict";
 	
