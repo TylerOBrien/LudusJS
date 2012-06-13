@@ -92,7 +92,7 @@ var Simple = window.$s = {};
 			} else {
 				Send(ajaxRequest, null);
 			}
-		};
+		}
 	};
 	
 	/*
