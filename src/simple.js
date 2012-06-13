@@ -670,9 +670,7 @@ var Simple = window.$ = {};
 		
 		var result = false;
 		__Simple.Each(object, function(itr){
-			if (result = __Simple.Equals(value, itr.value)) {
-				return false; /* Break out of the Each() loop. */
-			}
+			return !(result = __Simple.Equals(value, itr.value));
 		});
 		return result;
 	};
