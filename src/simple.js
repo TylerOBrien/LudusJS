@@ -465,9 +465,8 @@ var Simple = window.$ = {};
 	 * DecodeQueryString() returns Object
 	 * Input: String
 	     * Converts a passed query string in this format:
-		     * id=42&name=John+Doe&type=user
+		     * id=42&name=John%20Doe&type=user
 	     * Into an object containing the defined variables.
-		 * All instances of "+" will be converted to spaces.
 		 *
 		 * Any variables not given a value, like so:
 		     * foo&bar&baz
@@ -527,7 +526,7 @@ var Simple = window.$ = {};
 		 * For example, this:
 		     * {name:"John Doe", id:42}
 	     * Would become:
-		     * name=John+Doe&id=42
+		     * name=John%20Doe&id=42
 	 * */
 	__Simple.EncodeQueryString = function(object){
 		var result = "";
