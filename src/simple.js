@@ -246,7 +246,7 @@ var Simple = window.$ = {};
 	var SprintfInternal = {
 		Process: function(type, value){
 			switch (type){
-				case "%b": return "b" + __Simple.ToInt(value).toString(2);
+				case "%b": return __Simple.ToInt(value).toString(2);
 				case "%d": return __Simple.ToInt(value).toString();
 				case "%f": return parseFloat(value).toString();
 				case "%h": return __Simple.ToInt(value).toString(16);
