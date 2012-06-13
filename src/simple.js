@@ -236,7 +236,7 @@ var Simple = window.$ = {};
 		notNumber: /[^0-9.\-+]+/g, /* Used to match anything NOT a number. That is 0-9 and decimal points. */
 		number: /([0-9]{1,3}([,][0-9]{3})?)+([.][0-9]+)?/g, /* Used to match any number. Includes commas because some string-numbers use them. */
 		queryString: /[?&]?([^&=]+)=?([^&]+)?/g,
-		sprintfVariable: /%[b|d|f|o|s|u|x|X]/g
+		sprintfVariable: /%[b|d|f|h|H|o|s|u|x|X]/g
 	};
 	
 	/*
@@ -249,6 +249,8 @@ var Simple = window.$ = {};
 				case "%b": return "b" + __Simple.ToInt(value).toString(2);
 				case "%d": return __Simple.ToInt(value).toString();
 				case "%f": return parseFloat(value).toString();
+				case "%x": return __Simple.ToInt(value).toString(16);
+				case "%X": return __Simple.ToInt(value).toString(16).toUpperCase();
 				case "%o": return __Simple.ToInt(value).toString(8);
 				case "%u": return __Simple.ToUnsignedInt(value).toString();
 				case "%x": return "0x" + __Simple.ToInt(value).toString(16);
