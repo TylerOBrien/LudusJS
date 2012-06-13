@@ -828,6 +828,9 @@ var Simple = window.$ = {};
 	 * */
 	__Simple.Sprintf = function(source){
 		if (arguments.length > 1) {
+			/* The values may be in the arguments array,
+			 * or may be an array passed as the first argument.
+			 * */
 			var indexOffset = 1;
 			var values = arguments;
 			
@@ -839,8 +842,12 @@ var Simple = window.$ = {};
 			var variables = source.match(RegexInternal.sprintfVariable);
 			var end = (variables) ? variables.length : 0;
 
+			/* Replace each sprintf variable with the appropriate values. */
 			for (var i = 0; i < end; i++) {
-				source = source.replace(variables[i], SprintfInternal.Process(variables[i], values[i+indexOffset].toString()));
+				source = source.replace(
+					variables[i], 
+					SprintfInternal.Process(variables[i], values[i+indexOffset].toString())
+				);
 			}
 		}
 		
