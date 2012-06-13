@@ -37,26 +37,6 @@ if (typeof window.XMLHttpRequest === "undefined") {
 	window.XMLHttpRequest.prototype.isActiveX = false;
 }
 
-/* 
- * send_s() returns Nothing
- * Input: Object
-    * A "safe" version of XMLHttpRequest.send().
-    * Is compatible with both ActiveX-based AJAX and otherwise.
-    * */
-XMLHttpRequest.prototype.send_s = function(args){
-	if (typeof args === "undefined" || args === null) {
-		if (this.isActiveX) {
-			this.send();
-		} else {
-			this.send(null);
-		}
-	} else if ("method" in args && "queryString" in args && args.method === "post") {
-		this.send(args.queryString);
-	} else {
-		this.send_s();
-	}
-};
-
 /*
  * SimpleJS
  * */
@@ -93,6 +73,26 @@ var Simple = window.$ = {};
 			this.url = __Simple.Exists(args["url"], "/");
 			this.urlToOpen = (this.method === "POST") ? this.url : (this.url + "?" + this.queryString);
 		}
+		
+		/* 
+		 * Send() returns Nothing
+		 * Input: Object
+			* A "safe" version of XMLHttpRequest.send().
+			* Is compatible with both ActiveX-based AJAX and otherwise.
+			* */
+		Send: function(ajaxRequest){
+			if (typeof ajaxRequest === CacheInternal.undefined || ajaxRequest === null) {
+				if (this.isActiveX) {
+					this.send();
+				} else {
+					this.send(null);
+				}
+			} else if ("method" in ajaxRequest && "queryString" in ajaxRequest && ajaxRequest.method === "post") {
+				this.send(ajaxRequest.queryString);
+			} else {
+				this.send_s();
+			}
+		};
 	};
 	
 	/*
@@ -344,7 +344,7 @@ var Simple = window.$ = {};
 			}, args[CacheInternal.timeout]);
 		}
 		
-		ajaxRequest.http.send_s(ajaxRequest);
+		AJAXInternal.Send(ajaxRequest);
 	};
 	
 	/*
