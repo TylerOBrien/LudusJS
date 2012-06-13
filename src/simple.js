@@ -72,7 +72,7 @@ var Simple = window.$s = {};
 			this.timeEnd = 0;
 			this.url = __Simple.Exists(args["url"], "/");
 			this.urlToOpen = (this.method === "POST") ? this.url : (this.url + "?" + this.queryString);
-		}
+		},
 		
 		/* 
 		 * Send() returns Nothing
