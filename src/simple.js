@@ -866,7 +866,9 @@ var Simple = window.$ = {};
 		ClassTypesInteral["[object " + itr.value + "]"] = itr.value.toLowerCase();
 	});
 	
-	/* Decode the browser's query string, if it exists. */
+	/* 
+	 * Decode the browser's query string, if it exists.
+	 * */
 	var __GET = __Simple.DecodeQueryString(document.location.search);
 	
 	/*
