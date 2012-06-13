@@ -82,15 +82,15 @@ var Simple = window.$ = {};
 			* */
 		Send: function(ajaxRequest){
 			if (typeof ajaxRequest === CacheInternal.undefined || ajaxRequest === null) {
-				if (this.isActiveX) {
-					this.send();
+				if (ajaxRequest.isActiveX) {
+					ajaxRequest.send();
 				} else {
-					this.send(null);
+					ajaxRequest.send(null);
 				}
 			} else if ("method" in ajaxRequest && "queryString" in ajaxRequest && ajaxRequest.method === "post") {
-				this.send(ajaxRequest.queryString);
+				ajaxRequest.send(ajaxRequest.queryString);
 			} else {
-				this.send_s();
+				ajaxRequest.send_s();
 			}
 		};
 	};
