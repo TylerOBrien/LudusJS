@@ -872,7 +872,7 @@ var Simple = window.$ = {};
 	var __GET = __Simple.DecodeQueryString(document.location.search);
 	
 	/*
-	 * Different/older browsers may have different methods for DOM loading.
+	 * Older browsers (e.g. Internet Explorer 6) may have different methods for DOM loading.
 	 * Based on jQuery.
 	 * */
 	if (typeof document.addEventListener !== CacheInternal.undefined) {
