@@ -28,13 +28,13 @@
  * AJAX fallback for IE6.
  * Might not work for IE5 and earlier.
  * */
-if (typeof XMLHttpRequest === "undefined") {
-	var XMLHttpRequest = function(){
+if (typeof window.XMLHttpRequest === "undefined") {
+	window.XMLHttpRequest = function(){
 		return new ActiveXObject("Microsoft.XMLHTTP");
 	};
-	XMLHttpRequest.prototype.isActiveX = true;
+	window.XMLHttpRequest.prototype.isActiveX = true;
 } else {
-	XMLHttpRequest.prototype.isActiveX = false;
+	window.XMLHttpRequest.prototype.isActiveX = false;
 }
 
 /* 
