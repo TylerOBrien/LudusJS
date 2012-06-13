@@ -23,19 +23,6 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * */
- 
-/*
- * AJAX fallback for IE6.
- * Might not work for IE5 and earlier.
- * */
-if (typeof window.XMLHttpRequest === "undefined") {
-	window.XMLHttpRequest = function(){
-		return new ActiveXObject("Microsoft.XMLHTTP");
-	};
-	window.XMLHttpRequest.prototype.isActiveX = true;
-} else {
-	window.XMLHttpRequest.prototype.isActiveX = false;
-}
 
 /*
  * SimpleJS
@@ -44,6 +31,19 @@ var Simple = window.$ = {};
 (function(__Simple){
 	"use strict";
 	
+	/*
+	 * AJAX fallback for IE6.
+	 * Might not work for IE5 and earlier.
+	 * */
+	if (typeof window.XMLHttpRequest === "undefined") {
+		window.XMLHttpRequest = function(){
+			return new ActiveXObject("Microsoft.XMLHTTP");
+		};
+		window.XMLHttpRequest.prototype.isActiveX = true;
+	} else {
+		window.XMLHttpRequest.prototype.isActiveX = false;
+	}
+
 	/*
 	 * Internal AJAX operations.
 	 * */
