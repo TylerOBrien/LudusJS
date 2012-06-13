@@ -367,7 +367,7 @@ var Simple = window.$ = {};
 	__Simple.Cookie = {
 		/*
 		 * Exists() returns Boolean
-		 * Input: String
+		 * Input: Array|String
 		 * */
 		Exists: function(name){
 			return __Simple.HasProperty(__Simple.Cookie.GetAll(), name);
@@ -375,7 +375,7 @@ var Simple = window.$ = {};
 		
 		/*
 		 * Get() returns String
-		 * Input: String
+		 * Input: Array|String
 		 * */
 		Get: function(name){
 			if (__Simple.IsString(name)) {
@@ -405,7 +405,7 @@ var Simple = window.$ = {};
 		
 		/*
 		 * Set() returns Nothing
-		 * Input: String, String, Object
+		 * Input: String, String, Object[, String]
 		 * */
 		Set: function(name, value, milliseconds, path){
 			var date = new Date;
