@@ -482,7 +482,7 @@ var Simple = window.$s = {};
 		
 		while (buffer !== null) {
 			result[decodeURIComponent(buffer[1])] = (
-				typeof (buffer[2] !== CacheInternal.undefined) ? decodeURIComponent(buffer[2]) : null
+				typeof (buffer[2] !== CacheInternal.undefined) ? decodeURIComponent(buffer[2]) : CacheInternal.emptyString
 			);
 			buffer = RegexInternal.queryString.exec(queryString);
 		}
