@@ -481,9 +481,7 @@ var Simple = window.$s = {};
 		var result = {};
 		
 		while (buffer !== null) {
-			result[decodeURIComponent(buffer[1])] = (
-				(typeof buffer[2] !== CacheInternal.undefined) ? decodeURIComponent(buffer[2]) : CacheInternal.emptyString
-			);
+			result[decodeURIComponent(buffer[1])] = (__Simple.Exists(buffer[2], null, true)) ? decodeURIComponent(buffer[2]) : CacheInternal.emptyString;
 			buffer = RegexInternal.queryString.exec(queryString);
 		}
 		
