@@ -844,8 +844,7 @@ var Simple = window.$s = {};
 			 * */
 			var indexOffset = 1;
 			var values = arguments;
-			
-			if (__Simple.Type(arguments[1]) === CacheInternal.array) {
+			if (__Simple.IsArray(arguments[1])) {
 				indexOffset = 0;
 				values = arguments[1];
 			}
