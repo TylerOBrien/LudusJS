@@ -840,7 +840,7 @@ var Simple = window.$s = {};
 	__Simple.Sprintf = function(source){
 		if (arguments.length > 1) {
 			/* The values may be in the arguments array,
-			 * or may be an array passed as the first argument.
+			 * or may be an array passed as the second argument.
 			 * */
 			var indexOffset = 1;
 			var values = arguments;
