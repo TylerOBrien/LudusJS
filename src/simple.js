@@ -825,6 +825,15 @@ var Simple = window.$s = {};
 	};
 	
 	/*
+	 * Round() returns Float|Integer
+	 * Input: Float|Integer, Integer
+	 * */
+	__Simple.Round = function(num, decimalPlaces){
+		decimalPlaces = Math.pow(10, __Simple.Exists(decimalPlaces, 0));
+		return Math.round(num*decimalPlaces) / decimalPlaces;
+	};
+	
+	/*
 	 * Sprintf() returns String
 	 * Input: String[, Array|String ...]
 	 * */
