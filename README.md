@@ -301,7 +301,7 @@ Simple.DecodeQueryString
 (function($){
 	"use strict";
 	
-	var queryString = "id=42&name=John+Doe&type=Burly";
+	var queryString = "id=42&name=John%20Doe&type=Burly";
 	var object = $.DecodeQueryString(queryString);
 	
 	console.log(object);
