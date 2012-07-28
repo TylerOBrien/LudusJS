@@ -24,7 +24,10 @@ List of Examples
 * [Simple.GET.Exists](#simplegetexists)
 * [Simple.GET.Get](#simplegetget)
 * [Simple.GET.GetAll](#simplegetgetall)
+* [Simple.HasProperty](#simplehasproperty)
+* [Simple.HasValue](#simplehasvalue)
 * [Simple.ObjectToArray](#simpleobjecttoarray)
+* [Simple.RemoveEvent](#simpleremoveevent)
 * [Simple.Sprintf](#simplesprintf)
 
 Simple.AddEvent
@@ -534,7 +537,7 @@ Simple.Exists
 	
 Simple.GenerateArray
 ----------
-> > __Input:__ _Integer num, Mixed val[, Boolean isValueCallback_]  
+> > __Input:__ _Integer num, Mixed val[, Boolean isValueCallback]_  
 > > __Output:__ _Array result_
 > >
 > > Creates a new array of _n_ size where _n_ is the value of "num", assigning "val" to each element.
@@ -642,6 +645,34 @@ Simple.GET.GetAll
 	"use strict";
 	
 	var object = $.GET.GetAll();
+}(Simple));
+```
+
+Simple.HasProperty
+----------
+> > __Input:__ _Array|Object object, String property[, Boolean doIterateSource]_  
+> > __Output:__ _Boolean result_  
+> >
+> > Returns true if the property exists in the passed object, or array of objects.  
+> > Otherwise returns false.
+
+```javascript
+(function($){
+	"use strict";
+	
+	if ($.HasProperty({"foo":"bar"}, "foo")) {
+		console.log("Has 'foo' property");
+	}
+}(Simple));
+```
+_____
+```javascript
+(function($){
+	"use strict";
+	
+	if ($.HasProperty($.GET, "id")) {
+		console.log("Query string 'id' has been defined.");
+	}
 }(Simple));
 ```
 
