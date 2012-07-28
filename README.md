@@ -650,7 +650,7 @@ Simple.GET.GetAll
 
 Simple.HasProperty
 ----------
-> > __Input:__ _Array|Object object, String property[, Boolean doIterateSource]_  
+> > __Input:__ _Array|Object source, String property[, Boolean doIterateSource]_  
 > > __Output:__ _Boolean result_  
 > >
 > > Returns true if the property exists in the passed object, or array of objects.  
