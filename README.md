@@ -452,7 +452,7 @@ Simple.EncodeQueryString
 		"type": "Burly"
 	};
 	
-	console.log($.EncodeQueryString(data)); // id=42&name=John+Doe&type=Burly
+	console.log($.EncodeQueryString(data)); // id=42&name=John%20Doe&type=Burly
 }(Simple));
 ```
 
