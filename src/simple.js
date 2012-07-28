@@ -933,7 +933,7 @@
      * Input: Number, Number
      * */
     $.Round = function(num, decimalPlaces){
-        decimalPlaces = Math.pow(10, $.Exists(decimalPlaces, 0));
+        decimalPlaces = Math.pow(10, decimalPlaces ? decimalPlaces : 0);
         return Math.round(num*decimalPlaces) / decimalPlaces;
     };
     
