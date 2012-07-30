@@ -65,7 +65,7 @@
         this.queryString = $.EncodeQueryString(this.data);
         this.url = $.Exists(args.url, "/");
         this.urlToOpen = (this.method === "POST") ? this.url : (this.url + "?" + this.queryString);
-    };
+    },
     
     /*
      * AJAXRequestHandler() returns Nothing
@@ -73,7 +73,7 @@
         * This is the handler function for http.onreadystatechange.
         * Is called in the Simple.AJAX() function.
      * */
-    var AJAXRequestHandler = function(){
+    AJAXRequestHandler = function(){
         switch (this.readyState) {
             case 1: /* CONNECT */
                 $.Call(this.request.onConnect);
@@ -102,12 +102,12 @@
                 }
             break;
         }
-    };
+    },
     
     /*
      * Cache of commonly used values.
      * */
-    var Cache = {
+    Cache = {
         array: "array",
         contentType: "contentType",
         cookieGetRegex: "=([^;]+);?", /* Passed as an argument to RegExp's constructor. */
@@ -119,13 +119,13 @@
         timeout: "timeout",
         undefined: "undefined",
         uint32max: 4294967296
-    };
+    },
     
     /*
      * Cache used for implementing the $.Type() function.
      * Based on jQuery's code for doing the same thing.
      * */
-    var ClassTypes = {};
+    ClassTypes = {};
     (function(ctypes){
         var buffer = "Array Boolean Date Function Number Object RegExp String".split(" ");
         for (var i=buffer.length; i--;) {
@@ -145,13 +145,13 @@
             result = predicate(values[len]);
         }
         return result;
-    };
+    },
     
     /*
      * Array of Function.
      * Each function in this array will be called when the DOM is ready.
      * */
-    var DOMReadyCallbacks = [];
+    var DOMReadyCallbacks = [],
     
     /*
      * All event based functions will go here.
@@ -192,12 +192,12 @@
                 State.isBusy = false;
             }
         }
-    };
+    },
     
     /*
      * Functions for adding/removing events are here.
      * */
-    var EventManager = {
+    EventManager = {
         /*
          * ProcessEventListener() returns Nothing
          * Input: Boolean, Array|String, Array|String, Function, Boolean
@@ -257,29 +257,29 @@
                 }
             }
         }
-    };
+    },
     
     /*
      * */
-    var ObjectShortcut = function(source){
+    ObjectShortcut = function(source){
         switch (source) {
             case $.Cookie: return $.Cookie.GetAll();
             case $.GET: return QueryString;
             default: return source;
         }
-    };
+    },
     
     /*
      * Cache of commonly used regular expressions
      * */
-    var RegularExpressions = {
+    RegularExpressions = {
         cookie: /[ ]?([^=]+)=([^;]+)[; ]?/g,
         floatingPoint: /[0-9]+([.][0-9]+)?/g,
         notNumber: /[^0-9.\-+]+/g, /* Used to match anything NOT a number. That is 0-9 and decimal points. */
         number: /([0-9]{1,3}([,][0-9]{3})?)+([.][0-9]+)?/g, /* Used to match any number. Includes commas because some string-numbers use them. */
         queryString: /[?&]?([^&=]+)=?([^&]+)?/g,
         sprintfVariable: /%[b|d|f|h|H|o|s|u|x|X]/g
-    };
+    },
     
     /* 
      * SendAJAXRequest() returns Nothing
@@ -287,7 +287,7 @@
         * A "safe" version of XMLHttpRequest.send().
         * Is compatible with both ActiveX-based AJAX and otherwise.
         * */
-    var SendAJAXRequest = function(request, args){
+    SendAJAXRequest = function(request, args){
         if (typeof args === Cache.undefined || args === null) {
             if (request.isActiveX) {
                 request.http.send();
@@ -299,13 +299,13 @@
         } else {
             SendAJAXRequest(request, null);
         }
-    };
+    },
     
     /*
      * Made a seperate block for this because I might add additional functions in the future.
      * For now it is just the Process() one.
      * */
-    var TextProcessor = {
+    TextProcessor = {
         /*
          * Process() returns String
          * Input: String, String
@@ -327,13 +327,13 @@
                 default: return value;
             }
         }
-    };
+    },
     
     /*
      * Various states will be stored here.
      * Is essentially a cache of boolean values.
      * */
-    var State = {
+    State = {
         hasAddEventListener: (typeof document.addEventListener !== Cache.undefined),
         hasAttachEvent: (typeof document.attachEvent !== Cache.undefined),
         isReady: false,
