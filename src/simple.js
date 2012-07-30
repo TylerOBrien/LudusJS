@@ -151,14 +151,14 @@
      * Array of Function.
      * Each function in this array will be called when the DOM is ready.
      * */
-    var DOMReadyCallbacks = [],
+    DOMReadyCallbacks = [],
     
     /*
      * All event based functions will go here.
      * Right now that is only the DOM loading events.
      * Might add some more here in the future.
      * */
-    var Events = {
+    Events = {
         /*
          * onDOMContentLoaded() returns Nothing
          * Input: Nothing
