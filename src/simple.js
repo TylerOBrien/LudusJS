@@ -760,11 +760,11 @@
         if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
             var result = $.IsArray(source);
             for (var len=source.length; result && len--;) {
-                result = typeof source[len][property] !== Cache.undefined;
+                result = source[len].hasOwnProperty(property);
             }
             return result;
         } else {
-            return typeof source[property] !== Cache.undefined;
+            return source.hasOwnProperty(property);
         }
     };
     
