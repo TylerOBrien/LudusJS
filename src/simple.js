@@ -218,7 +218,7 @@
             } else {
                 /* The event object might be an array. */
                 if ($.IsArray(event)) {
-                    for (var i=0, len=element.length; i < len; i++) {
+                    for (var i=0, len=event.length; i < len; i++) {
                         EventManager.ToggleEventListener(isAddingEvent, element, event[i], callback, useCapture);
                     }
                 } else {
