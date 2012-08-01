@@ -26,6 +26,7 @@ List of Examples
 * [Simple.GET.GetAll](#simplegetgetall)
 * [Simple.HasProperty](#simplehasproperty)
 * [Simple.HasValue](#simplehasvalue)
+* [Simple.Lambda](#simplelambda)
 * [Simple.ObjectToArray](#simpleobjecttoarray)
 * [Simple.RemoveEvent](#simpleremoveevent)
 * [Simple.Sprintf](#simplesprintf)
@@ -673,6 +674,34 @@ _____
 	if ($.HasProperty($.GET, "id")) {
 		console.log("Query string 'id' has been defined.");
 	}
+}(Simple));
+```
+
+Simple.Lambda
+----------
+> > __Input:__ _Mixed source_  
+> > __Output:__ _Function callback_  
+> >
+> > Creates a function that will do nothing except for return the passed value (even if it is undefined)  
+> > Is based on the MooTools function of the same name.
+
+```javascript
+(function($){
+	"use strict";
+	
+	var callback = $.Lambda(42);
+    var num = callback();
+    
+    console.log(num); // 42
+}(Simple));
+```
+_____
+```javascript
+(function($){
+	"use strict";
+	
+    // Disable all anchor click events
+	$.AddEvent("a", "click", $.Lambda(false));
 }(Simple));
 ```
 
