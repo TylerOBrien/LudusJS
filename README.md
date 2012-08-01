@@ -685,8 +685,7 @@ Simple.HasValue
 > > Returns true if the passed value exists in the passed container.  
 > > Is compatible with both arrays and objects.  
 > >    
-> > Performs strict comparisons, so the int value 3 and string value "3"  
-> > will _not_ be  considered equal.
+> > Performs strict comparisons, so the int value 3 and string value "3" will _not_ be  considered equal.
 
 ```javascript
 (function($){
