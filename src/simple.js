@@ -929,6 +929,18 @@
     };
     
     /*
+     * Random() returns Number
+     * Input: Number, Number, Number
+     * */
+    $.Random = function(min, max, decimalPlaces){
+        if (typeof max === Cache.undefined) {
+            max = min;
+            min = 0;
+        }
+        return $.Round((Math.random() * (max-min)) + min, decimalPlaces);
+    };
+    
+    /*
      * RemoveEvent() returns Nothing
      * Input: Array|String, Array|String, Function, Boolean
         * Removed the processed event.
