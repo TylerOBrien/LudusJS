@@ -685,7 +685,7 @@ Simple.HasValue
 > > Returns true if the passed value exists in the passed container.  
 > > Is compatible with both arrays and objects.  
 > >    
-> > Performs strict comparisons, so the int value 3 and string value "3" will _not_ be  considered equal.
+> > Performs strict comparisons, so the int value 3 and string value "3" will _not_ be  considered equal. See the third example for an example of this happening.
 
 ```javascript
 (function($){
@@ -704,6 +704,18 @@ _____
 	if ($.HasValue({"foo":"bar"}, "bar")) {
 		console.log("The value 'bar' exists in the object.");
 	}
+}(Simple));
+```
+_____
+```javascript
+(function($){
+	"use strict";
+	
+	if ($.HasValue({"num:42}, "42")) {
+		// Won't reach here.
+	} else {
+        console.log("The object does not contain the string value '42'.");
+    }
 }(Simple));
 ```
 
