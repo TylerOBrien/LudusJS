@@ -682,8 +682,11 @@ Simple.HasValue
 > > __Input:__ _Array|Object container, Mixed value_
 > > __Output:__ _Boolean result_  
 > >
-> > Returns true if the passed value exists in the passed container. 
-> > Is compatible with both arrays and objects.
+> > Returns true if the passed value exists in the passed container.  
+> > Is compatible with both arrays and objects.  
+> >    
+> > Performs strict comparisons, so the int value 3 and string value "3"  
+> > will _not_ be  considered equal.
 
 ```javascript
 (function($){
