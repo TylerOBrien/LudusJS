@@ -711,7 +711,7 @@ _____
 (function($){
 	"use strict";
 	
-	if ($.HasValue({"num:42}, "42")) {
+	if ($.HasValue({"num":42}, "42")) {
 		// Won't reach here.
 	} else {
         console.log("The object does not contain the string value '42'.");
