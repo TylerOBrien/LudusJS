@@ -893,6 +893,16 @@
     };
     
     /*
+     * Lambda() returns Function
+     * Input: Mixed
+        * Returns a function that will do nothing but return the passed value.
+        * Based on the MooTools function of the same name.
+     * */
+    $.Lambda = function(value){
+        return (function(){return value;});
+    };
+    
+    /*
      * ObjectToArray() returns Array
      * Input: Object
         * Converts the passed object into an array.
