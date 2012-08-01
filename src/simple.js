@@ -807,7 +807,7 @@
         if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
             return Comparison(source, $.IsDOMElement);
         } else {
-            return typeof source !== Cache.undefined && source !== null && $.HasProperty(source, "ELEMENT_NODE");
+            return typeof source !== Cache.undefined && source !== null && typeof source.ELEMENT_NODE !== Cache.undefined;
         }
     };
     
@@ -819,7 +819,7 @@
         if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
             return Comparison(source, $.IsDOMElementArray);
         } else {
-            return typeof source !== Cache.undefined && source !== null && $.IsDOMElement(source[0]) && $.HasProperty(source, "item");
+            return typeof source !== Cache.undefined && source !== null && typeof source.item !== Cache.undefined;
         }
     };
     
