@@ -677,6 +677,34 @@ _____
 }(Simple));
 ```
 
+Simple.HasValue
+----------
+> > __Input:__ _Array|Object container, Mixed value_
+> > __Output:__ _Boolean result_  
+> >
+> > Returns true if the passed value exists in the passed container. 
+> > Is compatible with both arrays and objects.
+
+```javascript
+(function($){
+	"use strict";
+	
+	if ($.HasValue([1,2,3,4,5], 3)) {
+		console.log("The value '3' exists in the array.");
+	}
+}(Simple));
+```
+_____
+```javascript
+(function($){
+	"use strict";
+	
+	if ($.HasValue({"foo":"bar"}, "bar")) {
+		console.log("The value 'bar' exists in the object.");
+	}
+}(Simple));
+```
+
 Simple.Lambda
 ----------
 > > __Input:__ _Mixed source_  
