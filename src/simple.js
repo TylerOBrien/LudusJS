@@ -248,8 +248,8 @@
      * */
     ObjectShortcut = function(source){
         switch (source) {
-            case $.Cookie: return $.Cookie.GetAll();
-            case $.GET: return QueryString;
+            case $.cookie: return $.cookie.getAll();
+            case $.get: return QueryString;
             default: return source;
         }
     },
