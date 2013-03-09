@@ -878,7 +878,7 @@
         if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
             return Comparison(source, $.isObject);
         } else {
-            return ($.Type(source) === Cache.object);
+            return ($.type(source) === Cache.object);
         }
     };
     
@@ -890,7 +890,7 @@
         if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
             return Comparison(source, $.isString);
         } else {
-            return ($.Type(source) === Cache.string);
+            return ($.type(source) === Cache.string);
         }
     };
     
