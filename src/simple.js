@@ -24,7 +24,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * */
  
- var Simple = window.$ = {};
+ var Simple = {};
  
  (function($){
     "use strict";
