@@ -566,22 +566,6 @@
     };
     
     /*
-     * domReady() returns Nothing
-     * Input: Function
-         * Adds the passed function to the list of callbacks that
-         * are called when the DOM is ready.
-     * */
-    $.domReady = function(callback){
-        if ($.type(callback) === Cache.func) {
-            if (State.isReady === false && State.isBusy === false) {
-                DOMReadyCallbacks.push(callback);
-            } else {
-                callback();
-            }
-        }
-    };
-    
-    /*
      * encodeQueryString() returns String
      * Input: Object
          * Encodes a passed Object into a query string.
@@ -956,6 +940,22 @@
             min = 0;
         }
         return $.round((Math.random() * (max-min)) + min, decimalPlaces);
+    };
+
+    /*
+     * ready() returns Nothing
+     * Input: Function
+         * Adds the passed function to the list of callbacks that
+         * are called when the DOM is ready.
+     * */
+    $.ready = function(callback){
+        if ($.type(callback) === Cache.func) {
+            if (State.isReady === false && State.isBusy === false) {
+                DOMReadyCallbacks.push(callback);
+            } else {
+                callback();
+            }
+        }
     };
     
     /*
