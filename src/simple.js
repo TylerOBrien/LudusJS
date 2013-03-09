@@ -468,42 +468,6 @@
     };
     
     /*
-     * domElement() returns Object
-     * Input: String, String|DOMElement
-     * */
-    $.domElement = function(elementStr, context){
-        /* Ensure context is defined. */
-        if (typeof context === Cache.undefined) {
-            context = document;
-        } else if ($.isString(context)) {
-            context = $.domElement(context);
-        }
-        
-        /* Second condition is necessary for IE6-8. */
-        if ($.isDOMElement(context) || context === document) {
-            /*
-             * Match the HTMLCollection object.
-             * */
-            var result;
-            switch (elementStr.charAt(0)) {
-                case "#": result=context.getElementById(elementStr.substring(1)); break;
-                case ".": result=context.getElementsByClassName(elementStr.substring(1)); break;
-                case ":": result=context.getElementsByName(elementStr.substring(1)); break;
-                default:  result=context.getElementsByTagName(elementStr); break;
-            }
-            
-            /* The getElements functions return arrays (sort of)
-             * If any are empty then return NULL instead.
-             * * */
-            if (result !== null && $.hasProperty(result, Cache.length) && result.length === 0) {
-                return null;
-            } else {
-                return result;
-            }
-        }
-    };
-    
-    /*
      * each() returns Nothing
      * Input: Mixed, Function, Boolean
         * Iterates through the passed haystack.
@@ -539,6 +503,42 @@
                 }
             }
          }
+    };
+
+    /*
+     * element() returns Object
+     * Input: String, String|DOMElement
+     * */
+    $.element = function(elementStr, context){
+        /* Ensure context is defined. */
+        if (typeof context === Cache.undefined) {
+            context = document;
+        } else if ($.isString(context)) {
+            context = $.element(context);
+        }
+        
+        /* Second condition is necessary for IE6-8. */
+        if ($.isDOMElement(context) || context === document) {
+            /*
+             * Match the HTMLCollection object.
+             * */
+            var result;
+            switch (elementStr.charAt(0)) {
+                case "#": result=context.getElementById(elementStr.substring(1)); break;
+                case ".": result=context.getElementsByClassName(elementStr.substring(1)); break;
+                case ":": result=context.getElementsByName(elementStr.substring(1)); break;
+                default:  result=context.getElementsByTagName(elementStr); break;
+            }
+            
+            /* The getElements functions return arrays (sort of)
+             * If any are empty then return NULL instead.
+             * * */
+            if (result !== null && $.hasProperty(result, Cache.length) && result.length === 0) {
+                return null;
+            } else {
+                return result;
+            }
+        }
     };
     
     /*
