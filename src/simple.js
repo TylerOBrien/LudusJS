@@ -125,7 +125,7 @@
         * Is used when comparing an array of values.
      * */
     var Comparison = function(values, predicate){
-        var result = $.IsArray(values);
+        var result = $.isArray(values);
         for (var len=values.length; result && len--;) {
             result = predicate(values[len]);
         }
