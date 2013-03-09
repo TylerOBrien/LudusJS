@@ -644,6 +644,39 @@
             }
         }
     };
+
+    /*
+     * format() returns String
+     * Input: String, Mixed
+     * */
+    $.format = function(source){
+        if (arguments.length > 1) {
+            /* 
+             * The values may be in the arguments array,
+             * or may be an array passed as the second argument.
+             * */
+            var indexOffset = 1;
+            var values = arguments;
+            
+            if ($.IsArray(arguments[1])) {
+                indexOffset = 0;
+                values = arguments[1];
+            }
+            
+            var variables = source.match(RegularExpressions.sprintfVariable);
+            var end = (variables) ? variables.length : 0;
+            
+            /* Replace each format variable with the appropriate values. */
+            for (var i = 0; i < end; i++) {
+                source = source.replace(
+                    variables[i], 
+                    TextProcessor.Process(variables[i], values[i+indexOffset].toString())
+                );
+            }
+        }
+        
+        return source;
+    };
     
     /*
      * This section contains query string related methods.
@@ -942,39 +975,6 @@
     $.round = function(num, decimalPlaces){
         decimalPlaces = Math.pow(10, decimalPlaces ? decimalPlaces : 0);
         return Math.round(num*decimalPlaces) / decimalPlaces;
-    };
-    
-    /*
-     * sprintf() returns String
-     * Input: String, Mixed
-     * */
-    $.sprintf = function(source){
-        if (arguments.length > 1) {
-            /* 
-             * The values may be in the arguments array,
-             * or may be an array passed as the second argument.
-             * */
-            var indexOffset = 1;
-            var values = arguments;
-            
-            if ($.IsArray(arguments[1])) {
-                indexOffset = 0;
-                values = arguments[1];
-            }
-            
-            var variables = source.match(RegularExpressions.sprintfVariable);
-            var end = (variables) ? variables.length : 0;
-            
-            /* Replace each sprintf variable with the appropriate values. */
-            for (var i = 0; i < end; i++) {
-                source = source.replace(
-                    variables[i], 
-                    TextProcessor.Process(variables[i], values[i+indexOffset].toString())
-                );
-            }
-        }
-        
-        return source;
     };
     
     /*
