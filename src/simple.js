@@ -658,7 +658,7 @@
             var indexOffset = 1;
             var values = arguments;
             
-            if ($.IsArray(arguments[1])) {
+            if ($.isArray(arguments[1])) {
                 indexOffset = 0;
                 values = arguments[1];
             }
