@@ -1028,15 +1028,15 @@
         * Objects that cannot be converted will be returned as NaN.
      * */
     $.toInt = function(source, base){
-        if ($.Type(source) !== Cache.number) {
+        if ($.type(source) !== Cache.number) {
             var result = source.match(RegularExpressions.number);
             if (result !== null && result.length === 1) {
-                return parseInt(source.replace(RegularExpressions.notNumber, Cache.emptyString), $.Exists(base,10));
+                return parseInt(source.replace(RegularExpressions.notNumber, Cache.emptyString), $.exists(base,10));
             } else {
                 return NaN;
             }
         } else {
-            return parseInt(source, $.Exists(base,10));
+            return parseInt(source, $.exists(base,10));
         }
     };
     
@@ -1048,7 +1048,7 @@
      * */
     $.toUnsignedInt = function(source, base, max){
         if (source = $.toInt(source, base)) {
-            return (source > 0) ? source : ($.Exists(max,Cache.uint32max) - Math.abs(source));
+            return (source > 0) ? source : ($.exists(max,Cache.uint32max) - Math.abs(source));
         } else {
             return source;
         }
