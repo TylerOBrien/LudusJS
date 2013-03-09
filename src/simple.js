@@ -30,21 +30,6 @@
     "use strict";
     
     /*
-    * AJAX fallback for IE6.
-    * Might not work for IE5 and earlier.
-    * */
-    if (typeof window.XMLHttpRequest === "undefined") {
-        window.XMLHttpRequest = function(){
-            return new ActiveXObject("Microsoft.XMLHTTP");
-        };
-        window.XMLHttpRequest.prototype.isActiveX = true;
-    } else {
-        window.XMLHttpRequest.prototype.isActiveX = false;
-    }
-    
-    /* * * Private * * */
-    
-    /*
      * AJAXRequest Object
      * Is used in the Simple.AJAX() function.
      * */
