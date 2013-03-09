@@ -328,19 +328,19 @@
     /* * * Public * * */
     
     /*
-     * AddEvent() returns Nothing
+     * addEvent() returns Nothing
      * Input: Array|String, Array|String, Function, Boolean
         * Adds the processed event.
         * If this event already exists then this function won't actually do anything.
      * */
-    $.AddEvent = function(element, event, callback, useCapture){
+    $.addEvent = function(element, event, callback, useCapture){
         EventManager.ProcessEventListener(true, element, event, callback, useCapture);
     };
     
     /*
-     * AJAX() returns Nothing
+     * ajax() returns Nothing
      * */
-    $.AJAX = function(args){
+    $.ajax = function(args){
         var request = new AJAXRequest(args);
         
         /* 
@@ -354,10 +354,10 @@
          * Add a new timeout if one is given.
          * The time is assumed to be milliseconds.
          * */
-        if ($.IsNumeric(args[Cache.timeout])) {
+        if ($.isNumeric(args[Cache.timeout])) {
             request.timeout = setTimeout(function(){
                 request.http.abort();
-                $.Call(request.onTimeout);
+                $.call(request.onTimeout);
             }, args[Cache.timeout]);
         }
         
@@ -369,27 +369,27 @@
     };
     
     /*
-     * ArraysEqual() returns Boolean
+     * arraysEqual() returns Boolean
      * Input: Array, Array
         * Returns true if the two passed arrays are identical.
         * False otherwise.
     * */
-    $.ArraysEqual = function(first, second){
-        var result = $.IsArray([first,second],true) && first.length === second.length;
+    $.arraysEqual = function(first, second){
+        var result = $.isArray([first,second],true) && first.length === second.length;
         if (result) {
             for (var len=first.length; result && len--;) {
-                result = $.Equals(first[len], second[len]);
+                result = $.equals(first[len], second[len]);
             }
         }
         return result;
     };
 
     /*
-     * Call() returns Mixed
+     * call() returns Mixed
      * Input: Mixed, Mixed, Mixed
      * */
-    $.Call = function(callback, first, second){
-        if ($.Type(callback) === Cache.func) {
+    $.call = function(callback, first, second){
+        if ($.type(callback) === Cache.func) {
             if (typeof second !== Cache.undefined) {
                 return callback(first, second);
             } else if (typeof first !== Cache.undefined) {
@@ -401,27 +401,27 @@
     };
     
     /*
-     * Cookie management is in here.
+     * cookie management is in here.
      * Will update this description in the future, maybe.
      * */
-    $.Cookie = {
+    $.cookie = {
         /*
-         * Exists() returns Boolean
+         * exists() returns Boolean
          * Input: String
             * Returns true if the passed cookie name has been defined.
             * False otherwise.
         * */
-        Exists: function(name){
-            return $.HasProperty($.Cookie.GetAll(), name);
+        exists: function(name){
+            return $.hasProperty($.cookie.getAll(), name);
         },
         
         /*
-         * Get() returns String|undefined
+         * get() returns String|undefined
          * Input: String
             * Returns the value of the passed cookie name.
             * Will return undefined if the cookie has not been defined.
         * */
-        Get: function(name){
+        get: function(name){
             var result = new RegExp(name + Cache.cookieGetRegex, "g").exec(document.cookie);
             if (result !== null) {
                 return result[1];
@@ -429,11 +429,11 @@
         },
         
         /*
-         * GetAll() returns Object
+         * getAll() returns Object
          * Input: Nothing
             * Returns an object containing all of the cookie definitions.
          * */
-        GetAll: function(){
+        getAll: function(){
             var currentCookie = document.cookie;
             var regex = RegularExpressions.cookie;
             var buffer = regex.exec(currentCookie);
@@ -448,10 +448,10 @@
         },
         
         /*
-         * Set() returns Nothing
+         * set() returns Nothing
          * Input: String, Mixed, Number, String, String, Boolean
          * */
-        Set: function(name, value, milliseconds, path, domain, secure){
+        set: function(name, value, milliseconds, path, domain, secure){
             var date = new Date;
             var expiration = new Date(milliseconds);
             
@@ -468,19 +468,19 @@
     };
     
     /*
-     * DOMElement() returns Object
+     * domElement() returns Object
      * Input: String, String|DOMElement
      * */
-    $.DOMElement = function(elementStr, context){
+    $.domElement = function(elementStr, context){
         /* Ensure context is defined. */
         if (typeof context === Cache.undefined) {
             context = document;
-        } else if ($.IsString(context)) {
-            context = $.DOMElement(context);
+        } else if ($.isString(context)) {
+            context = $.domElement(context);
         }
         
         /* Second condition is necessary for IE6-8. */
-        if ($.IsDOMElement(context) || context === document) {
+        if ($.isDOMElement(context) || context === document) {
             /*
              * Match the HTMLCollection object.
              * */
@@ -495,7 +495,7 @@
             /* The getElements functions return arrays (sort of)
              * If any are empty then return NULL instead.
              * * */
-            if (result !== null && $.HasProperty(result, Cache.length) && result.length === 0) {
+            if (result !== null && $.hasProperty(result, Cache.length) && result.length === 0) {
                 return null;
             } else {
                 return result;
@@ -504,25 +504,25 @@
     };
     
     /*
-     * Each() returns Nothing
+     * each() returns Nothing
      * Input: Mixed, Function, Boolean
         * Iterates through the passed haystack.
         * Will pass an iterator to the callback.
      * */
-    $.Each = function(haystack, callback, ignoreReturnValues){
+    $.each = function(haystack, callback, ignoreReturnValues){
         haystack = ObjectShortcut(haystack);
         
         /*
-         * By default the Each() function will halt if a callback returns false.
+         * By default the each() function will halt if a callback returns false.
          * This boolean will disable that.
          * */
-        ignoreReturnValues = $.Exists(ignoreReturnValues, null, true);
+        ignoreReturnValues = $.exists(ignoreReturnValues, null, true);
         
         /*
          * DOMObjectArrays aren't actually arrays, so the $.IsArray function returns false.
          * So also check for them.
          * */
-         if ($.IsArray(haystack) || $.IsDOMElementArray(haystack)) {
+         if ($.isArray(haystack) || $.isDOMElementArray(haystack)) {
             var valueBuffer;
             for (var i=0, end=haystack.length; i < end; i++) {
                 valueBuffer = haystack[i];
@@ -542,7 +542,7 @@
     };
     
     /*
-     * DecodeQueryString() returns Object
+     * decodeQueryString() returns Object
      * Input: String
          * Converts a passed query string in this format:
              * id=42&name=John%20Doe&type=user
@@ -552,7 +552,7 @@
              * foo&bar&baz
          * Will be NULL valued in the object.
      * */
-    $.DecodeQueryString = function(string){
+    $.decodeQueryString = function(string){
         var regex = RegularExpressions.queryString;
         var buffer = regex.exec(string);
         var result = {};
@@ -566,13 +566,13 @@
     };
     
     /*
-     * DOMReady() returns Nothing
+     * domReady() returns Nothing
      * Input: Function
          * Adds the passed function to the list of callbacks that
          * are called when the DOM is ready.
      * */
-    $.DOMReady = function(callback){
-        if ($.Type(callback) === Cache.func) {
+    $.domReady = function(callback){
+        if ($.type(callback) === Cache.func) {
             if (State.isReady === false && State.isBusy === false) {
                 DOMReadyCallbacks.push(callback);
             } else {
@@ -582,7 +582,7 @@
     };
     
     /*
-     * EncodeQueryString() returns String
+     * encodeQueryString() returns String
      * Input: Object
          * Encodes a passed Object into a query string.
          * For example, this:
@@ -590,7 +590,7 @@
          * Will become:
              * name=John%20Doe&id=42
      * */
-    $.EncodeQueryString = function(source){
+    $.encodeQueryString = function(source){
         var result = "";
         for (var index in source) {
             result += (encodeURIComponent(index) + "=" + encodeURIComponent(source[index]) + "&");
@@ -599,27 +599,27 @@
     };
     
     /*
-     * Equals() returns Boolean
+     * equals() returns Boolean
      * Input: Object, Object, Boolean
         * Compares the two passed objects and returns true if they are considered equal.
         * Returns false otherwise.
      * */
-    $.Equals = function(first, second){
+    $.equals = function(first, second){
         first = ObjectShortcut(first);
         second = ObjectShortcut(second);
         
-        if ($.IsArray([first,second],true)) {
-            return $.ArraysEqual(first, second);
-        } else if ($.IsObject([first,second],true)) {
-            var firstArray=$.ObjectToArray(first), secondArray=$.ObjectToArray(second);
-            return $.Equals(firstArray[0],secondArray[0]) && $.Equals(firstArray[1],secondArray[1]);
+        if ($.isArray([first,second],true)) {
+            return $.arraysEqual(first, second);
+        } else if ($.isObject([first,second],true)) {
+            var firstArray=$.ObjectToArray(first), secondArray=$.objectToArray(second);
+            return $.equals(firstArray[0],secondArray[0]) && $.equals(firstArray[1],secondArray[1]);
         } else {
             return first === second;
         }
     };
     
     /*
-     * Exists() returns Mixed
+     * exists() returns Mixed
      * Input: Mixed, Mixed, Boolean
          * Used for determining if the passed object is defined.
          *
@@ -628,7 +628,7 @@
          *
          * If "doReturnBoolean" is true then true/false is returned in place of object/override.
      * */
-    $.Exists = function(source, override, doReturnBoolean){
+    $.exists = function(source, override, doReturnBoolean){
         source = ObjectShortcut(source);
         if (typeof source !== Cache.undefined) {
             if (doReturnBoolean) {
@@ -654,14 +654,14 @@
         * var hasId = $.HasProperty($.GET, "id");
         * var matches = $.Equals($.GET, {"id":"42", "name":"John Doe"});
      * */
-    $.GET = {
+    $.get = {
         /*
-         * Exists() returns Boolean
+         * exists() returns Boolean
          * Input: Array|String
              * Returns true if the passed GET variable has been defined.
              * Does not require a value to have been assigned to the GET variables.
          * */
-        Exists: function(name){
+        exists: function(name){
             if ($.Type(name) === Cache.array) {
                 var result = name.length;
                 for (var len=result; result && len--;) {
@@ -674,12 +674,12 @@
         },
         
         /*
-         * Get() returns String|undefined
+         * get() returns String|undefined
          * Input: String
             * Returns the value of the passed query string variable.
             * Will return undefined if it has not been defined.
          * */
-        Get: function(source){
+        get: function(source){
             if ($.Type(source) === Cache.array) {
                 var result = {};
                 for (var len=source.length; len--;) {
@@ -692,11 +692,11 @@
         },
         
         /*
-         * GetAll() returns Object
+         * getAll() returns Object
          * Input: Nothing
             * Returns a copy of the query string object.
          * */
-        GetAll: function(){
+        getAll: function(){
             var result = {};
             for (var index in QueryString) {
                 result[index] = QueryString[index];
@@ -706,7 +706,7 @@
     };
     
     /*
-     * GenerateArray() returns Array
+     * generateArray() returns Array
      * Input: Number, Mixed, Boolean
         * Generates an array based on the passed parameters.
         * If the third argument is a boolean "true" then second argument is
@@ -723,7 +723,7 @@
                         }, true);
             * console.log(arr); // [1, 4, 9, 16, 25, 36, 49, 64, 81, 0]
      * */
-    $.GenerateArray = function(amount, value, isCallback){
+    $.generateArray = function(amount, value, isCallback){
         var result = [];
         for (var i = 0; i < amount; i++) {
             result[i] = isCallback ? value(result,i) : value;
@@ -732,7 +732,7 @@
     };
     
     /*
-     * HasProperty() returns Boolean
+     * hasProperty() returns Boolean
      * Input: String, String, Boolean
         * Returns true if the object has the passed property defined.
         * For example, checking for "foo" on this object:
@@ -740,10 +740,10 @@
         * Will return true because it is defined.
         * Its value is irrelevent.
      * */
-    $.HasProperty = function(source, property, doIterateSource){
+    $.hasProperty = function(source, property, doIterateSource){
         source = ObjectShortcut(source);
         if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            var result = $.IsArray(source);
+            var result = $.isArray(source);
             for (var len=source.length; result && len--;) {
                 result = source[len].hasOwnProperty(property);
             }
@@ -754,7 +754,7 @@
     };
     
     /*
-     * HasValue() returns Boolean
+     * hasValue() returns Boolean
      * Input: Array|Object, Mixed
         * Returns true if the passed container has the passed source defined.
         * For example, the following will return true for the value "bar":
@@ -763,74 +763,74 @@
         * However, only the second will return true for "foo".
         * Indices in objects are not searched.
      * */
-    $.HasValue = function(source, value){
+    $.hasValue = function(source, value){
         source = ObjectShortcut(source);
         var result = false;
-        $.Each(source, function(itr){
-            return !(result = $.Equals(value,itr.value));
+        $.each(source, function(itr){
+            return !(result = $.equals(value,itr.value));
         });
         return result;
     };
     
     /*
-     * IsArray() returns Boolean
+     * isArray() returns Boolean
      * Input: Array, Boolean
      * */
-    $.IsArray = function(source, doIterateSource){
+    $.isArray = function(source, doIterateSource){
         if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.IsArray);
+            return Comparison(source, $.isArray);
         } else {
-            return ($.Type(source) === Cache.array);
+            return ($.type(source) === Cache.array);
         }
     };
     
     /*
-     * IsDOMElement() returns Boolean
+     * isDOMElement() returns Boolean
      * Input: Object, Boolean
      * */
-    $.IsDOMElement = function(source, doIterateSource){
+    $.isDOMElement = function(source, doIterateSource){
         if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.IsDOMElement);
+            return Comparison(source, $.isDOMElement);
         } else {
             return typeof source !== Cache.undefined && source !== null && typeof source.ELEMENT_NODE !== Cache.undefined;
         }
     };
     
     /*
-     * IsDOMElementArray() returns Boolean
+     * isDOMElementArray() returns Boolean
      * Input: Object, Boolean
      * */
-    $.IsDOMElementArray = function(source, doIterateSource){
+    $.isDOMElementArray = function(source, doIterateSource){
         if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.IsDOMElementArray);
+            return Comparison(source, $.isDOMElementArray);
         } else {
             return typeof source !== Cache.undefined && source !== null && typeof source.item !== Cache.undefined;
         }
     };
     
     /*
-     * IsEmptyArray() returns Boolean
+     * isEmptyArray() returns Boolean
      * Input: Array, Boolean
         * Returns true if the passed array is empty.
         * False otherwise.
     * */
-    $.IsEmptyArray = function(source, doIterateSource){
+    $.isEmptyArray = function(source, doIterateSource){
         if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.IsEmptyArray);
+            return Comparison(source, $.isEmptyArray);
         } else {
-            return $.IsArray(source) && !source.length;
+            return $.isArray(source) && !source.length;
         }
     };
     
     /*
-     * IsEmptyObject() returns Boolean
+     * isEmptyObject() returns Boolean
      * Input: Object|Array, Boolean
         * Returns true if the passed object contains no indices, or is undefined.
         * Will only return false if the object contains no indices, even if defined.
     * */
-    $.IsEmptyObject = function(source, doIterateSource){
+    $.isEmptyObject = function(source, doIterateSource){
         if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.IsEmptyObject);
+            return Comparison(source, $.isEmptyObject);
         } else {
             if (typeof source !== Cache.undefined) {
                 for (var index in source) {
@@ -842,53 +842,53 @@
     };
     
     /*
-     * IsNumeric() returns Boolean
+     * isNumeric() returns Boolean
      * Input: Array|Mixed, Array
      * */
-    $.IsNumeric = function(source, doIterateSource){
+    $.isNumeric = function(source, doIterateSource){
         if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.IsNumeric);
+            return Comparison(source, $.isNumeric);
         } else {
             return !isNaN(parseFloat(source)) && isFinite(source);
         }
     };
     
     /*
-     * IsObject() returns Boolean
+     * isObject() returns Boolean
      * Input: Object|Array, Boolean
      * */
-    $.IsObject = function(source, doIterateSource){
+    $.isObject = function(source, doIterateSource){
         if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.IsObject);
+            return Comparison(source, $.isObject);
         } else {
             return ($.Type(source) === Cache.object);
         }
     };
     
     /*
-     * IsString() returns Boolean
+     * isString() returns Boolean
      * Input: Array|String, Boolean
      * */
-    $.IsString = function(source, doIterateSource){
+    $.isString = function(source, doIterateSource){
         if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.IsString);
+            return Comparison(source, $.isString);
         } else {
             return ($.Type(source) === Cache.string);
         }
     };
     
     /*
-     * Lambda() returns Function
+     * lambda() returns Function
      * Input: Mixed
         * Returns a function that will do nothing but return the passed value.
         * Based on the MooTools function of the same name.
      * */
-    $.Lambda = function(value){
+    $.lambda = function(value){
         return (function(){return value;});
     };
     
     /*
-     * ObjectToArray() returns Array
+     * objectToArray() returns Array
      * Input: Object
         * Converts the passed object into an array.
         * The first element will be the object's indices.
@@ -903,7 +903,7 @@
               ]
         *
     * */
-    $.ObjectToArray = function(source){
+    $.objectToArray = function(source){
         source = ObjectShortcut(source);
         var result = [[],[]];
         for (var index in source) {
@@ -914,41 +914,41 @@
     };
     
     /*
-     * Random() returns Number
+     * random() returns Number
      * Input: Number, Number, Number
      * */
-    $.Random = function(min, max, decimalPlaces){
+    $.random = function(min, max, decimalPlaces){
         if (typeof max === Cache.undefined) {
             max = min;
             min = 0;
         }
-        return $.Round((Math.random() * (max-min)) + min, decimalPlaces);
+        return $.round((Math.random() * (max-min)) + min, decimalPlaces);
     };
     
     /*
-     * RemoveEvent() returns Nothing
+     * removeEvent() returns Nothing
      * Input: Array|String, Array|String, Function, Boolean
         * Removed the processed event.
         * If this event does not exist then this function won't actually do anything.
      * */
-    $.RemoveEvent = function(element, event, callback, useCapture){
+    $.removeEvent = function(element, event, callback, useCapture){
         EventManager.ProcessEventListener(false, element, event, callback, useCapture);
     };
     
     /*
-     * Round returns Number
+     * round returns Number
      * Input: Number, Number
      * */
-    $.Round = function(num, decimalPlaces){
+    $.round = function(num, decimalPlaces){
         decimalPlaces = Math.pow(10, decimalPlaces ? decimalPlaces : 0);
         return Math.round(num*decimalPlaces) / decimalPlaces;
     };
     
     /*
-     * Sprintf() returns String
+     * sprintf() returns String
      * Input: String, Mixed
      * */
-    $.Sprintf = function(source){
+    $.sprintf = function(source){
         if (arguments.length > 1) {
             /* 
              * The values may be in the arguments array,
@@ -978,12 +978,12 @@
     };
     
     /*
-     * ToInt() returns Number|NaN
+     * toInt() returns Number|NaN
      * Input: Mixed, Number
         * Converts the passed object to an integer.
         * Objects that cannot be converted will be returned as NaN.
      * */
-    $.ToInt = function(source, base){
+    $.toInt = function(source, base){
         if ($.Type(source) !== Cache.number) {
             var result = source.match(RegularExpressions.number);
             if (result !== null && result.length === 1) {
@@ -997,13 +997,13 @@
     };
     
     /*
-     * ToUnsignedInt() returns Number|NaN
+     * toUnsignedInt() returns Number|NaN
      * Input: Mixed, Number, Number
         * Converts the passed object to an unsigned integer.
         * Objects that cannot be converted will be returned as NaN.
      * */
-    $.ToUnsignedInt = function(source, base, max){
-        if (source = $.ToInt(source, base)) {
+    $.toUnsignedInt = function(source, base, max){
+        if (source = $.toInt(source, base)) {
             return (source > 0) ? source : ($.Exists(max,Cache.uint32max) - Math.abs(source));
         } else {
             return source;
@@ -1011,12 +1011,12 @@
     };
     
     /*
-     * Type() returns String
+     * type() returns String
      * Input: Mixed
          * Returns the type of the passed object.
          * Based on jQuery's code for doing the same thing.
      * */
-    $.Type = function(source){
+    $.type = function(source){
         return source === null ? "null" : (ClassTypes[Object.prototype.toString.call(source)] || "object");
     };
     
