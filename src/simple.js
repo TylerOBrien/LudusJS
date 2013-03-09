@@ -901,6 +901,18 @@
             return true;
         }
     };
+
+    /*
+     * isFunction() returns Boolean
+     * Input: Array|Object, Boolean
+     * */
+    $.isFunction = function(source, doIteratSource) {
+        if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
+            return Comparison(source, $.isFunction);
+        } else {
+            return typeof source === Cache.func;
+        }
+    };
     
     /*
      * isNumeric() returns Boolean
