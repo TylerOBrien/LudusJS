@@ -601,6 +601,32 @@
             return first === second;
         }
     };
+
+    /*
+     * erase() returns Nothing
+     * Input: Array|Object, Object
+        * Removes all instances of needle from the passed haystack.
+     * */
+    $.erase = function(haystack, needle) {
+        var indices = [];
+        $.each(haystack, function(itr){
+            if ($.isArray(haystack) && $.equals(itr.value, needle)) {
+                indices.push(itr.index);
+            } else if ($.isObject(haystack) && $.equals(itr.index, needle)) {
+                indices.push(itr.index);
+            }
+        });
+
+        if (indices.length) {
+            if ($.isArray(haystack)) {
+                for (var i=indices.length; i--;) {
+                    haystack.splice(indices[i], 1);
+                }
+            } else {
+                delete haystack[indices[0]];
+            }
+        }
+    };
     
     /*
      * exists() returns Mixed
