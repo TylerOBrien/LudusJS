@@ -595,7 +595,7 @@
         if ($.isArray([first,second],true)) {
             return $.arraysEqual(first, second);
         } else if ($.isObject([first,second],true)) {
-            var firstArray=$.ObjectToArray(first), secondArray=$.objectToArray(second);
+            var firstArray=$.objectToArray(first), secondArray=$.objectToArray(second);
             return $.equals(firstArray[0],secondArray[0]) && $.equals(firstArray[1],secondArray[1]);
         } else {
             return first === second;
