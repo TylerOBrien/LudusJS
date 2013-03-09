@@ -814,6 +814,24 @@
         });
         return result;
     };
+
+    /*
+     * indexOf() returns Number|String|null
+     * Input: Array|Object, Object
+        * Returns the index of the passed value if found in the container.
+        * Will return NULL if the value is not found.
+     * */
+    $.indexOf = function(haystack, needle) {
+        var result = null;
+        $.each(haystack, function(itr){
+            if ($.equals(itr.value, needle)) {
+                result = itr.index;
+                return false;
+            }
+        });
+
+        return result;
+    }
     
     /*
      * isArray() returns Boolean
