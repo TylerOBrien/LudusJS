@@ -1022,7 +1022,7 @@
     
     /* * * Query Strings * * */
     
-    var QueryString = $.DecodeQueryString(document.location.search);
+    var QueryString = $.decodeQueryString(document.location.search);
     
     /* * * Event Listeners * * */
     
