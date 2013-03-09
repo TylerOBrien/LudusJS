@@ -34,21 +34,21 @@
      * Is used in the Simple.AJAX() function.
      * */
     var AJAXRequest = function(args){
-        this.async = $.Exists(args.async, true);
-        this.charset = $.Exists(args.charset, "utf-8");
-        this.contentType = $.Exists(args.contentType, "application/x-www-form-urlencoded");
-        this.data = $.Exists(args.data, {});
+        this.async = $.exists(args.async, true);
+        this.charset = $.exists(args.charset, "utf-8");
+        this.contentType = $.exists(args.contentType, "application/x-www-form-urlencoded");
+        this.data = $.exists(args.data, {});
         this.http = new XMLHttpRequest();
         this.http.request = this;
-        this.method = $.Exists(args.method, "GET");
+        this.method = $.exists(args.method, "GET");
         this.onError = args.onError;
         this.onConnect = args.onConnect;
         this.onNotFound = args.onNotFound;
         this.onProcess = args.onProcess;
         this.onRecvRequest = args.onRecvRequest;
         this.onSuccess = args.onSuccess;
-        this.queryString = $.EncodeQueryString(this.data);
-        this.url = $.Exists(args.url, "/");
+        this.queryString = $.encodeQueryString(this.data);
+        this.url = $.exists(args.url, "/");
         this.urlToOpen = (this.method === "POST") ? this.url : (this.url + "?" + this.queryString);
     },
     
@@ -61,14 +61,14 @@
     AJAXRequestHandler = function(){
         switch (this.readyState) {
             case 1: /* CONNECT */
-                $.Call(this.request.onConnect);
+                $.call(this.request.onConnect);
             break;
             case 2: /* REQUEST RECEIVED */
                 this.timeBegin = new Date().getTime();
-                $.Call(this.request.onRecvRequest);
+                $.call(this.request.onRecvRequest);
             break;
             case 3: /* PROCESSING */
-                $.Call(this.request.onProcess);
+                $.call(this.request.onProcess);
             break;
             case 4: /* COMPLETE */
                 if (typeof this.request.timeout !== Cache.undefined) {
@@ -79,10 +79,10 @@
                 this.timeDifference = (this.timeEnd - this.timeBegin);
                 
                 switch (this.status) {
-                    case 200: $.Call(this.request.onSuccess, this.responseText, this.timeDifference);
+                    case 200: $.call(this.request.onSuccess, this.responseText, this.timeDifference);
                     break;
-                    case 404: $.Call(this.request.onNotFound, this.responseText, this.timeDifference);
-                    default:  $.Call(this.request.onError, [this.responseText,this.status], this.timeDifference);
+                    case 404: $.call(this.request.onNotFound, this.responseText, this.timeDifference);
+                    default:  $.call(this.request.onError, [this.responseText,this.status], this.timeDifference);
                     break;
                 }
             break;
@@ -191,18 +191,18 @@
          * */
         ProcessEventListener: function(isAddingEvent, element, event, callback, useCapture){
             /* If a string is given then assume it's a DOM element. */
-            if ($.IsString(element)) {
-                element = $.DOMElement(element);
+            if ($.isString(element)) {
+                element = $.element(element);
             }
             /* If an array has been given then pass each element to this function recursivly. */
-            if ($.IsDOMElementArray(element) || $.IsArray(element)) {
+            if ($.isDOMElementArray(element) || $.isArray(element)) {
                 /* Use "i<len" instead of "len--" to ensure the events are processed in order. */
                 for (var i=0, len=element.length; i < len; i++) {
                     EventManager.ProcessEventListener(isAddingEvent, element[i], event, callback, useCapture);
                 }
             } else {
                 /* The event object might be an array. */
-                if ($.IsArray(event)) {
+                if ($.isArray(event)) {
                     for (var i=0, len=event.length; i < len; i++) {
                         EventManager.ToggleEventListener(isAddingEvent, element, event[i], callback, useCapture);
                     }
@@ -300,15 +300,15 @@
          * */
         Process: function(type, value){
             switch (type){
-                case "%b": return $.ToInt(value).toString(2);
-                case "%d": return $.ToInt(value).toString();
+                case "%b": return $.toInt(value).toString(2);
+                case "%d": return $.toInt(value).toString();
                 case "%f": return parseFloat(value).toString();
-                case "%h": return $.ToInt(value).toString(16);
-                case "%H": return $.ToInt(value).toString(16).toUpperCase();
-                case "%o": return $.ToInt(value).toString(8);
-                case "%u": return $.ToUnsignedInt(value).toString();
-                case "%x": return "0x" + $.ToInt(value).toString(16);
-                case "%X": return "0x" + $.ToInt(value).toString(16).toUpperCase();
+                case "%h": return $.toInt(value).toString(16);
+                case "%H": return $.toInt(value).toString(16).toUpperCase();
+                case "%o": return $.toInt(value).toString(8);
+                case "%u": return $.toUnsignedInt(value).toString();
+                case "%x": return "0x" + $.toInt(value).toString(16);
+                case "%X": return "0x" + $.toInt(value).toString(16).toUpperCase();
                 default: return value;
             }
         }
@@ -679,7 +679,7 @@
              * Does not require a value to have been assigned to the GET variables.
          * */
         exists: function(name){
-            if ($.Type(name) === Cache.array) {
+            if ($.type(name) === Cache.array) {
                 var result = name.length;
                 for (var len=result; result && len--;) {
                     result = (typeof QueryString[name[len]] !== Cache.undefined);
@@ -697,7 +697,7 @@
             * Will return undefined if it has not been defined.
          * */
         get: function(source){
-            if ($.Type(source) === Cache.array) {
+            if ($.type(source) === Cache.array) {
                 var result = {};
                 for (var len=source.length; len--;) {
                     result[source[len]] = QueryString[source[len]];
