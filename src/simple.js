@@ -399,6 +399,21 @@
             }
         }
     };
+
+    /*
+     * compare() returns Boolean
+     * Input: Array|Object, Function
+        * Returns true if every call to the predicate also returns true.
+        * Returns false otherwise, or if empty data is given.
+     * */
+    $.compare = function(data, predicate) {
+        var result;
+        $.each(data, function(itr){
+            return result = predicate(itr.value);
+        });
+
+        return result ? true : false;
+    };
     
     /*
      * cookie management is in here.
