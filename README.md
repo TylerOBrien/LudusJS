@@ -1,37 +1,74 @@
-SimpleJS
+LudusJS
 ----------
-This is a lightweight JavaScript library designed to simplify common tasks in vanilla JavaScript. Originally this was designed as an AJAX wrapper, but eventually grew into a much larger library. SimpleJS makes no attempt to replicate, or replace, other existing libraries such as jQuery or MooTools; it is merely something I designed to simplify JavaScript when specifically _not_ using those libraries.
+This is a lightweight JavaScript library designed to simplify common tasks when writing vanilla JavaScript (i.e. typically when not using frameworks like jQuery or MooTools). Originally this was only an AJAX wrapper, but as I wrote it I thought up features to add, and eventually it became what it is now.
 
-__The current version, while usable, is not yet complete.__
+How to Use
+----------
+Usage is pretty much the same as jQuery; include the LudusJS source, and then pass callbacks to a ready function, which will ensure that they are called after the DOM finishes loading.  
+This is a basic example:
+
+```html
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script src="ludus.js"></script>
+		<script>
+			Ludus.ready(function(){
+				alert(Ludus.element("#foo").innerHTML);
+			});
+		</script>
+	</head>
+	<body>
+		<div id="foo">hello world</div>
+	</body>
+</html>````
 
 Documentation
 ----------
-* [Simple.AddEvent](#simpleaddevent)
-* [Simple.AJAX](#simpleajax)
-* [Simple.Call](#simplecall)
-* [Simple.Cookie.Exists](#simplecookieexists)
-* [Simple.Cookie.Get](#simplecookieget)
-* [Simple.Cookie.GetAll](#simplecookiegetall)
-* [Simple.Cookie.Set](#simplecookieset)
-* [Simple.DecodeQueryString](#simpledecodequerystring)
-* [Simple.DOMElement](#simpledomelement)
-* [Simple.DOMReady](#simpledomready)
-* [Simple.Each](#simpleeach)
-* [Simple.EncodeQueryString](#simpleencodequerystring)
-* [Simple.Equals](#simpleequals)
-* [Simple.Exists](#simpleexists)
-* [Simple.GenerateArray](#simplegeneratearray)
-* [Simple.GET.Exists](#simplegetexists)
-* [Simple.GET.Get](#simplegetget)
-* [Simple.GET.GetAll](#simplegetgetall)
-* [Simple.HasProperty](#simplehasproperty)
-* [Simple.HasValue](#simplehasvalue)
-* [Simple.Lambda](#simplelambda)
-* [Simple.ObjectToArray](#simpleobjecttoarray)
-* [Simple.RemoveEvent](#simpleremoveevent)
-* [Simple.Sprintf](#simplesprintf)
+* [Ludus.addEvent](#ludusaddevent)
+* [Ludus.ajax](#ludusajax)
+* [Ludus.arraysEqual](#ludusarraysequal)
+* [Ludus.call](#luduscall)
+* [Ludus.compare](#luduscompare)
+* [Ludus.cookie.exists](#luduscookieexists)
+* [Ludus.cookie.get](#luduscookieget)
+* [Ludus.cookie.getAll](#luduscookiegetall)
+* [Ludus.cookie.set](#luduscookieset)
+* [Ludus.decodeQueryString](#ludusdecodequerystring)
+* [Ludus.each](#luduseach)
+* [Ludus.element](#luduselement)
+* [Ludus.encodeQueryString](#ludusencodequerystring)
+* [Ludus.equals](#ludusequals)
+* [Ludus.erase](#luduserase)
+* [Ludus.exists](#ludusexists)
+* [Ludus.format](#ludusformat)
+* [Ludus.generateArray](#ludusgeneratearray)
+* [Ludus.get.exists](#ludusgetexists)
+* [Ludus.get.get](#ludusgetget)
+* [Ludus.get.getAll](#ludusgetgetall)
+* [Ludus.hasProperty](#ludushasproperty)
+* [Ludus.hasValue](#ludushasvalue)
+* [Ludus.indexOf](#ludusindexof)
+* [Ludus.isArray](#ludusisarray)
+* [Ludus.isDOMElement](#ludusisdomelement)
+* [Ludus.isDOMElementArray](#ludusisdomelementarray)
+* [Ludus.isEmptyArray](#ludusisemptyarray)
+* [Ludus.isEmptyObject](#ludusisemptyobject)
+* [Ludus.isIterable](#ludusisiterable)
+* [Ludus.isNumeric](#ludusisnumeric)
+* [Ludus.isObject](#ludusisobject)
+* [Ludus.isString](#ludusisstring)
+* [Ludus.lambda](#luduslambda)
+* [Ludus.objectToArray](#ludusobjecttoarray)
+* [Ludus.random](#ludusrandom)
+* [Ludus.ready](#ludusready)
+* [Ludus.removeEvent](#ludusremoveevent)
+* [Ludus.round](#ludusround)
+* [Ludus.toInt](#ludustoint)
+* [Ludus.toUnsignedInt](#ludustounsignedint)
+* [Ludus.type](#ludustype)
 
-Simple.AddEvent
+Ludus.addEvent
 ----------
 > > __Input:__ _Array|DOMObject|String element, Array|String event, Function callback_  
 > > __Output:__ _Nothing_
@@ -48,36 +85,36 @@ Simple.AddEvent
 (function($){
 	"use strict";
 	
-	$.DOMReady(function(){
-		$.AddEvent("#foo", "mouseover", function(){
+	$.ready(function(){
+		$.addEvent("#foo", "mouseover", function(){
 			console.log("over: foo");
 		});
 	});
-}(Simple));
+}(Ludus));
 ```
 ____
 ```javascript
 (function($){
 	"use strict";
 	
-	$.DOMReady(function(){
-		$.AddEvent(["#foo","#bar"], "mouseover", function(){
+	$.ready(function(){
+		$.addEvent(["#foo","#bar"], "mouseover", function(){
 			console.log("over: " + this.getAttribute("id"));
 		});
 	});
-}(Simple));
+}(Ludus));
 ```
 ____
 ```javascript
 (function($){
 	"use strict";
 	
-	$.DOMReady(function(){
-		$.AddEvent("#foo", ["mouseout","mouseover"], function(){
+	$.ready(function(){
+		$.addEvent("#foo", ["mouseout","mouseover"], function(){
 			console.log("out/over: " + this.getAttribute("id"));
 		});
 	});
-}(Simple));
+}(Ludus));
 ```
 ____
 ```javascript
@@ -88,14 +125,14 @@ ____
 		console.log("focus");
 	}
 	
-	$.DOMReady(function(){
-		$.AddEvent($.DOMElement(".myClass"), "focus", onFocus);
-		$.AddEvent($.DOMElement("#myId"), "focus", onFocus);
+	$.ready(function(){
+		$.addEvent($.DOMElement(".myClass"), "focus", onFocus);
+		$.addEvent($.DOMElement("#myId"), "focus", onFocus);
 	});
-}(Simple));
+}(Ludus));
 ```
 
-Simple.AJAX
+Ludus.ajax
 ----------
 > > __Input:__ _Object args_  
 > > __Output:__ _Nothing_
@@ -121,7 +158,7 @@ Simple.AJAX
 (function($){
 	"use strict";
 	
-	$.AJAX({
+	$.ajax({
 		url: "someFile.txt",
 		onError: function(error, ms){
 			var response = error[0];
@@ -132,27 +169,27 @@ Simple.AJAX
 			console.log("\nTook '"+ms+"' milliseconds");
 		}
 	});
-}(Simple));
+}(Ludus));
 ```
 ____
 ```javascript
 (function($){
 	"use strict";
 	
-	$.AJAX({
+	$.ajax({
 		url: "someFileThatDoesNotExist.txt",
 		onNotFound: function(response, ms){
 			console.log("It took '"+ms+"' to conclude that the file does not exist");
 		}
 	});
-}(Simple));
+}(Ludus));
 ```
 ____
 ```javascript
 (function($){
 	"use strict";
 	
-	$.AJAX({
+	$.ajax({
 		method: "POST",
 		url: "update.php",
 		data: {"id":42, "status":"foo"},
@@ -160,10 +197,10 @@ ____
 			console.log("POST success");
 		}
 	});
-}(Simple));
+}(Ludus));
 ```
 
-Simple.Call
+Ludus.call
 ----------
 > > __Input:__ _Function callback, [Mixed args1, [Mixed args2]]_  
 > > __Output:__ _Mixed returnValue_
@@ -183,10 +220,10 @@ Simple.Call
 	
 	var bar = "hello world";
 	
-	$.Call(foo); // Called foo()
-	$.Call(bar); // Will do nothing
-	$.Call(baz); // Will do nothing
-}(Simple));
+	$.call(foo); // Called foo()
+	$.call(bar); // Will do nothing
+	$.call(baz); // Will do nothing
+}(Ludus));
 ```
 ____
 ```javascript
@@ -197,11 +234,11 @@ ____
 		console.log(id + " => " + args);
 	}
 	
-	$.Call(myCallback, 42, {"foo":"bar", "baz":1234});
-}(Simple));
+	$.call(myCallback, 42, {"foo":"bar", "baz":1234});
+}(Ludus));
 ```
 
-Simple.Cookie.Exists
+Ludus.cookie.exists
 ----------
 > > __Input:__ _Array|String name_  
 > > __Output:__ _Boolean result_
@@ -215,23 +252,23 @@ Simple.Cookie.Exists
 (function($){
 	"use strict";
 	
-	if ($.Cookie.Exists("id") && $.Cookie.Exists("name")) {
+	if ($.cookie.exists("id") && $.cookie.exists("name")) {
 		console.log("The 'id' and 'name' cookies have been set.");
 	}
-}(Simple));
+}(Ludus));
 ```
 _____
 ```javascript
 (function($){
 	"use strict";
 	
-	if ($.Cookie.Exists(["id","name"])) {
+	if ($.cookie.exists(["id","name"])) {
 		console.log("The 'id' and 'name' cookies have been set.");
 	}
-}(Simple));
+}(Ludus));
 ```
 
-Simple.Cookie.Get
+Ludus.cookie.get
 ----------
 > > __Input:__ _Array|String source_  
 > > __Output:__ _Object|String result_
@@ -243,21 +280,21 @@ Simple.Cookie.Get
 (function($){
 	"use strict";
 	
-	var id = $.Cookie.Get("id");
-	var email = $.Cookie.Get("email");
-	var name = $.Cookie.Get("name");
-}(Simple));
+	var id = $.cookie.get("id");
+	var email = $.cookie.get("email");
+	var name = $.cookie.get("name");
+}(Ludus));
 ```
 _____
 ```javascript
 (function($){
 	"use strict";
 	
-	var object = $.Cookie.Get(["id","email","name"]);
-}(Simple));
+	var object = $.cookie.get(["id","email","name"]);
+}(Ludus));
 ```
 
-Simple.Cookie.GetAll
+Ludus.Cookie.GetAll
 ----------
 > > __Input:__ _Nothing_  
 > > __Output:__ _Object result_
@@ -268,11 +305,11 @@ Simple.Cookie.GetAll
 (function($){
 	"use strict";
 	
-	var object = $.Cookie.GetAll();
-}(Simple));
+	var object = $.cookie.getAll();
+}(Ludus));
 ```
 
-Simple.Cookie.Set
+Ludus.cookie.set
 ----------
 > > __Input:__ _String name, String value, Integer milliseconds_  
 > > __Output:__ _Nothing_
@@ -284,14 +321,14 @@ Simple.Cookie.Set
 (function($){
 	"use strict";
 	
-	/* Set cookies for 3600000 milliseconds, or, 1 hour. */
-	$.Cookie.Set("id", "johndoe42", 3600000);
-	$.Cookie.Set("email", "johndoe@foo.bar.com", 3600000);
-	$.Cookie.Set("name", "John Doe", 3600000);
-}(Simple));
+	/* Set cookies for 3600000 milliseconds, or 1 hour. */
+	$.cookie.set("id", "johndoe42", 3600000);
+	$.cookie.set("email", "johndoe@foo.bar.com", 3600000);
+	$.cookie.set("name", "John Doe", 3600000);
+}(Ludus));
 ```
 
-Simple.DecodeQueryString
+Ludus.decodeQueryString
 ----------
 > > __Input:__ _String source_  
 > > __Output:__ _Object result_
@@ -303,13 +340,13 @@ Simple.DecodeQueryString
 	"use strict";
 	
 	var queryString = "id=42&name=John%20Doe&type=Burly";
-	var object = $.DecodeQueryString(queryString);
+	var object = $.decodeQueryString(queryString);
 	
 	console.log(object);
-}(Simple));
+}(Ludus));
 ```
 
-__Simple.DOMElement__
+__Ludus.element__
 ----------
 > > __Input:__ _String element [, DOMObject|String context]_  
 > > __Output:__ _Array|DOMObject result_
@@ -329,38 +366,38 @@ __Simple.DOMElement__
 (function($){
 	"use strict";
 	
-	$.DOMReady(function(){
-		var divArr = $.DOMElement("div");
-		var foo = $.DOMElement("#foo");
-		var barArr = $.DOMElement(".bar");
+	$.ready(function(){
+		var divArr = $.element("div");
+		var foo = $.element("#foo");
+		var barArr = $.element(".bar");
 	});
-}(Simple));
+}(Ludus));
 ```
 ____
 ```javascript
 (function($){
 	"use strict";
 	
-	$.DOMReady(function(){
-		var parent = $.DOMElement("#parent");
-		var children = $.DOMElement(".child", parent);
+	$.ready(function(){
+		var parent = $.element("#parent");
+		var children = $.element(".child", parent);
 	});
-}(Simple));
+}(Ludus));
 ```
 ____
 ```javascript
 (function($){
 	"use strict";
 	
-	$.DOMReady(function(){
-		$.Each($.DOMElement(".myClass"), function(){
+	$.ready(function(){
+		$.each($.element(".myClass"), function(){
 			console.log(this.innerHTML);
 		});
 	});
-}(Simple));
+}(Ludus));
 ```
 
-Simple.DOMReady
+Ludus.ready
 ----------
 > > __Input:__ _Function callback_  
 > > __Output:__ _Nothing_  
@@ -373,21 +410,21 @@ Simple.DOMReady
 (function($){
 	"use strict";
 	
-	$.DOMReady(function(){
+	$.ready(function(){
 		console.log("DOM Ready Function #1");
 	});
 	
-	$.DOMReady(function(){
+	$.ready(function(){
 		console.log("DOM Ready Function #2");
 	});
 	
-	$.DOMReady(function(){
+	$.ready(function(){
 		console.log("DOM Ready Function #3");
 	});
-}(Simple));
+}(Ludus));
 ```
 
-Simple.Each
+Ludus.each
 ----------
 > > __Input:__ _Array|Object haystack, Function callback_  
 > > __Output:__ _Nothing_
@@ -401,10 +438,10 @@ Simple.Each
 	
 	var arr = [1,2,3,4,5];
 	
-	$.Each(arr, function(){
+	$.each(arr, function(){
 		console.log(this);
 	});
-}(Simple));
+}(Ludus));
 ```
 ____
 ```javascript
@@ -413,10 +450,10 @@ ____
 	
 	var arr = [{"id":1},{"id":2},{"id":3},{"id":4},{"id":5}];
 	
-	$.Each(arr, function(){
+	$.each(arr, function(){
 		console.log(this.id);
 	});
-}(Simple));
+}(Ludus));
 ```
 ____
 ```javascript
@@ -426,17 +463,17 @@ ____
 	var arr = [1,2,3,4,5];
 	var obj = {"a":1, "b":2, "c":3};
 	
-	$.Each(arr, function(itr){
+	$.each(arr, function(itr){
 		console.log(itr.value);
 	});
 
-	$.Each(obj, function(itr){
-		console.log(itr.i + " => " + itr.value);
+	$.each(obj, function(itr){
+		console.log(itr.index + " => " + itr.value);
 	});
-}(Simple));
+}(Ludus));
 ```
 
-Simple.EncodeQueryString
+Ludus.encodeQueryString
 ----------
 > > __Input:__ _Object source_  
 > > __Output:__ _String result_
@@ -453,11 +490,11 @@ Simple.EncodeQueryString
 		"type": "Burly"
 	};
 	
-	console.log($.EncodeQueryString(data)); // id=42&name=John%20Doe&type=Burly
-}(Simple));
+	console.log($.encodeQueryString(data)); // id=42&name=John%20Doe&type=Burly
+}(Ludus));
 ```
 
-Simple.Equals
+Ludus.equals
 ----------
 > > __Input:__ _Mixed first, Mixed second_  
 > > __Output:__ _Boolean result_
@@ -472,10 +509,10 @@ Simple.Equals
 	var five = 5;
 	var seven = 7;
 	
-	console.log($.Equals(five, five)); // True
-	console.log($.Equals(five, seven)); // False
-	console.log($.Equals(five + two, seven)); // True
-}(Simple));
+	console.log($.equals(five, five)); // True
+	console.log($.equals(five, seven)); // False
+	console.log($.equals(five + two, seven)); // True
+}(Ludus));
 ```
 ____
 ```javascript
@@ -485,8 +522,8 @@ ____
 	var foo = 5;
 	var bar = "5";
 	
-	console.log($.Equals(foo, bar)); // False
-}(Simple));
+	console.log($.equals(foo, bar)); // False
+}(Ludus));
 ```
 ____
 ```javascript
@@ -498,23 +535,23 @@ ____
 	var baz = {"a":1, "b":3, "c":5, "d":1};
 	var bes = {"a":1, "b":3, "c":5, "d":1};
 	
-	console.log($.Equals(foo, bar)); // True
-	console.log($.Equals(foo, baz)); // False
-	console.log($.Equals(baz, bes)); // True
-}(Simple));
+	console.log($.equals(foo, bar)); // True
+	console.log($.equals(foo, baz)); // False
+	console.log($.equals(baz, bes)); // True
+}(Ludus));
 ```
 ____
 ```javascript
 (function($){
 	"use strict";
 	
-	if ($.Equals($.GET, {"id":"42", "name":"foo"})) {
+	if ($.equals($.get, {"id":"42", "name":"foo"})) {
 		console.log("Query string is 'id=42&name=foo'.");
 	}
-}(Simple));
+}(Ludus));
 ```
 
-Simple.Exists
+Ludus.exists
 ----------
 > > __Input:__ _Mixed val, Mixed override[, Boolean doReturnBool]_  
 > > __Output:__ _Boolean|Mixed result_
@@ -526,17 +563,17 @@ Simple.Exists
 (function($){
 	"use strict";
 	
-	console.log($.Exists(foo, 42)); // 42
-	console.log($.Exists(foo, 42, true)); // false
+	console.log($.exists(foo, 42)); // 42
+	console.log($.exists(foo, 42, true)); // false
 	
 	var foo = "hello world";
 	
-	console.log($.Exists(foo, 42)); // hello world
-	console.log($.Exists(foo, 42, true)); // true
-}(Simple));
+	console.log($.exists(foo, 42)); // hello world
+	console.log($.exists(foo, 42, true)); // true
+}(Ludus));
 ```
 	
-Simple.GenerateArray
+Ludus.generateArray
 ----------
 > > __Input:__ _Integer num, Mixed val[, Boolean isValueCallback]_  
 > > __Output:__ _Array result_
@@ -553,10 +590,10 @@ Simple.GenerateArray
 		return "foo";
 	}
 	
-	var arr_1 = $.GenerateArray(3, "foo"); // ["foo", "foo", "foo"]
-	var arr_2 = $.GenerateArray(3, myCallback); // [function{}, function{}, function{}]
-	var arr_3 = $.GenerateArray(3, myCallback, true); // ["foo", "foo", "foo"]
-}(Simple));
+	var arr_1 = $.generateArray(3, "foo"); // ["foo", "foo", "foo"]
+	var arr_2 = $.generateArray(3, myCallback); // [function{}, function{}, function{}]
+	var arr_3 = $.generateArray(3, myCallback, true); // ["foo", "foo", "foo"]
+}(Ludus));
 ```
 _____
 ```javascript
@@ -571,11 +608,11 @@ _____
 		}
 	}
 	
-	console.log($.GenerateArray(10, fibonacci, true)); // 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
-}(Simple));
+	console.log($.generateArray(10, fibonacci, true)); // 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+}(Ludus));
 ```
 
-Simple.GET.Exists
+Ludus.get.exists
 ----------
 > > __Input:__ _Array|String name_  
 > > __Output:__ _Boolean result_  
@@ -589,23 +626,23 @@ Simple.GET.Exists
 (function($){
 	"use strict";
 	
-	if ($.GET.Exists("id") && $.GET.Exists("name") && $.GET.Exists("foo")) {
+	if ($.get.exists("id") && $.get.exists("name") && $.get.exists("foo")) {
 		console.log("GET['id'], GET['name'], and GET['foo'] have been defined.");
 	}
-}(Simple));
+}(Ludus));
 ```
 _____
 ```javascript
 (function($){
 	"use strict";
 	
-	if ($.GET.Exists(["id","name","foo"])) {
+	if ($.get.exists(["id","name","foo"])) {
 		console.log("GET['id'], GET['name'], and GET['foo'] have been defined.");
 	}
-}(Simple));
+}(Ludus));
 ```
 
-Simple.GET.Get
+Ludus.get.get
 ----------
 > > __Input:__ _Array|String name_  
 > > __Output:__ _Object|String|Undefined value_  
@@ -620,21 +657,21 @@ Simple.GET.Get
 (function($){
 	"use strict";
 	
-	var id = $.GET.Get("id");
-	var name = $.GET.Get("name");
-	var foo = $.GET.Get("foo");
-}(Simple));
+	var id = $.get.get("id");
+	var name = $.get.get("name");
+	var foo = $.get.get("foo");
+}(Ludus));
 ```
 _____
 ```javascript
 (function($){
 	"use strict";
 	
-	var object = $.GET.Get(["id","name","foo"]);
-}(Simple));
+	var object = $.get.get(["id","name","foo"]);
+}(Ludus));
 ```
 
-Simple.GET.GetAll
+Ludus.get.getAll
 ----------
 > > __Input:__ _Nothing_  
 > > __Output:__ _Object result_  
@@ -645,11 +682,11 @@ Simple.GET.GetAll
 (function($){
 	"use strict";
 	
-	var object = $.GET.GetAll();
-}(Simple));
+	var object = $.get.getAll();
+}(Ludus));
 ```
 
-Simple.HasProperty
+Ludus.hasProperty
 ----------
 > > __Input:__ _Array|Object source, String property[, Boolean doIterateSource]_  
 > > __Output:__ _Boolean result_  
@@ -661,23 +698,23 @@ Simple.HasProperty
 (function($){
 	"use strict";
 	
-	if ($.HasProperty({"foo":"bar"}, "foo")) {
+	if ($.hasProperty({"foo":"bar"}, "foo")) {
 		console.log("Has 'foo' property");
 	}
-}(Simple));
+}(Ludus));
 ```
 _____
 ```javascript
 (function($){
 	"use strict";
 	
-	if ($.HasProperty($.GET, "id")) {
+	if ($.hasProperty($.GET, "id")) {
 		console.log("Query string 'id' has been defined.");
 	}
-}(Simple));
+}(Ludus));
 ```
 
-Simple.HasValue
+Ludus.hasValue
 ----------
 > > __Input:__ _Array|Object container, Mixed value_
 > > __Output:__ _Boolean result_  
@@ -691,35 +728,35 @@ Simple.HasValue
 (function($){
 	"use strict";
 	
-	if ($.HasValue([1,2,3,4,5], 3)) {
+	if ($.hasValue([1,2,3,4,5], 3)) {
 		console.log("The value '3' exists in the array.");
 	}
-}(Simple));
+}(Ludus));
 ```
 _____
 ```javascript
 (function($){
 	"use strict";
 	
-	if ($.HasValue({"foo":"bar"}, "bar")) {
+	if ($.hasValue({"foo":"bar"}, "bar")) {
 		console.log("The value 'bar' exists in the object.");
 	}
-}(Simple));
+}(Ludus));
 ```
 _____
 ```javascript
 (function($){
 	"use strict";
 	
-	if ($.HasValue({"num":42}, "42")) {
+	if ($.hasValue({"num":42}, "42")) {
 		// Won't reach here.
 	} else {
         console.log("The object does not contain the string value '42'.");
     }
-}(Simple));
+}(Ludus));
 ```
 
-Simple.Lambda
+Ludus.lambda
 ----------
 > > __Input:__ _Mixed source_  
 > > __Output:__ _Function callback_  
@@ -731,11 +768,11 @@ Simple.Lambda
 (function($){
 	"use strict";
 	
-	var callback = $.Lambda(42);
+	var callback = $.lambda(42);
     var num = callback();
     
     console.log(num); // 42
-}(Simple));
+}(Ludus));
 ```
 _____
 ```javascript
@@ -743,11 +780,11 @@ _____
 	"use strict";
 	
     // Disable all anchor click events
-	$.AddEvent("a", "click", $.Lambda(false));
-}(Simple));
+	$.AddEvent("a", "click", $.lambda(false));
+}(Ludus));
 ```
 
-Simple.ObjectToArray
+Ludus.objectToArray
 ----------
 > > __Input:__ _Object source_  
 > > __Output:__ _Array result_  
@@ -761,20 +798,17 @@ Simple.ObjectToArray
 	"use strict";
 	
 	var obj = {"foo":"bar", "hello":"world"};
-	var arr = $.ObjectToArray(obj);
+	var arr = $.objectToArray(obj);
 	
 	console.log("Keys: " + arr[0]); // foo, hello
 	console.log("Values: " + arr[1]); // bar, world
-}(Simple));
+}(Ludus));
 ```
 
-Simple.Sprintf
+Ludus.format
 ----------
 > > __Input:__ _String source[, Array|String ...]_  
 > > __Output:__ _String result_
-> >
-> > Behaves almost identically to the C/PHP/whatever function of the same name.   
-> > The only difference is that this function does not support the all of the same % variables as the PHP function; I have not seen any real need for them.
 > >
 > > The available variables are:  
 > > ```  %b  ``` ```  Value will be treated as a signed integer; formatted as binary.  ```  
@@ -790,10 +824,10 @@ Simple.Sprintf
 	"use strict";
 	
 	var source = "The quick brown %s jumps over the lazy %s.";
-	var result = $.Sprintf(source, "fox", "dog");
+	var result = $.format(source, "fox", "dog");
 	
 	console.log(result); // The quick brown fox jumps over the lazy dog.
-}(Simple));
+}(Ludus));
 ```
 _____
 ```javascript
@@ -801,8 +835,8 @@ _____
 	"use strict";
 	
 	var source = "%d bottles of %s on the %s.";
-	var result = $.Sprintf(source, [99,"beer","wall"]);
+	var result = $.format(source, [99,"beer","wall"]);
 	
 	console.log(result); // 99 bottles of beer on the wall.
-}(Simple));
+}(Ludus));
 ```
