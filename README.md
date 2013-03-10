@@ -21,7 +21,8 @@ This is a basic example:
 	<body>
 		<div id="foo">hello world</div>
 	</body>
-</html>````
+</html>
+````
 
 Documentation
 ----------
