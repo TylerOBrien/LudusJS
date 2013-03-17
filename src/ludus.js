@@ -804,25 +804,15 @@
     
     /*
      * hasProperty() returns Boolean
-     * Input: String, String, Boolean
+     * Input: String, String
         * Returns true if the object has the passed property defined.
         * For example, checking for "foo" on this object:
             * {"hello":"world", "id":42, "foo":null}
         * Will return true because it is defined.
         * Its value is irrelevent.
      * */
-    $.hasProperty = function(source, property, doIterateSource) {
-        source = ObjectShortcut(source);
-
-        if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            var result = $.isArray(source);
-            for (var len=source.length; result && len--;) {
-                result = source[len].hasOwnProperty(property);
-            }
-            return result;
-        } else {
-            return source.hasOwnProperty(property);
-        }
+    $.hasProperty = function(source, property) {
+        return ObjectShortcut(source).hasOwnProperty(property);
     };
     
     /*
@@ -867,119 +857,84 @@
     
     /*
      * isArray() returns Boolean
-     * Input: Array, Boolean
+     * Input: Array
      * */
-    $.isArray = function(source, doIterateSource) {
-        if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.isArray);
-        } else {
-            return ($.type(source) === Cache.array);
-        }
+    $.isArray = function(source) {
+        return $.type(source) === Cache.array;
     };
     
     /*
      * isDOMElement() returns Boolean
-     * Input: Object, Boolean
+     * Input: Object
      * */
-    $.isDOMElement = function(source, doIterateSource) {
-        if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.isDOMElement);
-        } else {
-            return typeof source !== Cache.undefined && source !== null && typeof source.ELEMENT_NODE !== Cache.undefined;
-        }
+    $.isDOMElement = function(source) {
+        return typeof source !== Cache.undefined && source !== null && typeof source.ELEMENT_NODE !== Cache.undefined;
     };
     
     /*
      * isDOMElementArray() returns Boolean
-     * Input: Object, Boolean
+     * Input: Object
      * */
-    $.isDOMElementArray = function(source, doIterateSource) {
-        if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.isDOMElementArray);
-        } else {
-            return typeof source !== Cache.undefined && source !== null && typeof source.item !== Cache.undefined;
-        }
+    $.isDOMElementArray = function(source) {
+        return typeof source !== Cache.undefined && source !== null && typeof source.item !== Cache.undefined;
     };
     
     /*
      * isEmptyArray() returns Boolean
-     * Input: Array, Boolean
+     * Input: Array
         * Returns true if the passed array is empty.
         * False otherwise.
     * */
-    $.isEmptyArray = function(source, doIterateSource) {
-        if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.isEmptyArray);
-        } else {
-            return $.isArray(source) && !source.length;
-        }
+    $.isEmptyArray = function(source) {
+        return $.isArray(source) && !source.length;
     };
     
     /*
      * isEmptyObject() returns Boolean
-     * Input: Object|Array, Boolean
+     * Input: Object|Array
         * Returns true if the passed object contains no indices, or is undefined.
         * Will only return false if the object contains no indices, even if defined.
     * */
-    $.isEmptyObject = function(source, doIterateSource) {
-        if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.isEmptyObject);
-        } else {
-            if (typeof source !== Cache.undefined) {
-                for (var index in source) {
-                    return false;
-                }
+    $.isEmptyObject = function(source) {
+        if (typeof source !== Cache.undefined) {
+            for (var index in source) {
+                return false;
             }
-            return true;
         }
+
+        return true;
     };
 
     /*
      * isFunction() returns Boolean
-     * Input: Array|Object, Boolean
+     * Input: Array|Object
      * */
-    $.isFunction = function(source, doIteratSource) {
-        if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.isFunction);
-        } else {
-            return typeof source === Cache.func;
-        }
+    $.isFunction = function(source,) {
+        return typeof source === Cache.func;
     };
     
     /*
      * isNumeric() returns Boolean
-     * Input: Array|Mixed, Array
+     * Input: Array|Mixed
      * */
-    $.isNumeric = function(source, doIterateSource) {
-        if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.isNumeric);
-        } else {
-            return !isNaN(parseFloat(source)) && isFinite(source);
-        }
+    $.isNumeric = function(source) {
+        return !isNaN(parseFloat(source)) && isFinite(source);
     };
     
     /*
      * isObject() returns Boolean
-     * Input: Object|Array, Boolean
+     * Input: Object|Array
      * */
-    $.isObject = function(source, doIterateSource) {
-        if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.isObject);
-        } else {
-            return ($.type(source) === Cache.object);
-        }
+    $.isObject = function(source) {
+        return $.type(source) === Cache.object;
     };
     
     /*
      * isString() returns Boolean
-     * Input: Array|String, Boolean
+     * Input: Array|String
      * */
-    $.isString = function(source, doIterateSource) {
-        if (typeof doIterateSource !== Cache.undefined && doIterateSource) {
-            return Comparison(source, $.isString);
-        } else {
-            return ($.type(source) === Cache.string);
-        }
+    $.isString = function(source) {
+        return $.type(source) === Cache.string;
     };
     
     /*
