@@ -369,6 +369,22 @@
          */
         SendAJAXRequest(request, request);
     };
+
+    /*
+     * all() returns Boolean
+     * Input: Array|Object, Function
+        * Returns true if every call to the predicate also returns true.
+        * Returns false otherwise, or if empty data is given.
+     * */
+    $.all = function(data, predicate) {
+        var result;
+
+        $.each(data, function(itr) {
+            return predicate ? result = predicate(itr.value) : itr.value;
+        });
+
+        return result ? true : false;
+    };
     
     /*
      * arraysEqual() returns Boolean
