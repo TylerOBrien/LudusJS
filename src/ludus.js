@@ -1,6 +1,6 @@
 /*
- * SimpleJS
- * https://github.com/TylerOBrien/SimpleJS
+ * LudusJS
+ * https://github.com/TylerOBrien/LudusJS
  *
  * Copyright (c) 2012 Tyler O'Brien
  *
@@ -31,7 +31,7 @@
     
     /*
      * AJAXRequest Object
-     * Is used in the Simple.AJAX() function.
+     * Is used in the Ludus.AJAX() function.
      * */
     var AJAXRequest = function(args) {
         this.async = $.exists(args.async, true);
@@ -56,7 +56,7 @@
      * AJAXRequestHandler() returns Nothing
      * Input: Nothing
         * This is the handler function for http.onreadystatechange.
-        * Is called in the Simple.AJAX() function.
+        * Is called in the Ludus.AJAX() function.
      * */
     AJAXRequestHandler = function() {
         switch (this.readyState) {
@@ -188,7 +188,7 @@
         /*
          * ProcessEventListener() returns Nothing
          * Input: Boolean, Array|String, Array|String, Function, Boolean
-            * This function is called by the Simple.AddEvent and Simple.RemoveEvent functions.
+            * This function is called by the Ludus.AddEvent and Ludus.RemoveEvent functions.
             * If the "element" or "event" objects are arrays then they will be processed recursively.
          * */
         ProcessEventListener: function(isAddingEvent, element, event, callback, useCapture) {
@@ -296,7 +296,7 @@
         /*
          * Process() returns String
          * Input: String, String
-            * Is called by Simple.Sprintf().
+            * Is called by Ludus.Sprintf().
             * Replaced sprintf variables with the appropriate value; converting it
             * to a string if necessary.
          * */
@@ -1029,7 +1029,7 @@
             max = min;
             min = 0;
         }
-        
+
         return $.round((Math.random() * (max-min)) + min, decimalPlaces);
     };
 
