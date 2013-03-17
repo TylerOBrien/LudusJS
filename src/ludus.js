@@ -119,26 +119,10 @@
     }(ClassTypes));
     
     /*
-     * Comparison() returns Boolean
-     * Input: Array, Function
-        * Called by the "is" functions, such as "isArray" and "isObject".
-        * Is used when comparing an array of values.
-     * */
-    var Comparison = function(values, predicate) {
-        var result = $.isArray(values);
-
-        for (var len=values.length; result && len--;) {
-            result = predicate(values[len]);
-        }
-
-        return result;
-    },
-    
-    /*
      * Array of Function.
      * Each function in this array will be called when the DOM is ready.
      * */
-    DOMReadyCallbacks = [],
+    var DOMReadyCallbacks = [],
     
     /*
      * All event based functions will go here.
