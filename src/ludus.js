@@ -34,13 +34,13 @@
      * Is used in the Ludus.AJAX() function.
      * */
     function AJAXRequest(args) {
-        this.async = $.exists(args.async, true);
-        this.charset = $.exists(args.charset, "utf-8");
-        this.contentType = $.exists(args.contentType, "application/x-www-form-urlencoded");
-        this.data = $.exists(args.data, {});
+        this.async = $.defined(args.async, true);
+        this.charset = $.defined(args.charset, "utf-8");
+        this.contentType = $.defined(args.contentType, "application/x-www-form-urlencoded");
+        this.data = $.defined(args.data, {});
         this.http = new XMLHttpRequest();
         this.http.request = this;
-        this.method = $.exists(args.method, "GET");
+        this.method = $.defined(args.method, "GET");
         this.onError = args.onError;
         this.onConnect = args.onConnect;
         this.onNotFound = args.onNotFound;
@@ -48,7 +48,7 @@
         this.onRecvRequest = args.onRecvRequest;
         this.onSuccess = args.onSuccess;
         this.queryString = $.encodeQueryString(this.data);
-        this.url = $.exists(args.url, "/");
+        this.url = $.defined(args.url, "/");
         this.urlToOpen = (this.method === "POST") ? this.url : (this.url + "?" + this.queryString);
     }
     
@@ -500,7 +500,7 @@
          * By default the each() function will halt if a callback returns false.
          * This boolean will disable that.
          * */
-        ignoreReturnValues = $.exists(ignoreReturnValues, null, true);
+        ignoreReturnValues = $.defined(ignoreReturnValues, null, true);
         
         /*
          * DOMObjectArrays aren't actually arrays, so the $.IsArray function returns false.
@@ -578,7 +578,7 @@
         var result = {};
         
         while (buffer) {
-            result[decodeURIComponent(buffer[1])] = $.Exists(buffer[2], null, true) ? decodeURIComponent(buffer[2]) : "";
+            result[decodeURIComponent(buffer[1])] = $.defined(buffer[2], null, true) ? decodeURIComponent(buffer[2]) : "";
             buffer = regex.exec(string);
         }
         
@@ -652,7 +652,7 @@
     };
     
     /*
-     * exists() returns Mixed
+     * defined() returns Mixed
      * Input: Mixed, Mixed, Boolean
          * Used for determining if the passed object is defined.
          *
@@ -661,7 +661,7 @@
          *
          * If "doReturnBoolean" is true then true/false is returned in place of object/override.
      * */
-    $.exists = function(source, override, doReturnBoolean) {
+    $.defined = function(source, override, doReturnBoolean) {
         source = ObjectShortcut(source);
 
         if (typeof source !== Cache.undefined) {
@@ -1078,12 +1078,12 @@
         if ($.type(source) !== Cache.number) {
             var result = source.match(RegularExpressions.number);
             if (result !== null && result.length === 1) {
-                return parseInt(source.replace(RegularExpressions.notNumber, Cache.emptyString), $.exists(base,10));
+                return parseInt(source.replace(RegularExpressions.notNumber, Cache.emptyString), $.defined(base,10));
             } else {
                 return NaN;
             }
         } else {
-            return parseInt(source, $.exists(base,10));
+            return parseInt(source, $.defined(base,10));
         }
     };
     
@@ -1095,7 +1095,7 @@
      * */
     $.toUnsignedInt = function(source, base, max) {
         if (source = $.toInt(source, base)) {
-            return (source > 0) ? source : ($.exists(max,Cache.uint32max) - Math.abs(source));
+            return (source > 0) ? source : ($.defined(max,Cache.uint32max) - Math.abs(source));
         } else {
             return source;
         }
