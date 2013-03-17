@@ -775,16 +775,16 @@
     };
     
     /*
-     * generateArray() returns Array
+     * generate() returns Array
      * Input: Number, Mixed, Boolean
         * Generates an array based on the passed parameters.
         * If the third argument is a boolean "true" then second argument is
         * treated as a callback.
         * Can be used to quickly create an array of N size by not assigning
         * the "value" argument a value:
-            * var arr = $.GenerateArray(10);
+            * var arr = $.generate(10);
         * The array can also be manipulated as it grows:
-            * var arr = $.GenerateArray(10, function(src,i){
+            * var arr = $.generate(10, function(src,i){
                             if (i>0) {
                                 src[i-1] = Math.pow(src.length,2);
                                 return 0;
@@ -792,7 +792,7 @@
                         }, true);
             * console.log(arr); // [1, 4, 9, 16, 25, 36, 49, 64, 81, 0]
      * */
-    $.generateArray = function(amount, value, isCallback) {
+    $.generate = function(amount, value, isCallback) {
         var result = [];
 
         for (var i = 0; i < amount; i++) {
