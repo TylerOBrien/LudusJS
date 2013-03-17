@@ -24,7 +24,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * */
  
- var Simple = {};
+ var Ludus = {};
  
  (function($) {
     "use strict";
@@ -1126,4 +1126,4 @@
     } else {
         window.onload = Events.onReady;
     }
- }(Simple));
+ }(Ludus));
