@@ -33,7 +33,7 @@
      * AJAXRequest Object
      * Is used in the Ludus.AJAX() function.
      * */
-    var AJAXRequest = function(args) {
+    function AJAXRequest(args) {
         this.async = $.exists(args.async, true);
         this.charset = $.exists(args.charset, "utf-8");
         this.contentType = $.exists(args.contentType, "application/x-www-form-urlencoded");
@@ -50,7 +50,7 @@
         this.queryString = $.encodeQueryString(this.data);
         this.url = $.exists(args.url, "/");
         this.urlToOpen = (this.method === "POST") ? this.url : (this.url + "?" + this.queryString);
-    },
+    }
     
     /*
      * AJAXRequestHandler() returns Nothing
@@ -58,7 +58,7 @@
         * This is the handler function for http.onreadystatechange.
         * Is called in the Ludus.AJAX() function.
      * */
-    AJAXRequestHandler = function() {
+    function AJAXRequestHandler() {
         switch (this.readyState) {
             case 1: /* CONNECT */
                 $.call(this.request.onConnect);
@@ -87,12 +87,12 @@
                 }
             break;
         }
-    },
+    }
     
     /*
      * Cache of commonly used values.
      * */
-    Cache = {
+    var Cache = {
         array: "array",
         contentType: "contentType",
         cookieGetRegex: "=([^;]+);?", /* Passed as an argument to RegExp's constructor. */
