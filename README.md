@@ -4,7 +4,7 @@ This is a lightweight JavaScript library designed to simplify common tasks when 
 
 Documentation
 ----------
-Thorough docs on every function is available on [the Wiki](wiki/Documentation).
+Thorough docs on every function is available on [the Wiki](https://github.com/TylerOBrien/LudusJS/wiki).
 
 How to Use
 ----------
