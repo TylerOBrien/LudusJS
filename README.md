@@ -2,10 +2,6 @@ LudusJS
 ----------
 This is a lightweight JavaScript library designed to simplify common tasks when writing vanilla JavaScript (i.e. typically when not using frameworks like jQuery or MooTools). Originally this was only an AJAX wrapper, but as I wrote it I thought up features to add, and eventually it became what it is now.
 
-Documentation
-----------
-Thorough docs on every function is available on [the Wiki](https://github.com/TylerOBrien/LudusJS/wiki).
-
 How to Use
 ----------
 Usage is pretty much the same as jQuery; include the LudusJS source, and then pass callbacks to a ready function, which will ensure that they are called after the DOM finishes loading.  
@@ -43,3 +39,7 @@ This is a basic example:
     </body>
 </html>
 ````
+
+Documentation
+----------
+Thorough docs on every function is available on [the Wiki](https://github.com/TylerOBrien/LudusJS/wiki).
