@@ -4,9 +4,10 @@ This is a lightweight JavaScript library designed to simplify common tasks when 
 
 How to Use
 ----------
-Usage is pretty much the same as jQuery; include the LudusJS source, and then pass callbacks to a ready function, which will ensure that they are called after the DOM finishes loading.  
-This is a basic example:
+Usage is pretty much the same as jQuery; include the LudusJS source, and then pass callbacks to a ready function, which will ensure that they are called after the DOM finishes loading.
 
+Example
+----------
 ```html
 <!DOCTYPE HTML>
 <html>
