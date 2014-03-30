@@ -893,7 +893,7 @@
      * isFunction() returns Boolean
      * Input: Array|Object
      * */
-    $.isFunction = function(source,) {
+    $.isFunction = function(source) {
         return typeof source === Cache.func;
     };
     
