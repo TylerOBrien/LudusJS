@@ -43,4 +43,4 @@ Example
 
 Documentation
 ----------
-Thorough docs on every function is available on [the Wiki](https://github.com/TylerOBrien/LudusJS/wiki).
+Full documentation can be found on [the wiki](https://github.com/TylerOBrien/LudusJS/wiki).
