@@ -14,16 +14,16 @@ Example
     <head>
         <script src="js/ludus.js"></script>
         <script>
-            Ludus.ready(function() {
-                Ludus.addEvent("#myForm", "submit", function(event) {
+            Ludus.ready(function(){
+                Ludus.addEvent("#myForm", "submit", function(event){
                     event.preventDefault();
                 });
 
-                Ludus.addEvent("#myButton", "click", function(event) {
+                Ludus.addEvent("#myButton", "click", function(event){
                     var form = Ludus.element("#myForm");
                     var data = Ludus.element("input", form);
 
-                    Ludus.each(data, function() {
+                    Ludus.each(data, function(){
                         alert(Ludus.format("%s => %s", this.name, this.value));
                     });
                 });
